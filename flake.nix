@@ -5,6 +5,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixvim.url = "github:nix-community/nixvim";
     flake-parts.url = "github:hercules-ci/flake-parts";
+    cornelis.url = "github:isovector/cornelis";
   };
 
   outputs = {
@@ -33,6 +34,7 @@
           # You can use `extraSpecialArgs` to pass additional arguments to your module files
           extraSpecialArgs = {
             # inherit (inputs) foo;
+            inherit inputs;
           };
         };
         nvim = nixvim'.makeNixvimWithModule nixvimModule;

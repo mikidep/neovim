@@ -1,4 +1,6 @@
 {pkgs, ...}: {
+  imports = [./agda.nix];
+
   colorschemes.tokyonight.enable = true;
   plugins = {
     auto-session.enable = true;
