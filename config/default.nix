@@ -34,6 +34,7 @@
       '';
     };
     which-key.enable = true;
+    floaterm.enable = true;
   };
   extraPlugins = with pkgs; [
     (vimUtils.buildVimPlugin {
@@ -41,32 +42,6 @@
       src = inputs.midnight-nvim;
     })
   ];
-  # extraPlugins = with pkgs.vimPlugins; [
-  #   nvim-lspconfig
-  #   plenary-nvim
-  #   firenvim
-  #   telescope-sg
-  #   (pkgs.vimUtils.buildVimPlugin
-  #     {
-  #       name = "tree-climber.nvim";
-  #       src = pkgs.fetchFromGitHub {
-  #         owner = "drybalka";
-  #         repo = "tree-climber.nvim";
-  #         rev = "9b0c8c8";
-  #         hash = "sha256-iivP8g8aSeEnS/dBcb0sg583ijzhWFA7w430xWPmjF0=";
-  #       };
-  #     })
-  #   (pkgs.vimUtils.buildVimPlugin
-  #     {
-  #       name = "hydra.nvim";
-  #       src = pkgs.fetchFromGitHub {
-  #         owner = "nvimtools";
-  #         repo = "hydra.nvim";
-  #         rev = "8578056";
-  #         hash = "sha256-Qxp2FigXlupAw/ZwZRVJ+hRKzVRtupV6L4a6jOslwI0=";
-  #       };
-  #     })
-  # ];
   clipboard = {
     providers.wl-copy.enable = true;
     register = "unnamedplus";
@@ -126,6 +101,10 @@
         {
           key = "qq";
           action = ''<cmd>qa<CR>'';
+        }
+        {
+          key = "g";
+          action = ''<cmd>FloatermNew ${pkgs.lazygit}/bin/lazygit<CR>'';
         }
       ];
   in

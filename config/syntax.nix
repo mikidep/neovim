@@ -8,7 +8,9 @@
     indent = true;
     incrementalSelection.enable = true;
   };
-
+  extraPackages = with pkgs; [
+    ast-grep
+  ];
   extraPlugins = [
     (pkgs.vimUtils.buildVimPlugin {
       name = "nvim-treehopper";
@@ -27,6 +29,7 @@
         EOF
       '';
     }
+    pkgs.vimPlugins.telescope-sg
   ];
 
   keymaps = [
