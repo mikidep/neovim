@@ -1,9 +1,9 @@
 {pkgs, ...}: {
-  lsp-format = {
+  plugins.lsp-format = {
     enable = true;
     lspServersToEnable = "all";
   };
-  lsp = {
+  plugins.lsp = {
     enable = true;
     servers = {
       jsonls.enable = true;

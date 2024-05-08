@@ -6,6 +6,18 @@
     nixvim.url = "github:nix-community/nixvim";
     flake-parts.url = "github:hercules-ci/flake-parts";
     cornelis.url = "github:isovector/cornelis";
+    nvim-treehopper = {
+      url = "github:mfussenegger/nvim-treehopper";
+      flake = false;
+    };
+    tshjkl = {
+      url = "github:gsuuon/tshjkl.nvim";
+      flake = false;
+    };
+    midnight-nvim = {
+      url = "github:dasupradyumna/midnight.nvim";
+      flake = false;
+    };
   };
 
   outputs = {
@@ -24,6 +36,7 @@
       perSystem = {
         pkgs,
         system,
+        inputs',
         ...
       }: let
         nixvimLib = nixvim.lib.${system};
@@ -34,7 +47,7 @@
           # You can use `extraSpecialArgs` to pass additional arguments to your module files
           extraSpecialArgs = {
             # inherit (inputs) foo;
-            inherit inputs;
+            inherit inputs inputs';
           };
         };
         nvim = nixvim'.makeNixvimWithModule nixvimModule;

@@ -1,6 +1,6 @@
 {
   pkgs,
-  inputs',
+  inputs,
   ...
 }: {
   plugins.treesitter = {
@@ -10,7 +10,23 @@
   };
 
   extraPlugins = [
-    (pkgs.vimUtils.buildVimPlugin inputs'.nvim-treehopper)
+    (pkgs.vimUtils.buildVimPlugin {
+      name = "nvim-treehopper";
+      src = inputs.nvim-treehopper;
+    })
+    {
+      plugin = pkgs.vimUtils.buildVimPlugin {
+        name = "tshjkl.nvim";
+        src = inputs.tshjkl;
+      };
+      config = ''
+        lua << EOF
+          require'tshjkl'.setup({
+
+          })
+        EOF
+      '';
+    }
   ];
 
   keymaps = [
