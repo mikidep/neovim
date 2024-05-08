@@ -81,10 +81,12 @@
       map (km: km // {key = "<leader>" + km.key;})
       [
         {
+          options.desc = "Open NeoTree";
           key = "nt";
           action = "<cmd>Neotree focus toggle=true<CR>";
         }
         {
+          options.desc = "Format code";
           key = "cf";
           action = ''
             function()
@@ -94,17 +96,30 @@
           lua = true;
         }
         {
+          options.desc = "LSP code actions";
           key = "ca";
           action = ''vim.lsp.buf.code_action'';
           lua = true;
         }
         {
+          options.desc = "Close all";
           key = "qq";
           action = ''<cmd>qa<CR>'';
         }
         {
+          options.desc = "Save all and close";
+          key = "wq";
+          action = ''<cmd>wqa<CR>'';
+        }
+        {
+          options.desc = "Open LazyGit";
           key = "g";
           action = ''<cmd>FloatermNew ${pkgs.lazygit}/bin/lazygit<CR>'';
+        }
+        {
+          options.desc = "Open floating terminal";
+          key = "t";
+          action = ''<cmd>FloatermNew<CR>'';
         }
       ];
   in
