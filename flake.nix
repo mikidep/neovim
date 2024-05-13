@@ -22,6 +22,10 @@
       url = "github:Tyler-Barham/floating-help.nvim";
       flake = false;
     };
+    nvfs = {
+      url = "github:LunarVim/Neovim-from-scratch";
+      flake = false;
+    };
   };
 
   outputs = {

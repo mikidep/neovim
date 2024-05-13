@@ -156,6 +156,10 @@
             key = "]]";
             action = "⟧";
           }
+          {
+            key = "=eqv";
+            action = "≃";
+          }
         ]
       )
       "endfunction"

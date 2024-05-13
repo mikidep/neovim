@@ -20,4 +20,10 @@
       };
     };
   };
+
+  extraConfigLua = ''
+    require 'lspconfig'.openscad_lsp.setup {
+      cmd = { "${pkgs.openscad-lsp}/bin/openscad-lsp", "--stdio" }
+    }
+  '';
 }

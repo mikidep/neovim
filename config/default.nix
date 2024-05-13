@@ -71,24 +71,12 @@
     wrap = false;
     scrolloff = 10;
   };
-  extraFiles = let
-    nvfs = pkgs.fetchFromGitHub {
-      owner = "LunarVim";
-      repo = "Neovim-from-scratch";
-      rev = "96fca52";
-      hash = "sha256-D9d+nlwe4qZn8cXqA1WaaRu8/q2yoYATrx1Nj6Gokak=";
-    };
-  in {
-    "lua/nvfs-keymaps.lua" = builtins.readFile "${nvfs}/lua/user/keymaps.lua";
+  extraFiles = {
+    "lua/nvfs-keymaps.lua" = builtins.readFile "${inputs.nvfs}/lua/user/keymaps.lua";
   };
-  extraConfigLua = with builtins;
-  # replaceStrings [
-  #   "@openscad-lsp@"
-  # ]
-  # [
-  #   "${pkgs.openscad-lsp}/bin/openscad-lsp"
-  # ]
-    (readFile ./lua/extraconfig.lua);
+  extraConfigLua = ''
+    require("nvfs-keymaps")
+  '';
   keymaps = let
     leaderkm =
       map (km: km // {key = "<leader>" + km.key;})
