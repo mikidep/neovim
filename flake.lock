@@ -181,6 +181,22 @@
         "type": "github"
       }
     },
+    "floating-help-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1714942035,
+        "narHash": "sha256-S1dDrcN8nnWn2lc1M40QfWuPWtvrAvDk+cXiEvUVVs0=",
+        "owner": "Tyler-Barham",
+        "repo": "floating-help.nvim",
+        "rev": "1e61cb6804b7aac7fb0ccfdccbbd01a0a4c92241",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Tyler-Barham",
+        "repo": "floating-help.nvim",
+        "type": "github"
+      }
+    },
     "gitignore": {
       "inputs": {
         "nixpkgs": [
@@ -399,6 +415,7 @@
       "inputs": {
         "cornelis": "cornelis",
         "flake-parts": "flake-parts",
+        "floating-help-nvim": "floating-help-nvim",
         "midnight-nvim": "midnight-nvim",
         "nixpkgs": "nixpkgs_2",
         "nixvim": "nixvim",

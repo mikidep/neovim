@@ -18,6 +18,10 @@
       url = "github:dasupradyumna/midnight.nvim";
       flake = false;
     };
+    floating-help-nvim = {
+      url = "github:Tyler-Barham/floating-help.nvim";
+      flake = false;
+    };
   };
 
   outputs = {

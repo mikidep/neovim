@@ -41,6 +41,19 @@
       name = "midnight.nvim";
       src = inputs.midnight-nvim;
     })
+    {
+      plugin = vimUtils.buildVimPlugin {
+        name = "floating-help.nvim";
+        src = inputs.floating-help-nvim;
+      };
+      config = ''
+        lua << EOF
+          require 'floating-help'.setup({
+
+          })
+        EOF
+      '';
+    }
   ];
   clipboard = {
     providers.wl-copy.enable = true;
@@ -120,6 +133,11 @@
           options.desc = "Open floating terminal";
           key = "t";
           action = ''<cmd>FloatermNew<CR>'';
+        }
+        {
+          options.desc = "Paste GitHub URL as a flake URL";
+          key = "mg";
+          action = ''vt"pT"dtgf.cf/:<Esc>'';
         }
       ];
   in

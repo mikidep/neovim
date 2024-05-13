@@ -23,7 +23,7 @@
       };
       config = ''
         lua << EOF
-          require'tshjkl'.setup({
+          require 'tshjkl'.setup({
 
           })
         EOF
