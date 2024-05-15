@@ -7,11 +7,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1713368339,
-        "narHash": "sha256-KuhlTzpTaZe0Z18BIpSZ2J2LcIPGOI3n2V4nT+XBkw8=",
+        "lastModified": 1715748984,
+        "narHash": "sha256-EJn+7DRVyOAwgUobSeBCwiAe1qdn37Gb6c7k2eLP/U4=",
         "owner": "isovector",
         "repo": "cornelis",
-        "rev": "c97b4817034a927dcadb22294cf97a88087a935f",
+        "rev": "5fb7f1df4d3494a8f9f72433bb10d7b2b4b353fd",
         "type": "github"
       },
       "original": {

@@ -54,6 +54,7 @@
         EOF
       '';
     }
+    vimPlugins.vim-visual-multi
   ];
   clipboard = {
     providers.wl-copy.enable = true;
