@@ -30,7 +30,7 @@
         '') [
           {
             key = "<leader><leader>l";
-            action = ":CornelisLoad<CR>";
+            action = ":CornelisLoad<CR><Esc>";
           }
           {
             key = "<leader><leader>h";
