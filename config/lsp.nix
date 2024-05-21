@@ -5,6 +5,10 @@
   };
   plugins.lsp = {
     enable = true;
+    preConfig = ''
+      vim.lsp.set_log_level('debug')
+      require('vim.lsp.log').set_format_func(vim.inspect)
+    '';
     servers = {
       jsonls.enable = true;
       nil_ls = {
@@ -19,6 +23,12 @@
         installRustc = true;
       };
       hls.enable = true;
+      texlab = {
+        enable = true;
+        settings = {
+          texlab.build.onSave = true;
+        };
+      };
     };
   };
 

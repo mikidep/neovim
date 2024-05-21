@@ -9,9 +9,9 @@
     ./cmp.nix
     ./lsp.nix
     ./syntax.nix
+    ./tex.nix
   ];
 
-  # colorscheme = "midnight";
   colorschemes.ayu.enable = true;
   plugins = {
     auto-session.enable = true;
@@ -21,7 +21,8 @@
     markdown-preview = {
       enable = true;
     };
-    #  noice.enable = true;
+    # noice.enable = true;
+    trouble.enable = true;
     neo-tree = {
       enable = true;
       openFilesInLastWindow = false;
