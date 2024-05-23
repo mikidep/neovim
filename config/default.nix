@@ -10,6 +10,7 @@
     ./lsp.nix
     ./syntax.nix
     ./tex.nix
+    ./hop.nix
   ];
 
   colorschemes.ayu.enable = true;

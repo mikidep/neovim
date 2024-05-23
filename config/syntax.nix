@@ -12,10 +12,6 @@
     ast-grep
   ];
   extraPlugins = [
-    (pkgs.vimUtils.buildVimPlugin {
-      name = "nvim-treehopper";
-      src = inputs.nvim-treehopper;
-    })
     {
       plugin = pkgs.vimUtils.buildVimPlugin {
         name = "tshjkl.nvim";
@@ -30,13 +26,5 @@
       '';
     }
     pkgs.vimPlugins.telescope-sg
-  ];
-
-  keymaps = [
-    {
-      key = "<leader>s";
-      action = ''require 'tsht'.nodes'';
-      lua = true;
-    }
   ];
 }

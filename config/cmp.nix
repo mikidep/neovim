@@ -1,4 +1,5 @@
 {pkgs, ...}: {
+  plugins.cmp-omni.enable = true;
   plugins.cmp = {
     enable = true;
     autoEnableSources = true;
@@ -8,6 +9,12 @@
         {name = "path";}
         {name = "buffer";}
         {name = "luasnip";}
+        # {
+        #   name = "omni";
+        #   option = {
+        #     disable_omnifuncs = ["v:lua.vim.lsp.omnifunc"];
+        #   };
+        # }
       ];
       snippet.expand = ''
         function(args)

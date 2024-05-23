@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "cmp-vimtex": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1716040164,
+        "narHash": "sha256-CO70M+l/9c4vqNm0XloOTzGQTmogHbSwvUFKQxYGsuw=",
+        "owner": "micangl",
+        "repo": "cmp-vimtex",
+        "rev": "a64b1b5eec0460144c91c4f20a45c74b8ded48ae",
+        "type": "github"
+      },
+      "original": {
+        "owner": "micangl",
+        "repo": "cmp-vimtex",
+        "type": "github"
+      }
+    },
     "cornelis": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -440,6 +456,7 @@
     },
     "root": {
       "inputs": {
+        "cmp-vimtex": "cmp-vimtex",
         "cornelis": "cornelis",
         "flake-parts": "flake-parts",
         "floating-help-nvim": "floating-help-nvim",

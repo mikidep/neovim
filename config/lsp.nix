@@ -21,14 +21,9 @@
         enable = true;
         installCargo = true;
         installRustc = true;
+        settings.rustfmt.overrideCommand = ["${pkgs.rustfmt}/bin/rustfmt"];
       };
       hls.enable = true;
-      texlab = {
-        enable = true;
-        settings = {
-          texlab.build.onSave = true;
-        };
-      };
     };
   };
 

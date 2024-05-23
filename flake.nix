@@ -26,6 +26,10 @@
       url = "github:LunarVim/Neovim-from-scratch";
       flake = false;
     };
+    cmp-vimtex = {
+      url = "github:micangl/cmp-vimtex";
+      flake = false;
+    };
   };
 
   outputs = {

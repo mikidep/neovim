@@ -1,4 +1,8 @@
 {
+  pkgs,
+  inputs,
+  ...
+}: {
   plugins.lsp.servers.texlab = {
     enable = true;
     settings = {
@@ -11,4 +15,11 @@
     settings.view_method = "zathura";
   };
   globals.latex_view_general_viewer = "zathura";
+  extraPlugins = [
+    (pkgs.vimUtils.buildVimPlugin {
+      name = "cmp-vimtex";
+      src = inputs.cmp-vimtex;
+    })
+  ];
+  plugins.cmp.settings.sources = [{name = "vimtex";}];
 }
