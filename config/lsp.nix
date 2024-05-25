@@ -24,6 +24,7 @@
         settings.rustfmt.overrideCommand = ["${pkgs.rustfmt}/bin/rustfmt"];
       };
       hls.enable = true;
+      ltex.enable = true;
     };
   };
 

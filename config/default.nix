@@ -127,6 +127,11 @@
           action = ''<cmd>FloatermNew<CR>'';
         }
         {
+          options.desc = "Open nnn";
+          key = "nn";
+          action = ''<cmd>FloatermNew ${pkgs.nnn}/bin/nnn<CR>'';
+        }
+        {
           options.desc = "Paste GitHub URL as a flake URL";
           key = "mg";
           action = ''vt"pT"dtgf.cf/:<Esc>'';
