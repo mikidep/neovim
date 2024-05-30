@@ -16,7 +16,10 @@
         settings.formatting.command = ["${pkgs.alejandra}/bin/alejandra"];
       };
       lua-ls.enable = true;
-      pyright.enable = true;
+      pylsp = {
+        enable = true;
+        settings.plugins.black.enable = true;
+      };
       rust-analyzer = {
         enable = true;
         installCargo = true;
@@ -25,6 +28,7 @@
       };
       hls.enable = true;
       ltex.enable = true;
+      cssls.enable = true;
     };
   };
 
