@@ -2,7 +2,9 @@
   plugins.telescope.enable = true;
 
   extraPackages = [pkgs.ripgrep];
-
+  extraPlugins = [
+    pkgs.vimPlugins.telescope-undo-nvim
+  ];
   keymaps =
     (map (km: km // {key = "<leader>" + km.key;})
       [
@@ -25,6 +27,11 @@
         {
           key = ":";
           action = ''<cmd>Telescope commands<CR>'';
+        }
+        {
+          options.desc = "Open undo tree";
+          key = "u";
+          action = ''<cmd>Telescope undo<CR>'';
         }
       ])
     ++ [

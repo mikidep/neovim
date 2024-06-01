@@ -74,6 +74,7 @@
     wrap = false;
     scrolloff = 10;
     sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions";
+    undofile = true;
   };
   extraFiles = {
     "lua/nvfs-keymaps.lua" = builtins.readFile "${inputs.nvfs}/lua/user/keymaps.lua";
