@@ -18,7 +18,7 @@
       {
         options.desc = "Hop to pattern";
         key = "p";
-        action = "<cmd>HopNode<CR>";
+        action = "<cmd>HopPattern<CR>";
       }
     ];
 }

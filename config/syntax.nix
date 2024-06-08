@@ -11,9 +11,9 @@
   extraPackages = with pkgs; [
     ast-grep
   ];
-  extraPlugins = [
+  extraPlugins = with pkgs; [
     {
-      plugin = pkgs.vimUtils.buildVimPlugin {
+      plugin = vimUtils.buildVimPlugin {
         name = "tshjkl.nvim";
         src = inputs.tshjkl;
       };
@@ -25,6 +25,7 @@
         EOF
       '';
     }
-    pkgs.vimPlugins.telescope-sg
+    vimPlugins.telescope-sg
+    vimPlugins.nvim-surround
   ];
 }

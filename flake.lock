@@ -253,6 +253,22 @@
         "type": "github"
       }
     },
+    "marp-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1703673246,
+        "narHash": "sha256-6m2FkJ1Th6lHIwDSPrxLBXVg9sja1TMvSSQNp+Srpw0=",
+        "owner": "mpas",
+        "repo": "marp-nvim",
+        "rev": "dce795d8f8b0d9b5516d31b739dffe915f73f49d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mpas",
+        "repo": "marp-nvim",
+        "type": "github"
+      }
+    },
     "midnight-nvim": {
       "flake": false,
       "locked": {
@@ -441,6 +457,7 @@
         "cornelis": "cornelis",
         "flake-parts": "flake-parts",
         "floating-help-nvim": "floating-help-nvim",
+        "marp-nvim": "marp-nvim",
         "midnight-nvim": "midnight-nvim",
         "nixpkgs": "nixpkgs_2",
         "nixvim": "nixvim",

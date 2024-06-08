@@ -11,14 +11,14 @@
     ./syntax.nix
     ./tex.nix
     ./hop.nix
+    ./snippets.nix
+    ./marp.nix
+    ./hydra.nix
   ];
 
   colorschemes.ayu.enable = true;
   plugins = {
     auto-session.enable = true;
-    lualine.enable = true;
-    luasnip.enable = true;
-    #   luasnip.fromLua = [{paths = ./nvim-snips.lua;}];
     markdown-preview = {
       enable = true;
     };
@@ -57,6 +57,7 @@
       '';
     }
     vimPlugins.vim-visual-multi
+    vimPlugins.neorepl-nvim
   ];
   clipboard = {
     providers.wl-copy.enable = true;

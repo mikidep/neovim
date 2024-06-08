@@ -30,6 +30,10 @@
       url = "github:micangl/cmp-vimtex";
       flake = false;
     };
+    marp-nvim = {
+      url = "github:mpas/marp-nvim";
+      flake = false;
+    };
   };
 
   outputs = {

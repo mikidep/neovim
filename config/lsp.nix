@@ -16,10 +16,7 @@
         settings.formatting.command = ["${pkgs.alejandra}/bin/alejandra"];
       };
       lua-ls.enable = true;
-      pylsp = {
-        enable = true;
-        settings.plugins.black.enable = true;
-      };
+      ruff.enable = true;
       rust-analyzer = {
         enable = true;
         installCargo = true;
@@ -27,7 +24,6 @@
         settings.rustfmt.overrideCommand = ["${pkgs.rustfmt}/bin/rustfmt"];
       };
       hls.enable = true;
-      ltex.enable = true;
       cssls.enable = true;
     };
   };
