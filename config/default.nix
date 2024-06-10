@@ -10,10 +10,10 @@
     ./lsp.nix
     ./syntax.nix
     ./tex.nix
-    ./hop.nix
     ./snippets.nix
     ./marp.nix
     ./hydra.nix
+    ./flash.nix
   ];
 
   colorschemes.ayu.enable = true;

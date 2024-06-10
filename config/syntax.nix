@@ -19,8 +19,15 @@
       };
       config = ''
         lua << EOF
-          require 'tshjkl'.setup({
-
+          local tshjkl = require 'tshjkl'
+          tshjkl.setup({
+            keymaps = {
+              toggle = "<Space>v",
+              parent = "k",
+              child = "j",
+              prev = "h",
+              next = "l",
+            }
           })
         EOF
       '';

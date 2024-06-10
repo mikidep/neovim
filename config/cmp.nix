@@ -22,28 +22,12 @@
         end
       '';
 
-      mapping.__raw = ''
-        cmp.mapping.preset.insert({
-          ['<CR>'] = cmp.mapping.confirm({ select = true }),
-          ['<Tab>'] = cmp.mapping(
-            function(fallback)
-              local luasnip = require("luasnip")
-
-              if cmp.visible() then
-                cmp.select_next_item()
-              elseif luasnip.expandable() then
-                luasnip.expand()
-              elseif luasnip.expand_or_jumpable() then
-                luasnip.expand_or_jump()
-              -- elseif check_backspace() then
-              --   fallback()
-              else
-                fallback()
-              end
-            end,
-          { "i", "s" })
-        })
-      '';
+      mapping = {
+        "<CR>" = "cmp.mapping.confirm({ select = true })";
+        "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
+        "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+        "<Esc>" = "cmp.mapping.close()";
+      };
     };
   };
 }

@@ -1,8 +1,4 @@
-{
-  pkgs,
-  inputs,
-  ...
-}: {
+{pkgs, ...}: {
   plugins.luasnip = {
     enable = true;
     extraConfig = {
@@ -10,6 +6,13 @@
     };
   };
   extraPlugins = with pkgs; [
-    vimPlugins.ultimate-autopair-nvim
+    {
+      plugin = vimPlugins.ultimate-autopair-nvim;
+      config = ''
+        lua << EOF
+          require 'ultimate-autopair'.setup({})
+        EOF
+      '';
+    }
   ];
 }
