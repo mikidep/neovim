@@ -14,6 +14,7 @@
     ./marp.nix
     ./hydra.nix
     ./flash.nix
+    ./coq.nix
   ];
 
   colorschemes.ayu.enable = true;

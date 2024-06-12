@@ -6,10 +6,6 @@
     nixvim.url = "github:nix-community/nixvim";
     flake-parts.url = "github:hercules-ci/flake-parts";
     cornelis.url = "github:isovector/cornelis";
-    nvim-treehopper = {
-      url = "github:mfussenegger/nvim-treehopper";
-      flake = false;
-    };
     tshjkl = {
       url = "github:gsuuon/tshjkl.nvim";
       flake = false;

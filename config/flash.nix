@@ -1,9 +1,13 @@
 {
   plugins.flash = {
     enable = true;
+    label.rainbow.enabled = true;
     jump.autojump = true;
     modes = {
-      char.enabled = true;
+      char = {
+        enabled = true;
+        multiLine = true;
+      };
       search.enabled = true;
     };
   };
@@ -15,7 +19,7 @@
       lua = true;
     }
     {
-      key = "<leader>s";
+      key = "S";
       action = ''function() require("flash").treesitter_search() end'';
       lua = true;
     }

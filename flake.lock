@@ -408,22 +408,6 @@
         "type": "github"
       }
     },
-    "nvim-treehopper": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1716390040,
-        "narHash": "sha256-79Kd8zdmGNk1zH+G2g9Z473RSv3rMd5atpIsIsN2QXc=",
-        "owner": "mfussenegger",
-        "repo": "nvim-treehopper",
-        "rev": "13559079e33665a310d9ccf0e43f4e9bb9f337e2",
-        "type": "github"
-      },
-      "original": {
-        "owner": "mfussenegger",
-        "repo": "nvim-treehopper",
-        "type": "github"
-      }
-    },
     "pre-commit-hooks": {
       "inputs": {
         "flake-compat": "flake-compat_3",
@@ -462,7 +446,6 @@
         "nixpkgs": "nixpkgs_2",
         "nixvim": "nixvim",
         "nvfs": "nvfs",
-        "nvim-treehopper": "nvim-treehopper",
         "tshjkl": "tshjkl"
       }
     },
