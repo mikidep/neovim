@@ -30,6 +30,10 @@
       url = "github:mpas/marp-nvim";
       flake = false;
     };
+    scrolleof-nvim = {
+      url = "github:Aasim-A/scrollEOF.nvim";
+      flake = false;
+    };
   };
 
   outputs = {

@@ -15,13 +15,11 @@
   keymaps = [
     {
       key = "s";
-      action = ''function() require("flash").jump() end'';
-      lua = true;
+      action.__raw = ''function() require("flash").jump() end'';
     }
     {
       key = "S";
-      action = ''function() require("flash").treesitter_search() end'';
-      lua = true;
+      action.__raw = ''function() require("flash").treesitter_search() end'';
     }
   ];
 }

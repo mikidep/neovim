@@ -25,7 +25,7 @@
               toggle = "<Space>v",
               parent = "k",
               child = "j",
-              prev = "h",
+              prev= "h",
               next = "l",
             }
           })
@@ -33,6 +33,24 @@
       '';
     }
     vimPlugins.telescope-sg
-    vimPlugins.nvim-surround
+
+    {
+      plugin = vimPlugins.nvim-surround;
+      config = ''
+        lua << EOF
+          require("nvim-surround").setup({
+          })
+        EOF
+      '';
+    }
+  ];
+
+  keymaps = [
+    {
+      key = "<leader>b";
+      action = "<Plug>(nvim-surround-visual)";
+      mode = ["v"];
+      options.remap = true;
+    }
   ];
 }

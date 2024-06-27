@@ -11,7 +11,7 @@
     '';
     servers = {
       jsonls.enable = true;
-      nil_ls = {
+      nil-ls = {
         enable = true;
         settings.formatting.command = ["${pkgs.alejandra}/bin/alejandra"];
       };
