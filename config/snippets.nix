@@ -10,7 +10,14 @@
       plugin = vimPlugins.ultimate-autopair-nvim;
       config = ''
         lua << EOF
-          require 'ultimate-autopair'.setup({})
+          local ua = require 'ultimate-autopair'
+          ua.setup(ua.extend_default {
+            {"=", ";", ft={"nix"}},
+            tabout = {
+              enable = true,
+              hopout = true
+            }
+          })
         EOF
       '';
     }
