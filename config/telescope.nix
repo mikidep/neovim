@@ -1,9 +1,24 @@
-{pkgs, ...}: {
-  plugins.telescope.enable = true;
+{
+  pkgs,
+  inputs,
+  ...
+}: {
+  plugins.telescope = {
+    enable = true;
+    enabledExtensions = ["git_file_history"];
+    settings.defaults.mappings.n = {
+      "jk".__raw = "require('telescope.actions').close";
+      "kj".__raw = "require('telescope.actions').close";
+    };
+  };
 
   extraPackages = [pkgs.ripgrep];
   extraPlugins = [
     pkgs.vimPlugins.telescope-undo-nvim
+    (pkgs.vimUtils.buildVimPlugin {
+      name = "telescope-git-file-history.nvim";
+      src = inputs.telescope-git-file-history-nvim;
+    })
   ];
   keymaps =
     (map (km: km // {key = "<leader>" + km.key;})

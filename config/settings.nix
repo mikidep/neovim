@@ -23,13 +23,13 @@
     wildmode = "longest:full,full";
     wildignorecase = true;
     swapfile = false;
+    ignorecase = true;
+    splitbelow = true;
+    splitright = true;
   };
   extraFiles = {
     "lua/nvfs-keymaps.lua" = builtins.readFile "${inputs.nvfs}/lua/user/keymaps.lua";
   };
-  extraConfigLua = ''
-    require("nvfs-keymaps")
-  '';
   keymaps = let
     leaderkm =
       map (km: km // {key = "<leader>" + km.key;})
@@ -47,11 +47,6 @@
               vim.lsp.buf.format { async = true }
             end
           '';
-        }
-        {
-          options.desc = "LSP code actions";
-          key = "ca";
-          action.__raw = ''vim.lsp.buf.code_action'';
         }
         {
           options.desc = "Close all";
@@ -101,8 +96,12 @@
       {
         # move to the end of region after yanking
         key = "y";
-        action = ''y']'';
+        action = ''ygv<Esc>'';
         mode = "x";
       }
     ];
+  extraConfigLua = ''
+    require("nvfs-keymaps")
+
+  '';
 }

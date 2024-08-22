@@ -34,6 +34,26 @@
       url = "github:Aasim-A/scrollEOF.nvim";
       flake = false;
     };
+    telescope-luasnip-nvim = {
+      url = "github:benfowler/telescope-luasnip.nvim";
+      flake = false;
+    };
+    telescope-git-file-history-nvim = {
+      url = "github:isak102/telescope-git-file-history.nvim";
+      flake = false;
+    };
+    sad-nvim = {
+      url = "github:ray-x/sad.nvim";
+      flake = false;
+    };
+    guihua-lua = {
+      url = "github:ray-x/guihua.lua";
+      flake = false;
+    };
+    cmp-agda-symbols = {
+      url = "github:Arkissa/cmp-agda-symbols";
+      flake = false;
+    };
   };
 
   outputs = {

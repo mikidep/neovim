@@ -3,7 +3,39 @@
   plugins.cmp = {
     enable = true;
     autoEnableSources = true;
+    cmdline = {
+      "/" = {
+        mapping = {
+          __raw = "cmp.mapping.preset.cmdline()";
+        };
+        sources = [
+          {
+            name = "buffer";
+          }
+        ];
+      };
+      ":" = {
+        mapping = {
+          __raw = "cmp.mapping.preset.cmdline()";
+        };
+        sources = [
+          {
+            name = "path";
+          }
+          {
+            name = "cmdline";
+            option = {
+              ignore_cmds = [
+                "Man"
+                "!"
+              ];
+            };
+          }
+        ];
+      };
+    };
     settings = {
+      matching.disallow_partial_fuzzy_matching = false;
       sources = [
         {name = "nvim_lsp";}
         {name = "path";}
@@ -23,7 +55,7 @@
       '';
 
       mapping = {
-        "<CR>" = "cmp.mapping.confirm({ select = true })";
+        "<CR>" = "cmp.mapping.confirm()";
         "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
         "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
         "<Esc>" = "cmp.mapping.close()";

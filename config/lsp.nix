@@ -28,6 +28,19 @@
     };
   };
 
+  keymaps = [
+    {
+      options.desc = "LSP code actions";
+      key = "ca";
+      action.__raw = ''vim.lsp.buf.code_action'';
+    }
+    {
+      options.desc = "LSP hover";
+      key = "ch";
+      action.__raw = ''vim.lsp.buf.hover'';
+    }
+  ];
+
   extraConfigLua = ''
     require 'lspconfig'.openscad_lsp.setup {
       cmd = { "${pkgs.openscad-lsp}/bin/openscad-lsp", "--stdio" }

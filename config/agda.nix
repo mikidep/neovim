@@ -1,15 +1,41 @@
 {
+  pkgs,
   inputs',
+  inputs,
   lib,
   ...
 }: {
+  plugins.cmp.filetype.agda.sources = [
+    {
+      name = "buffer";
+      option = {
+        get_bufnrs.__raw = ''
+          function()
+            return vim.api.nvim_list_bufs()
+          end
+        '';
+        keyword_pattern.__raw = ''[[[^ \n\t(){}:]\+]]'';
+      };
+    }
+    {name = "agda-symbols";}
+    {name = "luasnip";}
+  ];
   extraPlugins = [
     inputs'.cornelis.packages.cornelis-vim
+    (
+      let
+        name = "cmp-agda-symbols";
+      in
+        pkgs.vimUtils.buildVimPlugin
+        {
+          inherit name;
+          src = inputs.${name};
+        }
+    )
   ];
   globals = {
     cornelis_use_global_binary = true;
-    cornelis_split_location = "bottom";
-    cornelis_max_size = 15;
+    cornelis_max_size = 20;
     cornelis_no_agda_input = true;
   };
   extraPackages = [inputs'.cornelis.packages.cornelis];
@@ -18,6 +44,7 @@
       event = ["BufRead" "BufNewFile"];
       pattern = ["*.agda"];
       callback.__raw = let
+        agdaLeader = "à";
         keymaps = lib.concatStringsSep "\n" [
           (
             lib.concatMapStringsSep "\n" ({
@@ -28,48 +55,48 @@
               vim.keymap.set('i', '${key}', '<C-o>${action}', { buffer = true })
             '') [
               {
-                key = "<leader><leader>l";
+                key = "${agdaLeader}l";
                 action = "<Cmd>CornelisLoad<CR><Esc>";
               }
               {
-                key = "<leader><leader>h";
+                key = "${agdaLeader}h";
                 action = "<Cmd>CornelisQuestionToMeta<CR>";
               }
               {
-                key = "<leader><leader>r";
+                key = "${agdaLeader}r";
                 action = "<Cmd>CornelisRefine<CR>";
               }
               {
-                key = "<leader><leader>F";
+                key = "${agdaLeader}F";
                 action = "<Cmd>CornelisPrevGoal<CR>";
               }
               {
-                key = "<leader><leader>f";
+                key = "${agdaLeader}f";
                 action = "<Cmd>CornelisNextGoal<CR>";
               }
               {
-                key = "<leader><leader>,";
+                key = "${agdaLeader},";
                 action = "<Cmd>CornelisTypeContext Instantiated<CR>";
               }
               {
-                key = "<leader><leader>c";
+                key = "${agdaLeader}c";
                 action = "<Cmd>CornelisMakeCase<CR>";
               }
               {
-                key = "<leader><leader>.";
-                action = "<Cmd>CornelisTypeContextInfer Instantiated<CR>";
+                key = "${agdaLeader}.";
+                action = "<Cmd>CornelisTypeContextInfer Simplified<CR>";
               }
               {
-                key = "<leader>y.";
+                key = "${agdaLeader}y.";
                 action = "<Cmd>CornelisTypeContextInfer Normalised<CR>";
               }
 
               {
-                key = "<leader><leader>a";
+                key = "${agdaLeader}a";
                 action = "<Cmd>CornelisAuto<CR>";
               }
               {
-                key = "<leader><leader><space>";
+                key = "${agdaLeader}<space>";
                 action = "<Cmd>CornelisGive<CR>";
               }
               {
@@ -102,9 +129,15 @@
             in ''
               vim.keymap.set('i', [=[${key}]=], '${action}', { buffer = true })
               vim.keymap.set('c', [=[${key}]=], '${action}', { buffer = true })
-            '') ([
+            '') (
+              [
                 ["->" "→"]
                 ["=>" "⇒"]
+                [">->" "↣"]
+                ["|->" "↦"]
+                ["-|>" "⇸"]
+                ["<-" "←"]
+                ["<->" "↔"]
                 ["forall" "∀"]
                 ["==" "≡"]
                 [";;" ";"]
@@ -116,64 +149,21 @@
                 ["]]" "⟧"]
                 ["=eqv" "≃"]
                 ["=?" "≟"]
+                ["=." "≐"]
                 ["Nat" "ℕ"]
+                ["ZZ" "ℤ"]
                 ["::" "∷"]
                 ["lambda" "λ"]
                 ["~~" "≈"]
                 ["=_k" "＝ₖ"]
                 ["=_v" "＝ᵥ"]
                 ["|=" "⊨"]
-                ["\\in" "∈"]
-              ]
-              ++ [
-                ["gAlpha" "Α"]
-                ["galpha" "α"]
-                ["gBeta" "Β"]
-                ["gbeta" "β"]
-                ["gGamma" "Γ"]
-                ["ggamma" "γ"]
-                ["gDelta" "Δ"]
-                ["gdelta" "δ"]
-                ["gEpsilon" "Ε"]
-                ["gepsil" "ε"]
-                ["gZeta" "Ζ"]
-                ["gzeta" "ζ"]
-                ["gEta" "Η"]
-                ["geta" "η"]
-                ["gTheta" "Θ"]
-                ["gtheta" "θ"]
-                ["gIota" "Ι"]
-                ["giota" "ι"]
-                ["gKappa" "Κ"]
-                ["gkappa" "κ"]
-                ["gLambda" "Λ"]
-                ["glambda" "λ"]
-                ["gMu" "Μ"]
-                ["gmu" "μ"]
-                ["gNu" "Ν"]
-                ["gnu" "ν"]
-                ["gXi" "Ξ"]
-                ["gxi" "ξ"]
-                ["gOmicron" "Ο"]
-                ["gomicron" "ο"]
-                ["gPi" "Π"]
-                ["gpi" "π"]
-                ["gRho" "Ρ"]
-                ["grho" "ρ"]
-                ["gSigma" "Σ"]
-                ["gsigma" "σ"]
-                ["gTau" "Τ"]
-                ["gtau" "τ"]
-                ["gUpsilon" "Υ"]
-                ["gupsil" "υ"]
-                ["gPhi" "Φ"]
-                ["gphi" "φ"]
-                ["gChi" "Χ"]
-                ["gchi" "χ"]
-                ["gPsi" "Ψ"]
-                ["gpsi" "ψ"]
-                ["gOmega" "Ω"]
-                ["gomega" "ω"]
+                ["|=>" "⤇"]
+                ["<=" "≤"]
+                [">=" "≥"]
+                ["<u" "⊆"]
+                ["||" "‖"]
+                ["\\\\" "∖"]
               ]
               ++ [
                 ["_0" "₀"]
@@ -186,11 +176,18 @@
                 ["_7" "₇"]
                 ["_8" "₈"]
                 ["_9" "₉"]
+                ["_i" "ᵢ"]
+                ["_o" "ₒ"]
+                ["_v" "ᵥ"]
+                ["^c" "ᶜ"]
+                ["^s" "ˢ"]
                 ["^l" "ˡ"]
                 ["^r" "ʳ"]
-                ["\\up" "↑"]
-                ["\\u+" "⊎"]
-              ])
+                ["^v" "ᵛ"]
+                ["^-" "⁻"]
+                ["^+" "⁺"]
+              ]
+            )
           )
         ];
       in ''
@@ -205,6 +202,12 @@
       options.desc = "Name parameter (Agda)";
       key = "<leader>mn";
       action = ''<leader>b)a : <Esc>F(a'';
+      options.remap = true;
+    }
+    {
+      options.desc = "Define declaration";
+      key = "<leader>md";
+      action = ''yypElc$ = ?<Esc>'';
       options.remap = true;
     }
   ];
