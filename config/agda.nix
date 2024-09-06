@@ -20,6 +20,18 @@
     {name = "agda-symbols";}
     {name = "luasnip";}
   ];
+  plugins.cmp.filetype.agda.mapping = {
+    "<Space>".__raw = ''
+      function(fallback)
+        local entry = cmp.get_entries()[1]
+        if entry and entry.source.name == "agda-symbols" then
+          cmp.confirm({ select = true })
+        else
+          fallback()
+        end
+      end
+    '';
+  };
   extraPlugins = [
     inputs'.cornelis.packages.cornelis-vim
     (
@@ -164,6 +176,8 @@
                 ["<u" "⊆"]
                 ["||" "‖"]
                 ["\\\\" "∖"]
+                [">>=" ">>="]
+                [">=>" ">=>"]
               ]
               ++ [
                 ["_0" "₀"]
@@ -201,13 +215,19 @@
     {
       options.desc = "Name parameter (Agda)";
       key = "<leader>mn";
-      action = ''<leader>b)a : <Esc>F(a'';
+      action = ''<leader>ba : <Esc>F(a'';
       options.remap = true;
     }
     {
       options.desc = "Define declaration";
       key = "<leader>md";
       action = ''yypElc$ = ?<Esc>'';
+      options.remap = true;
+    }
+    {
+      options.desc = "Search the stdlib";
+      key = "<leader>z";
+      action = ''<cmd>FloatermNew agda-search-stdlib<CR>'';
       options.remap = true;
     }
   ];

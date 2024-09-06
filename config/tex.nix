@@ -14,6 +14,10 @@
       name = "cmp-vimtex";
       src = inputs.cmp-vimtex;
     })
+    (pkgs.vimUtils.buildVimPlugin {
+      name = "luasnip-latex-snippets.nvim";
+      src = inputs.luasnip-latex-snippets-nvim;
+    })
   ];
   plugins.cmp.settings.sources = [{name = "vimtex";}];
   plugins.lsp.servers.ltex.enable = true;

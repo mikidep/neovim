@@ -30,6 +30,7 @@
         end
       '';
     };
+    oil.enable = true;
     which-key.enable = true;
     floaterm.enable = true;
   };

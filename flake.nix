@@ -54,6 +54,10 @@
       url = "github:Arkissa/cmp-agda-symbols";
       flake = false;
     };
+    luasnip-latex-snippets-nvim = {
+      url = "github:evesdropper/luasnip-latex-snippets.nvim";
+      flake = false;
+    };
   };
 
   outputs = {

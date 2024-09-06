@@ -297,6 +297,22 @@
         "type": "github"
       }
     },
+    "luasnip-latex-snippets-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1714189060,
+        "narHash": "sha256-HITJIcDctnGEWXJLagLeYs+e9c3buBWU1gkE6wAY37M=",
+        "owner": "evesdropper",
+        "repo": "luasnip-latex-snippets.nvim",
+        "rev": "5f61eb4b0b98633eaa6ca7deacc2818216efc695",
+        "type": "github"
+      },
+      "original": {
+        "owner": "evesdropper",
+        "repo": "luasnip-latex-snippets.nvim",
+        "type": "github"
+      }
+    },
     "marp-nvim": {
       "flake": false,
       "locked": {
@@ -459,6 +475,7 @@
         "flake-parts": "flake-parts",
         "floating-help-nvim": "floating-help-nvim",
         "guihua-lua": "guihua-lua",
+        "luasnip-latex-snippets-nvim": "luasnip-latex-snippets-nvim",
         "marp-nvim": "marp-nvim",
         "midnight-nvim": "midnight-nvim",
         "nixpkgs": "nixpkgs_2",

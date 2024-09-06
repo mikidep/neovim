@@ -21,7 +21,8 @@
             tabout = {
               enable = true,
               hopout = true
-            }
+            },
+            {"\\(", "\\)", ft={"tex"}, disable_end=true},
           })
         EOF
       '';

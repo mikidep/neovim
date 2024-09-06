@@ -31,13 +31,15 @@
   keymaps = [
     {
       options.desc = "LSP code actions";
-      key = "ca";
+      key = "<leader>ca";
       action.__raw = ''vim.lsp.buf.code_action'';
+      mode = "n";
     }
     {
       options.desc = "LSP hover";
-      key = "ch";
+      key = "<leader>ch";
       action.__raw = ''vim.lsp.buf.hover'';
+      mode = "n";
     }
   ];
 
