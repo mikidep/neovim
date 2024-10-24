@@ -5,8 +5,8 @@
 }: {
   plugins.treesitter = {
     enable = true;
-    indent = true;
-    incrementalSelection.enable = true;
+    settings.indent.enable = true;
+    settings.highlight.enable = true;
   };
   extraPackages = with pkgs; [
     ast-grep

@@ -1,8 +1,4 @@
-{
-  pkgs,
-  inputs,
-  ...
-}: {
+{...}: {
   imports = [
     ./settings.nix
     ./misc-plugins.nix
@@ -17,5 +13,6 @@
     ./hydra.nix
     ./flash.nix
     ./coq.nix
+    ./notebooks.nix
   ];
 }

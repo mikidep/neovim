@@ -14,7 +14,7 @@
             return vim.api.nvim_list_bufs()
           end
         '';
-        keyword_pattern.__raw = ''[[[^ \n\t(){}:]\+]]'';
+        keyword_pattern.__raw = ''[[[^ \n\t(){};:]\+]]'';
       };
     }
     {name = "agda-symbols";}
@@ -56,7 +56,7 @@
       event = ["BufRead" "BufNewFile"];
       pattern = ["*.agda"];
       callback.__raw = let
-        agdaLeader = "à";
+        agdaLeader = "<F6>";
         keymaps = lib.concatStringsSep "\n" [
           (
             lib.concatMapStringsSep "\n" ({
@@ -150,7 +150,6 @@
                 ["-|>" "⇸"]
                 ["<-" "←"]
                 ["<->" "↔"]
-                ["forall" "∀"]
                 ["==" "≡"]
                 [";;" ";"]
                 [";;h" ";ₕ"]
@@ -165,7 +164,6 @@
                 ["Nat" "ℕ"]
                 ["ZZ" "ℤ"]
                 ["::" "∷"]
-                ["lambda" "λ"]
                 ["~~" "≈"]
                 ["=_k" "＝ₖ"]
                 ["=_v" "＝ᵥ"]
@@ -175,7 +173,6 @@
                 [">=" "≥"]
                 ["<u" "⊆"]
                 ["||" "‖"]
-                ["\\\\" "∖"]
                 [">>=" ">>="]
                 [">=>" ">=>"]
               ]
@@ -227,7 +224,7 @@
     {
       options.desc = "Search the stdlib";
       key = "<leader>z";
-      action = ''<cmd>FloatermNew agda-search-stdlib<CR>'';
+      action = ''<cmd>FloatermNew agda-search-cubical<CR>'';
       options.remap = true;
     }
   ];

@@ -28,7 +28,7 @@
     splitright = true;
   };
   extraFiles = {
-    "lua/nvfs-keymaps.lua" = builtins.readFile "${inputs.nvfs}/lua/user/keymaps.lua";
+    "lua/nvfs-keymaps.lua".source = "${inputs.nvfs}/lua/user/keymaps.lua";
   };
   keymaps = let
     leaderkm =

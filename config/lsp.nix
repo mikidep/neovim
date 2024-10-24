@@ -11,19 +11,22 @@
     '';
     servers = {
       jsonls.enable = true;
-      nil-ls = {
+      nil_ls = {
         enable = true;
         settings.formatting.command = ["${pkgs.alejandra}/bin/alejandra"];
       };
-      lua-ls.enable = true;
+      lua_ls.enable = true;
       ruff.enable = true;
-      rust-analyzer = {
+      rust_analyzer = {
         enable = true;
         installCargo = true;
         installRustc = true;
         settings.rustfmt.overrideCommand = ["${pkgs.rustfmt}/bin/rustfmt"];
       };
-      hls.enable = true;
+      hls = {
+        enable = true;
+        installGhc = false;
+      };
       cssls.enable = true;
     };
   };

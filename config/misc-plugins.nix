@@ -33,6 +33,8 @@
     oil.enable = true;
     which-key.enable = true;
     floaterm.enable = true;
+    openscad.enable = true;
+    web-devicons.enable = true;
   };
   extraPlugins = with pkgs;
   with vimUtils;

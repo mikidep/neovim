@@ -1,14 +1,16 @@
 {
   plugins.flash = {
     enable = true;
-    label.rainbow.enabled = true;
-    jump.autojump = true;
-    modes = {
-      char = {
-        enabled = true;
-        multiLine = true;
+    settings = {
+      label.rainbow.enabled = true;
+      jump.autojump = true;
+      modes = {
+        char = {
+          enabled = true;
+          multiLine = true;
+        };
+        search.enabled = true;
       };
-      search.enabled = true;
     };
   };
 
