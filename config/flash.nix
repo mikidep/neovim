@@ -19,9 +19,5 @@
       key = "s";
       action.__raw = ''function() require("flash").jump() end'';
     }
-    {
-      key = "S";
-      action.__raw = ''function() require("flash").treesitter_search() end'';
-    }
   ];
 }

@@ -10,23 +10,16 @@
     };
     fromLua = [{paths = ../assets/snippets;}];
   };
+  plugins.nvim-autopairs = {
+    enable = true;
+    luaConfig.post = ''
+      local Rule = require('nvim-autopairs.rule')
+      local npairs = require('nvim-autopairs')
+
+      npairs.add_rule(Rule("=",";","nix"))
+    '';
+  };
   extraPlugins = with pkgs; [
-    {
-      plugin = vimPlugins.ultimate-autopair-nvim;
-      config = ''
-        lua << EOF
-          local ua = require 'ultimate-autopair'
-          ua.setup(ua.extend_default {
-            {"=", ";", ft={"nix"}},
-            tabout = {
-              enable = true,
-              hopout = true
-            },
-            {"\\(", "\\)", ft={"tex"}, disable_end=true},
-          })
-        EOF
-      '';
-    }
     {
       plugin = vimUtils.buildVimPlugin {
         name = "telescope-luasnip.nvim";

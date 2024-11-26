@@ -35,6 +35,7 @@
     floaterm.enable = true;
     openscad.enable = true;
     web-devicons.enable = true;
+    repeat.enable = true;
   };
   extraPlugins = with pkgs;
   with vimUtils;

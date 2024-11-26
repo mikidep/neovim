@@ -8,6 +8,16 @@
     settings.indent.enable = true;
     settings.highlight.enable = true;
   };
+  plugins.nvim-surround = {
+    enable = true;
+    settings.surrounds = {
+      "h" = {
+        add = ["{! " " !}"];
+        find = "%{!.-!%}";
+        delete = "^(%{!%s*)().-(%s*!%})()$";
+      };
+    };
+  };
   extraPackages = with pkgs; [
     ast-grep
   ];
@@ -33,24 +43,5 @@
       '';
     }
     vimPlugins.telescope-sg
-
-    {
-      plugin = vimPlugins.nvim-surround;
-      config = ''
-        lua << EOF
-          require("nvim-surround").setup({
-          })
-        EOF
-      '';
-    }
-  ];
-
-  keymaps = [
-    {
-      key = "<leader>b";
-      action = "<Plug>(nvim-surround-visual)";
-      mode = ["v"];
-      options.remap = true;
-    }
   ];
 }
