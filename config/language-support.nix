@@ -30,6 +30,13 @@
       cssls.enable = true;
     };
   };
+  plugins.openscad = {
+    enable = true;
+    keymaps.enable = true;
+  };
+  extraPlugins = with pkgs.vimPlugins; [
+    fzf-vim
+  ];
 
   keymaps = [
     {

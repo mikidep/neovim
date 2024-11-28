@@ -5,7 +5,7 @@
     ./telescope.nix
     ./agda.nix
     ./cmp.nix
-    ./lsp.nix
+    ./language-support.nix
     ./syntax.nix
     ./tex.nix
     ./snippets.nix
