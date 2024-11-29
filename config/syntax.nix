@@ -18,6 +18,12 @@
       };
     };
   };
+  plugins.rainbow-delimiters = {
+    enable = true;
+    query.agda = "rainbow-delimiters";
+  };
+  extraFiles."queries/agda/rainbow-delimiters.scm".source = ../assets/queries/agda/rainbow-delimiters.scm;
+
   extraPackages = with pkgs; [
     ast-grep
   ];
@@ -43,5 +49,11 @@
       '';
     }
     vimPlugins.telescope-sg
+    # {
+    #   plugin = vimPlugins.rainbow;
+    #   config = ''
+    #     let g:rainbow_active = 1
+    #   '';
+    # }
   ];
 }
