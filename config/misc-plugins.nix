@@ -9,6 +9,11 @@
     fugitive.enable = true;
     markdown-preview = {
       enable = true;
+      settings = {
+        browserfunc = "OpenMarkdownPreview";
+        page_title = "\${name}";
+        theme = "light";
+      };
     };
     # noice.enable = true;
     trouble.enable = true;
@@ -98,6 +103,11 @@
     ]);
 
   extraPackages = with pkgs; [fd delta sad fzf];
+  extraConfigVim = ''
+    function OpenMarkdownPreview (url)
+      execute "silent ! ${pkgs.firefox}/bin/firefox --new-window " . a:url
+    endfunction
+  '';
 
   globals.dasht_results_window = "vnew";
 

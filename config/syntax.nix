@@ -22,7 +22,7 @@
     enable = true;
     query.agda = "rainbow-delimiters";
   };
-  extraFiles."queries/agda/rainbow-delimiters.scm".source = ../assets/queries/agda/rainbow-delimiters.scm;
+  # extraFiles."queries/agda/rainbow-delimiters.scm".source = ../assets/queries/agda/rainbow-delimiters.scm;
 
   extraPackages = with pkgs; [
     ast-grep

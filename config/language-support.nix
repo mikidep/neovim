@@ -1,4 +1,5 @@
 {pkgs, ...}: {
+  plugins.aerial.enable = true;
   plugins.lsp-format = {
     enable = true;
     lspServersToEnable = "all";
@@ -17,6 +18,7 @@
       };
       lua_ls.enable = true;
       ruff.enable = true;
+      pyright.enable = true;
       rust_analyzer = {
         enable = true;
         installCargo = true;
