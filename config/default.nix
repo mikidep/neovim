@@ -14,5 +14,6 @@
     ./flash.nix
     ./coq.nix
     ./notebooks.nix
+    ./colors.nix
   ];
 }

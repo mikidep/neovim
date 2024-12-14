@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   plugins.aerial.enable = true;
   plugins.lsp-format = {
     enable = true;
@@ -14,7 +18,7 @@
       jsonls.enable = true;
       nil_ls = {
         enable = true;
-        settings.formatting.command = ["${pkgs.alejandra}/bin/alejandra"];
+        settings.formatting.command = [(lib.getExe pkgs.alejandra)];
       };
       lua_ls.enable = true;
       ruff.enable = true;
@@ -23,7 +27,7 @@
         enable = true;
         installCargo = true;
         installRustc = true;
-        settings.rustfmt.overrideCommand = ["${pkgs.rustfmt}/bin/rustfmt"];
+        settings.rustfmt.overrideCommand = [(lib.getExe pkgs.rustfmt)];
       };
       hls = {
         enable = true;
@@ -35,6 +39,20 @@
   plugins.openscad = {
     enable = true;
     keymaps.enable = true;
+    package = with pkgs;
+      vimPlugins.openscad-nvim.overrideAttrs {
+        buildInputs = [
+          zathura
+          htop
+          openscad-unstable
+          fzf
+        ];
+        dependencies = [
+          vimPlugins.fzf-vim
+        ];
+        patches = [
+        ];
+      };
   };
   extraPlugins = with pkgs.vimPlugins; [
     fzf-vim
@@ -57,7 +75,7 @@
 
   extraConfigLua = ''
     require 'lspconfig'.openscad_lsp.setup {
-      cmd = { "${pkgs.openscad-lsp}/bin/openscad-lsp", "--stdio" }
+      cmd = { "${lib.getExe pkgs.openscad-lsp}", "--stdio" }
     }
   '';
 }

@@ -9,6 +9,11 @@
       enable_autosnippets = true;
     };
     fromLua = [{paths = ../assets/snippets;}];
+    fromSnipmate = [
+      {
+        lazyLoad = true;
+      }
+    ];
   };
   plugins.nvim-autopairs = {
     enable = true;
@@ -35,5 +40,6 @@
         EOF
       '';
     }
+    vimPlugins.vim-snippets
   ];
 }

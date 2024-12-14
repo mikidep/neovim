@@ -32,13 +32,13 @@
       end
     '';
   };
-  extraPlugins = [
+  extraPlugins = with pkgs; [
     inputs'.cornelis.packages.cornelis-vim
     (
       let
         name = "cmp-agda-symbols";
       in
-        pkgs.vimUtils.buildVimPlugin
+        vimUtils.buildVimPlugin
         {
           inherit name;
           src = inputs.${name};

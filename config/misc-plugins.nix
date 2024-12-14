@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  lib,
   ...
 }: {
   plugins = {
@@ -41,6 +42,14 @@
     openscad.enable = true;
     web-devicons.enable = true;
     repeat.enable = true;
+    yanky = {
+      enable = true;
+      enableTelescope = true;
+      settings = {
+        highlight.on_put = true;
+        highlight.on_yank = true;
+      };
+    };
   };
   extraPlugins = with pkgs;
   with vimUtils;
@@ -105,7 +114,7 @@
   extraPackages = with pkgs; [fd delta sad fzf];
   extraConfigVim = ''
     function OpenMarkdownPreview (url)
-      execute "silent ! ${pkgs.firefox}/bin/firefox --new-window " . a:url
+      execute "silent ! ${lib.getExe pkgs.firefox} --new-window " . a:url
     endfunction
   '';
 

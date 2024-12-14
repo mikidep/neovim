@@ -1,9 +1,9 @@
 {
   pkgs,
+  lib,
   inputs,
   ...
 }: {
-  colorschemes.vscode.enable = true;
   clipboard = {
     providers.wl-copy.enable = true;
     register = "unnamedplus";
@@ -61,7 +61,7 @@
         {
           options.desc = "Open LazyGit";
           key = "g";
-          action = ''<cmd>FloatermNew ${pkgs.lazygit}/bin/lazygit<CR>'';
+          action = ''<cmd>FloatermNew ${lib.getExe pkgs.lazygit}<CR>'';
         }
         {
           options.desc = "Open floating terminal";
@@ -71,7 +71,7 @@
         {
           options.desc = "Open nnn";
           key = "nn";
-          action = ''<cmd>FloatermNew ${pkgs.nnn}/bin/nnn<CR>'';
+          action = ''<cmd>FloatermNew ${lib.getExe pkgs.nnn}<CR>'';
         }
         {
           options.desc = "Paste GitHub URL as a flake URL";
