@@ -20,13 +20,16 @@
         enable = true;
         settings.formatting.command = [(lib.getExe pkgs.alejandra)];
       };
+      nixd = {
+        enable = true;
+      };
       lua_ls.enable = true;
       ruff.enable = true;
       pyright.enable = true;
       rust_analyzer = {
         enable = true;
-        installCargo = true;
-        installRustc = true;
+        installCargo = false;
+        installRustc = false;
         settings.rustfmt.overrideCommand = [(lib.getExe pkgs.rustfmt)];
       };
       hls = {
@@ -38,7 +41,6 @@
   };
   plugins.openscad = {
     enable = true;
-    keymaps.enable = true;
     package = with pkgs;
       vimPlugins.openscad-nvim.overrideAttrs {
         buildInputs = [

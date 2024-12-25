@@ -3,9 +3,17 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixvim.url = "github:nix-community/nixvim";
-    flake-parts.url = "github:hercules-ci/flake-parts";
-    cornelis.url = "github:isovector/cornelis";
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+    };
+    cornelis = {
+      url = "github:isovector/cornelis";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     tshjkl = {
       url = "github:gsuuon/tshjkl.nvim";
       flake = false;
@@ -56,6 +64,10 @@
     };
     luasnip-latex-snippets-nvim = {
       url = "github:evesdropper/luasnip-latex-snippets.nvim";
+      flake = false;
+    };
+    tree-sitter-openscad = {
+      url = "github:bollian/tree-sitter-openscad";
       flake = false;
     };
   };

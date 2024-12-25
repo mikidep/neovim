@@ -20,6 +20,7 @@
     {name = "agda-symbols";}
     {name = "luasnip";}
   ];
+
   plugins.cmp.filetype.agda.mapping = {
     "<Space>".__raw = ''
       function(fallback)
@@ -32,6 +33,7 @@
       end
     '';
   };
+
   extraPlugins = with pkgs; [
     inputs'.cornelis.packages.cornelis-vim
     (
@@ -45,12 +47,15 @@
         }
     )
   ];
+
   globals = {
     cornelis_use_global_binary = true;
     cornelis_max_size = 20;
     cornelis_no_agda_input = true;
   };
+
   extraPackages = [inputs'.cornelis.packages.cornelis];
+
   autoCmd = [
     {
       event = ["BufRead" "BufNewFile"];
@@ -77,6 +82,10 @@
               {
                 key = "${agdaLeader}r";
                 action = "<Cmd>CornelisRefine<CR>";
+              }
+              {
+                key = "${agdaLeader}m";
+                action = "<Cmd>CornelisElaborate<CR>";
               }
               {
                 key = "${agdaLeader}F";
@@ -141,64 +150,26 @@
             in ''
               vim.keymap.set('i', [=[${key}]=], '${action}', { buffer = true })
               vim.keymap.set('c', [=[${key}]=], '${action}', { buffer = true })
-            '') (
-              [
-                ["->" "→"]
-                ["=>" "⇒"]
-                [">->" "↣"]
-                ["|->" "↦"]
-                ["-|>" "⇸"]
-                ["<-" "←"]
-                ["<->" "↔"]
-                ["==" "≡"]
-                [";;" ";"]
-                [";;h" ";ₕ"]
-                [";;v" ";ᵥ"]
-                ["'" "′"]
-                ["''" "″"]
-                ["[[" "⟦"]
-                ["]]" "⟧"]
-                ["=eqv" "≃"]
-                ["=?" "≟"]
-                ["=." "≐"]
-                ["Nat" "ℕ"]
-                ["ZZ" "ℤ"]
-                ["::" "∷"]
-                ["~~" "≈"]
-                ["=_k" "＝ₖ"]
-                ["=_v" "＝ᵥ"]
-                ["|=" "⊨"]
-                ["|=>" "⤇"]
-                ["<=" "≤"]
-                [">=" "≥"]
-                ["<u" "⊆"]
-                ["||" "‖"]
-                [">>=" ">>="]
-                [">=>" ">=>"]
-              ]
-              ++ [
-                ["_0" "₀"]
-                ["_1" "₁"]
-                ["_2" "₂"]
-                ["_3" "₃"]
-                ["_4" "₄"]
-                ["_5" "₅"]
-                ["_6" "₆"]
-                ["_7" "₇"]
-                ["_8" "₈"]
-                ["_9" "₉"]
-                ["_i" "ᵢ"]
-                ["_o" "ₒ"]
-                ["_v" "ᵥ"]
-                ["^c" "ᶜ"]
-                ["^s" "ˢ"]
-                ["^l" "ˡ"]
-                ["^r" "ʳ"]
-                ["^v" "ᵛ"]
-                ["^-" "⁻"]
-                ["^+" "⁺"]
-              ]
-            )
+            '') [
+              ["=>" "⇒"]
+              ["==" "≡"]
+              [";;" ";"]
+              [";;h" ";ₕ"]
+              [";;v" ";ᵥ"]
+              ["'" "′"]
+              ["''" "″"]
+              ["[[" "⟦"]
+              ["]]" "⟧"]
+              ["Nat" "ℕ"]
+              ["ZZ" "ℤ"]
+              ["::" "∷"]
+              ["~~" "≈"]
+              ["=_k" "＝ₖ"]
+              ["=_v" "＝ᵥ"]
+              ["|=" "⊨"]
+              ["|=>" "⤇"]
+              ["||" "‖"]
+            ]
           )
         ];
       in ''
