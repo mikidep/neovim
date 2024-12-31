@@ -16,7 +16,7 @@
 
   keymaps = [
     {
-      key = "s";
+      key = "S";
       action.__raw = ''function() require("flash").jump() end'';
     }
   ];

@@ -42,6 +42,7 @@ in {
         delete = "^(%{!%s*)().-(%s*!%})()$";
       };
     };
+    settings.move_cursor = "sticky";
   };
   plugins.rainbow-delimiters = {
     enable = true;
@@ -74,12 +75,6 @@ in {
       '';
     }
     vimPlugins.telescope-sg
-    # {
-    #   plugin = vimPlugins.rainbow;
-    #   config = ''
-    #     let g:rainbow_active = 1
-    #   '';
-    # }
     treesitter-openscad-grammar
   ];
 }

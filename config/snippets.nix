@@ -42,4 +42,11 @@
     }
     vimPlugins.vim-snippets
   ];
+  keymaps = [
+    {
+      key = "<C-l>";
+      action = "<Plug>luasnip-jump-next<CR>";
+      mode = ["i"];
+    }
+  ];
 }
