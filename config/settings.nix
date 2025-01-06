@@ -86,12 +86,12 @@
       {
         key = "c";
         action = ''"_c'';
-        mode = "x";
+        mode = ["n" "x"];
       }
       {
         key = "d";
         action = ''"_d'';
-        mode = "x";
+        mode = ["n" "x"];
       }
       {
         # move to the end of region after yanking
@@ -102,6 +102,5 @@
     ];
   extraConfigLua = ''
     require("nvfs-keymaps")
-
   '';
 }

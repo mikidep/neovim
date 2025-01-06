@@ -50,7 +50,7 @@
 
   globals = {
     cornelis_use_global_binary = true;
-    cornelis_max_size = 20;
+    cornelis_max_size = 15;
     cornelis_no_agda_input = true;
   };
 
@@ -148,10 +148,8 @@
               key = builtins.elemAt lt 0;
               action = builtins.elemAt lt 1;
             in ''
-              vim.keymap.set('i', [=[${key}]=], '${action}', { buffer = true })
-              vim.keymap.set('c', [=[${key}]=], '${action}', { buffer = true })
+              vim.keymap.set({'i', 'c'}, [=[${key}]=], '${action}', { buffer = true })
             '') [
-              ["=>" "⇒"]
               ["==" "≡"]
               [";;" ";"]
               [";;h" ";ₕ"]
@@ -160,8 +158,6 @@
               ["''" "″"]
               ["[[" "⟦"]
               ["]]" "⟧"]
-              ["Nat" "ℕ"]
-              ["ZZ" "ℤ"]
               ["::" "∷"]
               ["~~" "≈"]
               ["=_k" "＝ₖ"]

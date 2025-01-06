@@ -59,19 +59,6 @@
         src = inputs.midnight-nvim;
       })
       {
-        plugin =
-          buildVimPlugin
-          {
-            name = "sad.nvim";
-            src = inputs.sad-nvim;
-          };
-        config = ''
-          lua << EOF
-          require 'sad'.setup({})
-          EOF
-        '';
-      }
-      {
         plugin = buildVimPlugin {
           name = "scrollEOF.nvim";
           src = inputs.scrolleof-nvim;
@@ -117,8 +104,6 @@
       execute "silent ! ${lib.getExe pkgs.firefox} --new-window " . a:url
     endfunction
   '';
-
-  globals.dasht_results_window = "vnew";
 
   keymaps = [
     {

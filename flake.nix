@@ -2,7 +2,7 @@
   description = "A nixvim configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "nixpkgs/nixos-unstable";
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -50,10 +50,6 @@
       url = "github:isak102/telescope-git-file-history.nvim";
       flake = false;
     };
-    sad-nvim = {
-      url = "github:ray-x/sad.nvim";
-      flake = false;
-    };
     guihua-lua = {
       url = "github:ray-x/guihua.lua";
       flake = false;
@@ -68,6 +64,10 @@
     };
     tree-sitter-openscad = {
       url = "github:bollian/tree-sitter-openscad";
+      flake = false;
+    };
+    ltex-utils-nvim = {
+      url = "github:jhofscheier/ltex-utils.nvim";
       flake = false;
     };
   };

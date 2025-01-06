@@ -24,6 +24,9 @@
 
       npairs.add_rule(Rule("=", ";", "nix"))
 
+      npairs.add_rule(Rule("\\(", "\\)", "tex"))
+      npairs.add_rule(Rule("\\[", "\\]", "tex"))
+
       npairs.add_rule(Rule("${"''"}", "${"''"}","nix"))
       npairs.get_rules("'")[1].not_filetypes = { "scheme", "lisp", "agda", "nix" }
     '';
