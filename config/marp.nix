@@ -10,11 +10,7 @@
         src = inputs.marp-nvim;
       };
       config = ''
-        lua << EOF
-          require 'marp'.setup({
-
-          })
-        EOF
+        lua require 'marp'.setup({})
       '';
     }
   ];

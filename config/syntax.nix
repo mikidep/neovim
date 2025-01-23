@@ -14,6 +14,13 @@ in {
     enable = true;
     settings.indent.enable = true;
     settings.highlight.enable = true;
+    settings.incremental_selection = {
+      enable = true;
+      keymaps = {
+        init_selection = "van";
+        node_incremental = "an";
+      };
+    };
     grammarPackages =
       pkgs.vimPlugins.nvim-treesitter.passthru.allGrammars
       ++ [
@@ -41,12 +48,26 @@ in {
         find = "%{!.-!%}";
         delete = "^(%{!%s*)().-(%s*!%})()$";
       };
+      "m" = {
+        add = ["\\(" "\\)"];
+        # the ones below do not wor
+        find = "%\\%(.-%\\%)";
+        delete = "^(%\\%(%s*)().-(%s*%\\%()()$";
+      };
     };
     settings.move_cursor = "sticky";
   };
   plugins.rainbow-delimiters = {
     enable = true;
     query.agda = "rainbow-delimiters";
+    highlight = [
+      "RainbowDelimiterRed"
+      "RainbowDelimiterYellow"
+      "RainbowDelimiterBlue"
+      "RainbowDelimiterGreen"
+      "RainbowDelimiterViolet"
+      "RainbowDelimiterCyan"
+    ];
   };
   # extraFiles."queries/agda/rainbow-delimiters.scm".source = ../assets/queries/agda/rainbow-delimiters.scm;
 
@@ -54,26 +75,6 @@ in {
     ast-grep
   ];
   extraPlugins = with pkgs; [
-    {
-      plugin = vimUtils.buildVimPlugin {
-        name = "tshjkl.nvim";
-        src = inputs.tshjkl;
-      };
-      config = ''
-        lua << EOF
-          local tshjkl = require 'tshjkl'
-          tshjkl.setup({
-            keymaps = {
-              toggle = "<Space>v",
-              parent = "k",
-              child = "j",
-              prev= "h",
-              next = "l",
-            }
-          })
-        EOF
-      '';
-    }
     vimPlugins.telescope-sg
     treesitter-openscad-grammar
   ];

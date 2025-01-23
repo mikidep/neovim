@@ -14,10 +14,6 @@
       url = "github:isovector/cornelis";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    tshjkl = {
-      url = "github:gsuuon/tshjkl.nvim";
-      flake = false;
-    };
     midnight-nvim = {
       url = "github:dasupradyumna/midnight.nvim";
       flake = false;

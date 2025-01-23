@@ -1,55 +1,78 @@
 {
   pkgs,
   inputs,
+  lib,
+  config,
   ...
 }: {
-  plugins.luasnip = {
-    enable = true;
-    settings = {
-      enable_autosnippets = true;
+  options = with lib; {
+    plugins.nvim-autopairs.exclude_filetypes = mkOption {
+      type = types.attrsOf (types.listOf types.str);
+      default = {};
     };
-    fromLua = [{paths = ../assets/snippets;}];
-    fromSnipmate = [
+  };
+  config = {
+    plugins.luasnip = {
+      enable = true;
+      settings = {
+        enable_autosnippets = true;
+      };
+      fromLua = [{paths = ../assets/snippets;}];
+      fromSnipmate = [
+        {
+          lazyLoad = true;
+        }
+      ];
+    };
+    plugins.nvim-autopairs = let
+      cfg = config.plugins.nvim-autopairs;
+    in {
+      enable = true;
+
+      exclude_filetypes = {
+        "'" = ["scheme" "lisp" "agda" "nix"];
+      };
+      luaConfig.post =
+        ''
+          local Rule = require('nvim-autopairs.rule')
+          local npairs = require('nvim-autopairs')
+          local cond = require('nvim-autopairs.conds')
+
+          npairs.add_rule(Rule("=", ";", "nix"))
+          npairs.add_rule(Rule("${"''"}", "${"''"}","nix"))
+        ''
+        + (
+          let
+            inherit (lib.strings) concatStringsSep;
+            inherit (lib.attrsets) mapAttrsToList;
+            inherit (lib.nixvim) toLuaObject;
+          in
+            concatStringsSep "\n" (
+              mapAttrsToList (
+                rule: langs: "npairs.get_rules(${toLuaObject rule})[1].not_filetypes = ${toLuaObject langs}"
+              )
+              cfg.exclude_filetypes
+            )
+        );
+    };
+    extraPlugins = with pkgs; [
       {
-        lazyLoad = true;
+        plugin = vimUtils.buildVimPlugin {
+          name = "telescope-luasnip.nvim";
+          src = inputs.telescope-luasnip-nvim;
+        };
+        config = ''
+          lua require('telescope').load_extension('luasnip')
+        '';
+      }
+      vimPlugins.vim-snippets
+    ];
+    keymaps = [
+      {
+        key = "<C-l>";
+        action = "<Plug>luasnip-jump-next<CR>";
+        mode = ["i"];
       }
     ];
   };
-  plugins.nvim-autopairs = {
-    enable = true;
-    luaConfig.post = ''
-      local Rule = require('nvim-autopairs.rule')
-      local npairs = require('nvim-autopairs')
-      local cond = require('nvim-autopairs.conds')
-
-      npairs.add_rule(Rule("=", ";", "nix"))
-
-      npairs.add_rule(Rule("\\(", "\\)", "tex"))
-      npairs.add_rule(Rule("\\[", "\\]", "tex"))
-
-      npairs.add_rule(Rule("${"''"}", "${"''"}","nix"))
-      npairs.get_rules("'")[1].not_filetypes = { "scheme", "lisp", "agda", "nix" }
-    '';
-  };
-  extraPlugins = with pkgs; [
-    {
-      plugin = vimUtils.buildVimPlugin {
-        name = "telescope-luasnip.nvim";
-        src = inputs.telescope-luasnip-nvim;
-      };
-      config = ''
-        lua << EOF
-          require('telescope').load_extension('luasnip')
-        EOF
-      '';
-    }
-    vimPlugins.vim-snippets
-  ];
-  keymaps = [
-    {
-      key = "<C-l>";
-      action = "<Plug>luasnip-jump-next<CR>";
-      mode = ["i"];
-    }
-  ];
 }

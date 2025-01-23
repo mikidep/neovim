@@ -506,8 +506,7 @@
         "scrolleof-nvim": "scrolleof-nvim",
         "telescope-git-file-history-nvim": "telescope-git-file-history-nvim",
         "telescope-luasnip-nvim": "telescope-luasnip-nvim",
-        "tree-sitter-openscad": "tree-sitter-openscad",
-        "tshjkl": "tshjkl"
+        "tree-sitter-openscad": "tree-sitter-openscad"
       }
     },
     "scrolleof-nvim": {
@@ -622,22 +621,6 @@
       "original": {
         "owner": "numtide",
         "repo": "treefmt-nix",
-        "type": "github"
-      }
-    },
-    "tshjkl": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1716415597,
-        "narHash": "sha256-8W6iYQk0x6RSJi+cY9F6YUD4Z5rwMOjgq5YmmXgf6mk=",
-        "owner": "gsuuon",
-        "repo": "tshjkl.nvim",
-        "rev": "3fe81ab2c15f014a78b752062238d6c110a08fc8",
-        "type": "github"
-      },
-      "original": {
-        "owner": "gsuuon",
-        "repo": "tshjkl.nvim",
         "type": "github"
       }
     }

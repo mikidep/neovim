@@ -8,6 +8,17 @@
     texlivePackage = null;
     settings.view_method = "zathura";
   };
+
+  autoCmd = [
+    {
+      command = "setl tw=80";
+      event = ["BufRead" "BufNewFile"];
+      pattern = [
+        "*.tex"
+      ];
+    }
+  ];
+
   globals.latex_view_general_viewer = "zathura";
   extraPlugins = [
     (pkgs.vimUtils.buildVimPlugin {
@@ -26,9 +37,31 @@
       doCheck = false;
     })
   ];
-  plugins.cmp.settings.sources = [{name = "vimtex";}];
-  plugins.lsp.servers.ltex.enable = true;
-  plugins.lsp.servers.ltex.onAttach.function = ''
-    require("ltex-utils").on_attach(bufnr)
-  '';
+  plugins.cmp.filetype.tex.sources = [
+    {name = "luasnip";}
+    {name = "vimtex";}
+    {name = "luasnip";}
+    {name = "path";}
+  ];
+  plugins.lsp.servers.ltex = {
+    enable = true;
+    onAttach.function = ''
+      require("ltex-utils").on_attach(bufnr)
+    '';
+  };
+  plugins.nvim-autopairs = {
+    luaConfig.post = ''
+      local Rule = require('nvim-autopairs.rule')
+      local npairs = require('nvim-autopairs')
+
+      npairs.add_rule(Rule("\\(", "\\)", "tex"))
+      npairs.add_rule(Rule("\\[", "\\]", "tex"))
+      npairs.add_rule(Rule("{", "}", "tex"))
+    '';
+
+    exclude_filetypes = {
+      "'" = ["tex"];
+      "`" = ["tex"];
+    };
+  };
 }

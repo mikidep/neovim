@@ -64,9 +64,7 @@
           src = inputs.scrolleof-nvim;
         };
         config = ''
-          lua << EOF
-            require 'scrollEOF'.setup({})
-          EOF
+          lua require 'scrollEOF'.setup({})
         '';
       }
       (buildVimPlugin {
@@ -83,9 +81,7 @@
           src = inputs.floating-help-nvim;
         };
         config = ''
-          lua << EOF
-            require 'floating-help'.setup({})
-          EOF
+          lua require 'floating-help'.setup({})
         '';
       }
     ]

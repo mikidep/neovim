@@ -3,7 +3,6 @@
     enable = true;
     settings = {
       label.rainbow.enabled = true;
-      jump.autojump = true;
       modes = {
         char = {
           enabled = true;

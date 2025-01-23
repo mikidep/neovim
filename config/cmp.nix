@@ -16,7 +16,13 @@
       };
       ":" = {
         mapping = {
-          __raw = "cmp.mapping.preset.cmdline()";
+          __raw = ''
+            cmp.mapping.preset.cmdline()
+          '';
+        };
+        matching = {
+          disallow_partial_matching = false;
+          disallow_partial_fuzzy_matching = false;
         };
         sources = [
           {
@@ -41,12 +47,6 @@
         {name = "path";}
         {name = "buffer";}
         {name = "luasnip";}
-        # {
-        #   name = "omni";
-        #   option = {
-        #     disable_omnifuncs = ["v:lua.vim.lsp.omnifunc"];
-        #   };
-        # }
       ];
       snippet.expand = ''
         function(args)

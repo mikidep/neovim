@@ -175,6 +175,9 @@
       '';
     }
   ];
+  plugins.nvim-autopairs.exclude_filetypes = {
+    "'" = ["agda"];
+  };
   keymaps = [
     {
       options.desc = "Name parameter (Agda)";
