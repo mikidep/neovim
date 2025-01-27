@@ -10,6 +10,7 @@
       "jk".__raw = "require('telescope.actions').close";
       "kj".__raw = "require('telescope.actions').close";
     };
+    settings.pickers.find_files.hidden = true;
     settings.pickers.live_grep.glob_pattern = ["!flake.lock"];
   };
 
