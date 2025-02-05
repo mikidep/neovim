@@ -6,12 +6,21 @@
   plugins.telescope = {
     enable = true;
     enabledExtensions = ["git_file_history"];
-    settings.defaults.mappings.n = {
-      "jk".__raw = "require('telescope.actions').close";
-      "kj".__raw = "require('telescope.actions').close";
+    settings = {
+      defaults = {
+        mappings.n = {
+          "jk".__raw = "require('telescope.actions').close";
+          "kj".__raw = "require('telescope.actions').close";
+        };
+        file_ignore_patterns = [
+          "^.git/"
+        ];
+      };
+      pickers = {
+        find_files.hidden = true;
+        live_grep.glob_pattern = ["!flake.lock"];
+      };
     };
-    settings.pickers.find_files.hidden = true;
-    settings.pickers.live_grep.glob_pattern = ["!flake.lock"];
   };
 
   extraPackages = [pkgs.ripgrep];
@@ -25,10 +34,6 @@
   keymaps =
     (map (km: km // {key = "<leader>" + km.key;})
       [
-        {
-          key = "nt";
-          action = "<cmd>Neotree focus toggle=true<CR>";
-        }
         {
           key = " ";
           action = ''<cmd>Telescope find_files<CR>'';

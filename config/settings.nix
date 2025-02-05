@@ -69,9 +69,9 @@
           action = ''<cmd>FloatermNew<CR>'';
         }
         {
-          options.desc = "Open nnn";
-          key = "nn";
-          action = ''<cmd>FloatermNew ${lib.getExe pkgs.nnn}<CR>'';
+          options.desc = "Open Yazi";
+          key = "y";
+          action = ''<cmd>FloatermNew ${lib.getExe pkgs.yazi}<CR>'';
         }
         {
           options.desc = "Paste GitHub URL as a flake URL";

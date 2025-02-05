@@ -6,7 +6,15 @@
 }: {
   plugins = {
     auto-session.enable = true;
-    auto-save.enable = true;
+    auto-save = {
+      enable = true;
+      settings.condition.__raw = ''
+        function(buf)
+          local filetype = vim.fn.getbufvar(buf, "&filetype")
+          return not vim.list_contains({ "oil" }, filetype)
+        end
+      '';
+    };
     fugitive.enable = true;
     markdown-preview = {
       enable = true;
@@ -16,15 +24,7 @@
         theme = "light";
       };
     };
-    # noice.enable = true;
     trouble.enable = true;
-    # neoscroll = {
-    #   enable = true;
-    #   settings = {
-    #     respect_scrolloff = true;
-    #     step_eof = false;
-    #   };
-    # };
     neo-tree = {
       enable = true;
       openFilesInLastWindow = false;
@@ -97,7 +97,7 @@
   extraPackages = with pkgs; [fd delta sad fzf];
   extraConfigVim = ''
     function OpenMarkdownPreview (url)
-      execute "silent ! ${lib.getExe pkgs.firefox} --new-window " . a:url
+      execute "silent ! firefox --new-window " . a:url
     endfunction
   '';
 

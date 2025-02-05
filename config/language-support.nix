@@ -34,6 +34,7 @@
       };
       hls = {
         enable = true;
+        package = null;
         installGhc = false;
       };
       cssls.enable = true;
@@ -44,9 +45,7 @@
     package = with pkgs;
       vimPlugins.openscad-nvim.overrideAttrs {
         buildInputs = [
-          zathura
           htop
-          openscad-unstable
           fzf
         ];
         dependencies = [
