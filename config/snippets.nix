@@ -30,7 +30,10 @@
       enable = true;
 
       exclude_filetypes = {
-        "'" = ["scheme" "lisp" "agda" "nix"];
+        "'" = ["scheme" "lisp" "nix"];
+      };
+      settings = {
+        ignored_next_char = "";
       };
       luaConfig.post =
         ''

@@ -180,21 +180,15 @@
   };
   keymaps = [
     {
-      options.desc = "Name parameter (Agda)";
-      key = "<leader>mn";
-      action = ''<leader>ba : <Esc>F(a'';
-      options.remap = true;
-    }
-    {
       options.desc = "Define declaration";
       key = "<leader>md";
-      action = ''yypElc$ = ?<Esc>'';
+      action = ''yy}Pf:c$= ?<Esc>'';
       options.remap = true;
     }
     {
-      options.desc = "Search the stdlib";
+      options.desc = "Search local agda library";
       key = "<leader>z";
-      action = ''<cmd>FloatermNew agda-search-cubical<CR>'';
+      action = ''<cmd>FloatermNew agda-search<CR>'';
       options.remap = true;
     }
   ];

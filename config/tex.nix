@@ -8,6 +8,7 @@
     texlivePackage = null;
     settings.view_method = "zathura";
   };
+  plugins.treesitter.settings.highlight.disable = ["latex"];
 
   autoCmd = [
     {
@@ -56,7 +57,6 @@
 
       npairs.add_rule(Rule("\\(", "\\)", "tex"))
       npairs.add_rule(Rule("\\[", "\\]", "tex"))
-      npairs.add_rule(Rule("{", "}", "tex"))
     '';
 
     exclude_filetypes = {

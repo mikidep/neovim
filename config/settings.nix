@@ -99,8 +99,21 @@
         action = ''ygv<Esc>'';
         mode = "x";
       }
+      {
+        # pasting to replace selection does not eat
+        # whitespace or overwrite the unnamed register.
+        key = "p";
+        action = "P";
+        mode = "x";
+      }
+      {
+        # v$ does not include EOL
+        key = "v$";
+        action = "v$h";
+        mode = "n";
+      }
     ];
-  extraConfigLua = ''
+  extraConfigLuaPre = ''
     require("nvfs-keymaps")
   '';
 }

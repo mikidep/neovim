@@ -77,5 +77,6 @@ in {
   extraPlugins = with pkgs; [
     vimPlugins.telescope-sg
     treesitter-openscad-grammar
+    vimPlugins.vim-indent-object
   ];
 }
