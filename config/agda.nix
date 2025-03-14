@@ -3,39 +3,46 @@
   inputs',
   inputs,
   lib,
+  config,
   ...
 }: {
-  plugins.cmp.filetype.agda.sources = [
-    {
-      name = "buffer";
-      option = {
-        get_bufnrs.__raw = ''
-          function()
-            return vim.api.nvim_list_bufs()
+  plugins.blink-cmp.settings = {
+    sources = {
+      per_filetype.agda =
+        config.plugins.blink-cmp.settings.sources.default
+        ++ [
+          "agda-symbols"
+        ];
+      providers.agda-symbols = {
+        enabled = true;
+        name = "agda-symbols";
+        module = "blink.compat.source";
+        should_show_items.__raw = ''function(ctx) return ctx.trigger.kind == "trigger_character" end'';
+      };
+    };
+    keymap."<Space>" = [
+      {
+        __raw = ''
+          function(cmp)
+            local item = cmp.get_items()[1]
+            if cmp.is_visible() and item and item.source_name == "agda-symbols" then
+              cmp.select_and_accept({
+                -- callback = function() vim.api.nvim_feedkeys(" ", "i", true) end
+              })
+              return true
+            else
+              return false
+            end
           end
         '';
-        keyword_pattern.__raw = ''[[[^ \n\t(){};:]\+]]'';
-      };
-    }
-    {name = "agda-symbols";}
-    {name = "luasnip";}
-  ];
-
-  plugins.cmp.filetype.agda.mapping = {
-    "<Space>".__raw = ''
-      function(fallback)
-        local entry = cmp.get_entries()[1]
-        if entry and entry.source.name == "agda-symbols" then
-          cmp.confirm({ select = true })
-        else
-          fallback()
-        end
-      end
-    '';
+      }
+      "fallback"
+    ];
   };
 
   extraPlugins = with pkgs; [
-    inputs'.cornelis.packages.cornelis-vim
+    # inputs'.cornelis.packages.cornelis-vim
+    vimPlugins.cornelis
     (
       let
         name = "cmp-agda-symbols";
@@ -54,7 +61,8 @@
     cornelis_no_agda_input = true;
   };
 
-  extraPackages = [inputs'.cornelis.packages.cornelis];
+  # extraPackages = [inputs'.cornelis.packages.cornelis];
+  extraPackages = [pkgs.cornelis];
 
   autoCmd = [
     {

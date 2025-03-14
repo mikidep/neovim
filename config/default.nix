@@ -4,7 +4,8 @@
     ./misc-plugins.nix
     ./telescope.nix
     ./agda.nix
-    ./cmp.nix
+    # ./cmp.nix
+    ./blink.nix
     ./language-support.nix
     ./syntax.nix
     ./tex.nix

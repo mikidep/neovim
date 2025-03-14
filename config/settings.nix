@@ -18,7 +18,15 @@
     relativenumber = true;
     wrap = false;
     scrolloff = 10;
-    sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions";
+    sessionoptions = [
+      "blank"
+      "buffers"
+      "curdir"
+      "folds"
+      "tabpages"
+      "winsize"
+      "winpos"
+    ];
     undofile = true;
     wildmode = "longest:full,full";
     wildignorecase = true;
@@ -99,13 +107,13 @@
         action = ''ygv<Esc>'';
         mode = "x";
       }
-      {
-        # pasting to replace selection does not eat
-        # whitespace or overwrite the unnamed register.
-        key = "p";
-        action = "P";
-        mode = "x";
-      }
+      # {
+      #   # pasting to replace selection does not eat
+      #   # whitespace or overwrite the unnamed register.
+      #   key = "p";
+      #   action = "P";
+      #   mode = "x";
+      # }
       {
         # v$ does not include EOL
         key = "v$";
@@ -115,5 +123,6 @@
     ];
   extraConfigLuaPre = ''
     require("nvfs-keymaps")
+    vim.keymap.del("i", "jk")
   '';
 }

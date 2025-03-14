@@ -87,11 +87,10 @@
     ]
     ++ (with vimPlugins; [
       vim-visual-multi
-      neorepl-nvim
+      nvim-luapad
       unicode-vim
       vim-easy-align
       winshift-nvim
-      vim-dasht
     ]);
 
   extraPackages = with pkgs; [fd delta sad fzf];

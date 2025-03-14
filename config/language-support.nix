@@ -15,6 +15,7 @@
       require('vim.lsp.log').set_format_func(vim.inspect)
     '';
     servers = {
+      clangd.enable = true;
       jsonls.enable = true;
       nil_ls = {
         enable = true;
@@ -74,9 +75,18 @@
     }
   ];
 
-  extraConfigLua = ''
+  extraConfigLua = let
+    clang-format = (pkgs.formats.yaml {}).generate "clang-format.yaml" {
+      IndentWidth = 2;
+      ColumnLimit = 80;
+    };
+  in ''
     require 'lspconfig'.openscad_lsp.setup {
-      cmd = { "${lib.getExe pkgs.openscad-lsp}", "--stdio" }
+      cmd = {
+        "${lib.getExe pkgs.openscad-lsp}",
+        "--stdio",
+        "--fmt-style", "file:${clang-format}"
+      }
     }
   '';
 }

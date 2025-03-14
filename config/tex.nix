@@ -22,11 +22,11 @@
 
   globals.latex_view_general_viewer = "zathura";
   extraPlugins = [
-    (pkgs.vimUtils.buildVimPlugin {
-      name = "cmp-vimtex";
-      src = inputs.cmp-vimtex;
-      doCheck = false;
-    })
+    # (pkgs.vimUtils.buildVimPlugin {
+    #   name = "cmp-vimtex";
+    #   src = inputs.cmp-vimtex;
+    #   doCheck = false;
+    # })
     (pkgs.vimUtils.buildVimPlugin {
       name = "luasnip-latex-snippets.nvim";
       src = inputs.luasnip-latex-snippets-nvim;
@@ -38,12 +38,12 @@
       doCheck = false;
     })
   ];
-  plugins.cmp.filetype.tex.sources = [
-    {name = "luasnip";}
-    {name = "vimtex";}
-    {name = "luasnip";}
-    {name = "path";}
-  ];
+  # plugins.cmp.filetype.tex.sources = [
+  #   {name = "luasnip";}
+  #   {name = "vimtex";}
+  #   {name = "luasnip";}
+  #   {name = "path";}
+  # ];
   plugins.lsp.servers.ltex = {
     enable = true;
     onAttach.function = ''

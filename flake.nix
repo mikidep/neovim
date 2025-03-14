@@ -10,10 +10,6 @@
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
     };
-    cornelis = {
-      url = "github:isovector/cornelis";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     midnight-nvim = {
       url = "github:dasupradyumna/midnight.nvim";
       flake = false;
