@@ -1,6 +1,5 @@
 {
   pkgs,
-  inputs',
   inputs,
   lib,
   config,
@@ -191,7 +190,7 @@
     {
       options.desc = "Define declaration";
       key = "<leader>md";
-      action = ''yy}Pf:c$= ?<Esc>'';
+      action = ''yyvip<Esc>pf:c$= ?<Esc>'';
       options.remap = true;
     }
     {
