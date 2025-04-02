@@ -13,11 +13,12 @@
         ++ [
           "agda-symbols"
         ];
+      min_keyword_length = 1;
       providers.agda-symbols = {
         enabled = true;
         name = "agda-symbols";
         module = "blink.compat.source";
-        should_show_items.__raw = ''function(ctx) return ctx.trigger.kind == "trigger_character" end'';
+        should_show_items.__raw = ''function(ctx) return ctx.trigger.initial_kind == "trigger_character" end'';
       };
     };
     keymap."<Space>" = [

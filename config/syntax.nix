@@ -14,13 +14,6 @@ in {
     enable = true;
     settings.indent.enable = true;
     settings.highlight.enable = true;
-    settings.incremental_selection = {
-      enable = true;
-      keymaps = {
-        init_selection = "van";
-        node_incremental = "an";
-      };
-    };
     grammarPackages =
       pkgs.vimPlugins.nvim-treesitter.passthru.allGrammars
       ++ [
@@ -40,6 +33,20 @@ in {
       end
     '';
   };
+  keymaps = [
+    {
+      key = "an";
+      mode = ["x" "o"];
+      action = '':<c-u>lua require "nvim-treesitter.incremental_selection".node_incremental()<cr>'';
+      options.silent = true;
+    }
+    {
+      key = "in";
+      mode = ["x"];
+      action.__raw = ''require "nvim-treesitter.incremental_selection".node_decremental'';
+      options.silent = true;
+    }
+  ];
   plugins.nvim-surround = {
     enable = true;
     settings.surrounds = {
