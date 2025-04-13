@@ -3,7 +3,6 @@
   lib,
   ...
 }: {
-  plugins.aerial.enable = true;
   plugins.lsp-format = {
     enable = true;
     lspServersToEnable = "all";
@@ -26,6 +25,18 @@
       };
       lua_ls.enable = true;
       ruff.enable = true;
+      openscad_lsp = {
+        enable = true;
+        settings = {
+          stdio = true;
+          fmt_style = let
+            clang-format = (pkgs.formats.yaml {}).generate "clang-format.yaml" {
+              IndentWidth = 2;
+              ColumnLimit = 80;
+            };
+          in "file:${clang-format}";
+        };
+      };
       pyright.enable = true;
       rust_analyzer = {
         enable = true;
@@ -56,8 +67,19 @@
         ];
       };
   };
+  files = {
+    "ftplugin/openscad.lua" = {
+      localOpts = {
+        comments = "://";
+        commentstring = "// %s";
+      };
+    };
+  };
   extraPlugins = with pkgs.vimPlugins; [
     fzf-vim
+  ];
+  extraPackages = [
+    pkgs.clang-tools
   ];
 
   keymaps = [
@@ -74,19 +96,4 @@
       mode = "n";
     }
   ];
-
-  extraConfigLua = let
-    clang-format = (pkgs.formats.yaml {}).generate "clang-format.yaml" {
-      IndentWidth = 2;
-      ColumnLimit = 80;
-    };
-  in ''
-    require 'lspconfig'.openscad_lsp.setup {
-      cmd = {
-        "${lib.getExe pkgs.openscad-lsp}",
-        "--stdio",
-        "--fmt-style", "file:${clang-format}"
-      }
-    }
-  '';
 }

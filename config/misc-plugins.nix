@@ -1,10 +1,10 @@
 {
   pkgs,
   inputs,
-  lib,
   ...
 }: {
   plugins = {
+    aerial.enable = true;
     auto-session.enable = true;
     auto-save = {
       enable = true;
@@ -14,6 +14,13 @@
           return not vim.list_contains({ "oil" }, filetype)
         end
       '';
+    };
+    lualine = {
+      enable = true;
+      settings = {
+        options.globalstatus = true;
+        sections.lualine_x = ["encoding" "fileformat" "filetype" {__raw = "function () return tostring(vim.fn.wordcount().words)..' words' end";}];
+      };
     };
     fugitive.enable = true;
     markdown-preview = {
@@ -39,7 +46,6 @@
     oil.enable = true;
     which-key.enable = true;
     floaterm.enable = true;
-    openscad.enable = true;
     web-devicons.enable = true;
     repeat.enable = true;
     yanky = {

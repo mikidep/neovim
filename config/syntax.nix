@@ -37,7 +37,13 @@ in {
     {
       key = "an";
       mode = ["x" "o"];
-      action = '':<c-u>lua require "nvim-treesitter.incremental_selection".node_incremental()<cr>'';
+      action.__raw = ''require "nvim-treesitter.incremental_selection".node_incremental'';
+      options.silent = true;
+    }
+    {
+      key = "van";
+      mode = "n";
+      action.__raw = ''require "nvim-treesitter.incremental_selection".init_selection'';
       options.silent = true;
     }
     {
@@ -76,7 +82,6 @@ in {
       "RainbowDelimiterCyan"
     ];
   };
-  # extraFiles."queries/agda/rainbow-delimiters.scm".source = ../assets/queries/agda/rainbow-delimiters.scm;
 
   extraPackages = with pkgs; [
     ast-grep

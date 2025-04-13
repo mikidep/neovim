@@ -18,6 +18,7 @@
     relativenumber = true;
     wrap = false;
     scrolloff = 10;
+    linebreak = true;
     sessionoptions = [
       "blank"
       "buffers"
@@ -119,6 +120,24 @@
         key = "v$";
         action = "v$h";
         mode = "n";
+      }
+      {
+        # j and k move by virtual lines when wrap is enabled
+        key = "j";
+        action = "gj";
+        mode = "n";
+      }
+      {
+        # see above
+        key = "k";
+        action = "gk";
+        mode = "n";
+      }
+      {
+        # terminal mode escape
+        key = "<Esc>";
+        action = "<C-\\><C-n>";
+        mode = "t";
       }
     ];
   extraConfigLuaPre = ''
