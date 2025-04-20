@@ -1,4 +1,5 @@
 {pkgs, ...}: {
+  colorscheme = "vscode";
   colorschemes.vscode = {
     enable = true;
     settings.group_overrides = {
@@ -11,10 +12,10 @@
     };
   };
   colorschemes.catppuccin = {
-    enable = false;
+    enable = true;
     settings = {
       color_overrides.mocha = let
-        bg = "#111111";
+        bg = "#000000";
       in {
         base = bg;
         mantle = bg;

@@ -90,5 +90,15 @@ in {
     vimPlugins.telescope-sg
     treesitter-openscad-grammar
     vimPlugins.vim-indent-object
+    {
+      plugin = vimUtils.buildVimPlugin {
+        name = "ns-textobject";
+        src = inputs.ns-textobject-nvim;
+        doCheck = false;
+      };
+    }
   ];
+  extraConfigLuaPost = ''
+    require "ns-textobject".setup {}
+  '';
 }

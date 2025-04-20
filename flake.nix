@@ -62,6 +62,10 @@
       url = "github:jhofscheier/ltex-utils.nvim";
       flake = false;
     };
+    ns-textobject-nvim = {
+      url = "github:XXiaoA/ns-textobject.nvim";
+      flake = false;
+    };
   };
 
   outputs = {

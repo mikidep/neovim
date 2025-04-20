@@ -50,6 +50,9 @@
         installGhc = false;
       };
       cssls.enable = true;
+      tinymist = {
+        enable = true;
+      };
     };
   };
   plugins.openscad = {
@@ -72,6 +75,16 @@
       localOpts = {
         comments = "://";
         commentstring = "// %s";
+      };
+    };
+    "ftplugin/typst.lua" = {
+      localOpts = {
+        wrap = true;
+      };
+    };
+    "ftplugin/markdown.lua" = {
+      localOpts = {
+        wrap = true;
       };
     };
   };

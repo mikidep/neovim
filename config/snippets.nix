@@ -30,7 +30,7 @@
       enable = true;
 
       exclude_filetypes = {
-        "'" = ["scheme" "lisp" "nix"];
+        "'" = ["scheme" "lisp" "nix" "typst"];
       };
       settings = {
         ignored_next_char = "";
@@ -43,6 +43,7 @@
 
           npairs.add_rule(Rule("=", ";", "nix"))
           npairs.add_rule(Rule("${"''"}", "${"''"}","nix"))
+          npairs.add_rule(Rule("$", "$", "typst"))
         ''
         + (
           let

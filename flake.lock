@@ -262,6 +262,22 @@
         "type": "github"
       }
     },
+    "ns-textobject-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1685104891,
+        "narHash": "sha256-IVW9OKJTySdj5UTiVBVzgY7l1gl1YbROg/vxnc+FkZc=",
+        "owner": "XXiaoA",
+        "repo": "ns-textobject.nvim",
+        "rev": "6341bc16df9d07d5f9520b7ac0a84a55720c2302",
+        "type": "github"
+      },
+      "original": {
+        "owner": "XXiaoA",
+        "repo": "ns-textobject.nvim",
+        "type": "github"
+      }
+    },
     "nuschtosSearch": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -314,6 +330,7 @@
         "midnight-nvim": "midnight-nvim",
         "nixpkgs": "nixpkgs",
         "nixvim": "nixvim",
+        "ns-textobject-nvim": "ns-textobject-nvim",
         "nvfs": "nvfs",
         "scrolleof-nvim": "scrolleof-nvim",
         "telescope-git-file-history-nvim": "telescope-git-file-history-nvim",
