@@ -55,27 +55,31 @@
       };
     };
   };
-  plugins.openscad = {
-    enable = true;
-    package = with pkgs;
-      vimPlugins.openscad-nvim.overrideAttrs {
-        buildInputs = [
-          htop
-          fzf
-        ];
-        dependencies = [
-          vimPlugins.fzf-vim
-        ];
-        patches = [
-        ];
-      };
-  };
+
   files = {
     "ftplugin/openscad.lua" = {
       localOpts = {
         comments = "://";
         commentstring = "// %s";
       };
+      plugins.openscad = {
+        enable = true;
+        package = with pkgs;
+          vimPlugins.openscad-nvim.overrideAttrs {
+            buildInputs = [
+              htop
+              fzf
+            ];
+            # dependencies = [
+            #   vimPlugins.fzf-vim
+            # ];
+            patches = [
+            ];
+          };
+      };
+      extraPackages = [
+        pkgs.clang-tools
+      ];
     };
     "ftplugin/typst.lua" = {
       localOpts = {
@@ -88,12 +92,6 @@
       };
     };
   };
-  extraPlugins = with pkgs.vimPlugins; [
-    fzf-vim
-  ];
-  extraPackages = [
-    pkgs.clang-tools
-  ];
 
   keymaps = [
     {

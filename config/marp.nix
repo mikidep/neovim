@@ -3,7 +3,7 @@
   inputs,
   ...
 }: {
-  extraPlugins = with pkgs; [
+  files."ftplugin/markdown.lua".extraPlugins = with pkgs; [
     {
       plugin = vimUtils.buildVimPlugin {
         name = "marp";

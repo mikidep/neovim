@@ -23,14 +23,7 @@
       };
     };
     fugitive.enable = true;
-    markdown-preview = {
-      enable = true;
-      settings = {
-        browserfunc = "OpenMarkdownPreview";
-        page_title = "\${name}";
-        theme = "light";
-      };
-    };
+
     trouble.enable = true;
     neo-tree = {
       enable = true;
@@ -80,16 +73,6 @@
           cd $target/lua/fzy && make
         '';
       })
-
-      {
-        plugin = buildVimPlugin {
-          name = "floating-help.nvim";
-          src = inputs.floating-help-nvim;
-        };
-        config = ''
-          lua require 'floating-help'.setup({})
-        '';
-      }
     ]
     ++ (with vimPlugins; [
       vim-visual-multi
@@ -98,7 +81,14 @@
       vim-easy-align
       winshift-nvim
     ]);
-
+  files."ftplugin/markdown.lua".plugins.markdown-preview = {
+    enable = true;
+    settings = {
+      browserfunc = "OpenMarkdownPreview";
+      page_title = "\${name}";
+      theme = "light";
+    };
+  };
   extraPackages = with pkgs; [fd delta sad fzf];
   extraConfigVim = ''
     function OpenMarkdownPreview (url)

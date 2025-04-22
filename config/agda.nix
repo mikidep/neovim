@@ -40,31 +40,28 @@
     ];
   };
 
-  extraPlugins = with pkgs; [
-    # inputs'.cornelis.packages.cornelis-vim
-    vimPlugins.cornelis
-    (
-      let
-        name = "cmp-agda-symbols";
-      in
-        vimUtils.buildVimPlugin
-        {
-          inherit name;
-          src = inputs.${name};
-        }
-    )
-  ];
-
-  globals = {
-    cornelis_use_global_binary = true;
-    cornelis_max_size = 15;
-    cornelis_no_agda_input = true;
-  };
-
-  # extraPackages = [inputs'.cornelis.packages.cornelis];
   extraPackages = [pkgs.cornelis];
 
   files."ftplugin/agda.lua" = {
+    extraPlugins = with pkgs; [
+      vimPlugins.cornelis
+      (
+        let
+          name = "cmp-agda-symbols";
+        in
+          vimUtils.buildVimPlugin
+          {
+            inherit name;
+            src = inputs.${name};
+          }
+      )
+    ];
+
+    globals = {
+      cornelis_use_global_binary = true;
+      cornelis_max_size = 15;
+      cornelis_no_agda_input = true;
+    };
     keymaps =
       [
         {

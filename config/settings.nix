@@ -105,18 +105,18 @@
       {
         # move to the end of region after yanking
         key = "y";
-        action = ''ygv<Esc>'';
+        action = ''ygv<esc>'';
         mode = "x";
       }
       # {
       #   # pasting to replace selection does not eat
       #   # whitespace or overwrite the unnamed register.
       #   key = "p";
-      #   action = "P";
+      #   action = "p";
       #   mode = "x";
       # }
       {
-        # v$ does not include EOL
+        # v$ does not include eol
         key = "v$";
         action = "v$h";
         mode = "n";
@@ -135,8 +135,8 @@
       }
       {
         # terminal mode escape
-        key = "<Esc>";
-        action = "<C-\\><C-n>";
+        key = "<esc>";
+        action = "<c-\\><c-n>";
         mode = "t";
       }
     ];

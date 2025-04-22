@@ -13,6 +13,7 @@
   };
   colorschemes.catppuccin = {
     enable = true;
+    lazyLoad.enable = true;
     settings = {
       color_overrides.mocha = let
         bg = "#000000";
