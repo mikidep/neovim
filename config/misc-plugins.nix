@@ -47,6 +47,7 @@
       settings = {
         highlight.on_put = true;
         highlight.on_yank = true;
+        preserve_cursor_position.enabled = true;
       };
     };
   };
@@ -100,7 +101,11 @@
     {
       key = "ga";
       action = "<Plug>(EasyAlign)";
-      mode = ["x"];
+      mode = "x";
+    }
+    {
+      key = "<leader>cs";
+      action = "<cmd>AerialOpen<cr>";
     }
   ];
 }

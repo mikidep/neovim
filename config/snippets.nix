@@ -33,7 +33,8 @@
         "'" = ["scheme" "lisp" "nix" "typst"];
       };
       settings = {
-        ignored_next_char = "";
+        ignored_next_char = ''[[]]'';
+        enable_afterquote = false;
       };
       luaConfig.post =
         ''

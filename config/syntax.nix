@@ -33,26 +33,7 @@ in {
       end
     '';
   };
-  keymaps = [
-    {
-      key = "an";
-      mode = ["x" "o"];
-      action.__raw = ''require "nvim-treesitter.incremental_selection".node_incremental'';
-      options.silent = true;
-    }
-    {
-      key = "van";
-      mode = "n";
-      action.__raw = ''require "nvim-treesitter.incremental_selection".init_selection'';
-      options.silent = true;
-    }
-    {
-      key = "in";
-      mode = ["x"];
-      action.__raw = ''require "nvim-treesitter.incremental_selection".node_decremental'';
-      options.silent = true;
-    }
-  ];
+
   plugins.nvim-surround = {
     enable = true;
     settings.surrounds = {
@@ -90,15 +71,82 @@ in {
     vimPlugins.telescope-sg
     treesitter-openscad-grammar
     vimPlugins.vim-indent-object
-    {
-      plugin = vimUtils.buildVimPlugin {
+    (
+      vimUtils.buildVimPlugin {
         name = "ns-textobject";
         src = inputs.ns-textobject-nvim;
         doCheck = false;
-      };
+      }
+    )
+    {
+      plugin = vimPlugins.syntax-tree-surfer;
+      config = ''lua require"syntax-tree-surfer".setup {}'';
     }
+    (
+      vimUtils.buildVimPlugin {
+        name = "nvim-treehopper";
+        src = inputs.nvim-treehopper;
+        doCheck = false;
+      }
+    )
   ];
   extraConfigLuaPost = ''
     require "ns-textobject".setup {}
   '';
+  keymaps = [
+    {
+      key = "an";
+      mode = ["x" "o"];
+      action.__raw = ''require "nvim-treesitter.incremental_selection".node_incremental'';
+      options.silent = true;
+    }
+    {
+      key = "van";
+      mode = "n";
+      action.__raw = ''require "nvim-treesitter.incremental_selection".init_selection'';
+      options.silent = true;
+    }
+    {
+      key = "in";
+      mode = ["x"];
+      action.__raw = ''require "nvim-treesitter.incremental_selection".node_decremental'';
+      options.silent = true;
+    }
+    {
+      mode = "x";
+      key = "L";
+      action = "<cmd>STSSelectNextSiblingNode<cr>";
+    }
+    {
+      mode = "x";
+      key = "H";
+      action = "<cmd>STSSelectPrevSiblingNode<cr>";
+    }
+    {
+      mode = "x";
+      key = "K";
+      action = "<cmd>STSSelectParentNode<cr>";
+    }
+    {
+      mode = "x";
+      key = "J";
+      action = "<cmd>STSSelectChildNode<cr>";
+    }
+    {
+      mode = "x";
+      key = "<A-h>";
+      action = "<cmd>STSSwapPrevVisual<cr>";
+    }
+    {
+      mode = "x";
+      key = "<A-l>";
+      action = "<cmd>STSSwapNextVisual<cr>";
+    }
+    {
+      key = "m";
+      mode = ["x" "o"];
+      action = '':<C-U>lua require("tsht").nodes()<CR>'';
+      options.silent = true;
+    }
+  ];
 }

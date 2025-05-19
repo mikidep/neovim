@@ -5,56 +5,56 @@
   config,
   ...
 }: {
-  plugins.blink-cmp.settings = {
-    sources = {
-      per_filetype.agda =
-        config.plugins.blink-cmp.settings.sources.default
-        ++ [
-          "agda-symbols"
-        ];
-      min_keyword_length = 1;
-      providers.agda-symbols = {
-        enabled = true;
-        name = "agda-symbols";
-        module = "blink.compat.source";
-        should_show_items.__raw = ''function(ctx) return ctx.trigger.initial_kind == "trigger_character" end'';
-      };
-    };
-    keymap."<Space>" = [
-      {
-        __raw = ''
-          function(cmp)
-            local item = cmp.get_items()[1]
-            if cmp.is_visible() and item and item.source_name == "agda-symbols" then
-              cmp.select_and_accept({
-                -- callback = function() vim.api.nvim_feedkeys(" ", "i", true) end
-              })
-              return true
-            else
-              return false
-            end
-          end
-        '';
-      }
-      "fallback"
-    ];
-  };
+  # plugins.blink-cmp.settings = {
+  #   sources = {
+  #     per_filetype.agda =
+  #       config.plugins.blink-cmp.settings.sources.default
+  #       ++ [
+  #         "agda-symbols"
+  #       ];
+  #     min_keyword_length = 0;
+  #     providers.agda-symbols = {
+  #       enabled = true;
+  #       name = "agda-symbols";
+  #       module = "blink.compat.source";
+  #       should_show_items.__raw = ''function(ctx) return ctx.trigger.initial_kind == "trigger_character" end'';
+  #     };
+  #   };
+  #   keymap."<Space>" = [
+  #     {
+  #       __raw = ''
+  #         function(cmp)
+  #           local item = cmp.get_items()[1]
+  #           if cmp.is_visible() and item and item.source_name == "agda-symbols" then
+  #             cmp.select_and_accept({
+  #               -- callback = function() vim.api.nvim_feedkeys(" ", "i", true) end
+  #             })
+  #             return true
+  #           else
+  #             return false
+  #           end
+  #         end
+  #       '';
+  #     }
+  #     "fallback"
+  #   ];
+  # };
 
   extraPackages = [pkgs.cornelis];
 
   files."ftplugin/agda.lua" = {
     extraPlugins = with pkgs; [
       vimPlugins.cornelis
-      (
-        let
-          name = "cmp-agda-symbols";
-        in
-          vimUtils.buildVimPlugin
-          {
-            inherit name;
-            src = inputs.${name};
-          }
-      )
+      # (
+      #   let
+      #     name = "cmp-agda-symbols";
+      #   in
+      #     vimUtils.buildVimPlugin
+      #     {
+      #       inherit name;
+      #       src = inputs.${name};
+      #     }
+      # )
     ];
 
     globals = {
@@ -62,6 +62,7 @@
       cornelis_max_size = 15;
       cornelis_no_agda_input = true;
     };
+
     keymaps =
       [
         {
@@ -160,6 +161,11 @@
           action = "<Cmd>CornelisGoToDefinition<CR>";
           options.remap = true;
         }
+        {
+          key = "\\";
+          action.__raw = ''function () require'telescope.builtin'.symbols{ source = {'agda'} } end'';
+          mode = "i";
+        }
       ]
       ++ (builtins.map (ka: let
           key = builtins.elemAt ka 0;
@@ -190,4 +196,16 @@
   plugins.nvim-autopairs.exclude_filetypes = {
     "'" = ["agda"];
   };
+
+  extraFiles."data/telescope-sources/agda.json".text = with builtins; let
+    symdict = lib.importJSON "${inputs.agda-symbols}/symbols.json";
+    converted = concatMap ({
+      name,
+      value,
+    }:
+      if isList value
+      then map (v: [v name]) value
+      else [[value name]]) (lib.attrsToList symdict);
+  in
+    toJSON converted;
 }

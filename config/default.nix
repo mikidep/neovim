@@ -1,6 +1,7 @@
 {...}: {
   imports = [
     ./settings.nix
+    ./mappings.nix
     ./misc-plugins.nix
     ./telescope.nix
     ./agda.nix

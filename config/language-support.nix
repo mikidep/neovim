@@ -101,6 +101,15 @@
       mode = "n";
     }
     {
+      options.desc = "Format code";
+      key = "cf";
+      action.__raw = ''
+        function()
+          vim.lsp.buf.format { async = true }
+        end
+      '';
+    }
+    {
       options.desc = "LSP hover";
       key = "<leader>ch";
       action.__raw = ''vim.lsp.buf.hover'';

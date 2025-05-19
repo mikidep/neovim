@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "agda-symbols": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1741183027,
+        "narHash": "sha256-hUozAJNEakUEv7DkECwbYAznsFj5d0CR0YMfyZ+VwZc=",
+        "owner": "4e554c4c",
+        "repo": "agda-symbols",
+        "rev": "52baf50f2f8160d2f580e7e80b5c3de2a46ba6f4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "4e554c4c",
+        "repo": "agda-symbols",
+        "type": "github"
+      }
+    },
     "cmp-agda-symbols": {
       "flake": false,
       "locked": {
@@ -317,8 +333,25 @@
         "type": "github"
       }
     },
+    "nvim-treehopper": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1739090409,
+        "narHash": "sha256-M2yA1wYowtA5Dqk4J9zjSUZz+ZrpqXp25k5N5adVDgE=",
+        "owner": "mfussenegger",
+        "repo": "nvim-treehopper",
+        "rev": "0b9f5c8980ab1427644ff70059f7ae0fd89b547e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mfussenegger",
+        "repo": "nvim-treehopper",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
+        "agda-symbols": "agda-symbols",
         "cmp-agda-symbols": "cmp-agda-symbols",
         "cmp-vimtex": "cmp-vimtex",
         "flake-parts": "flake-parts",
@@ -332,6 +365,7 @@
         "nixvim": "nixvim",
         "ns-textobject-nvim": "ns-textobject-nvim",
         "nvfs": "nvfs",
+        "nvim-treehopper": "nvim-treehopper",
         "scrolleof-nvim": "scrolleof-nvim",
         "telescope-git-file-history-nvim": "telescope-git-file-history-nvim",
         "telescope-luasnip-nvim": "telescope-luasnip-nvim",

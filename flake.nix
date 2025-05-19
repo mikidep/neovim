@@ -66,6 +66,14 @@
       url = "github:XXiaoA/ns-textobject.nvim";
       flake = false;
     };
+    nvim-treehopper = {
+      url = "github:mfussenegger/nvim-treehopper";
+      flake = false;
+    };
+    agda-symbols = {
+      url = "github:4e554c4c/agda-symbols";
+      flake = false;
+    };
   };
 
   outputs = {
