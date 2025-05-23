@@ -9,12 +9,13 @@
       nvimRuntime = true;
     };
     combinePlugins = {
-      enable = true;
+      enable = false; # breaks agda symbols
       standalonePlugins = [
         "oil.nvim"
         "nvim-treesitter"
         "openscad-grammar"
         "blink.cmp"
+        "blink-agda-symbols"
       ];
     };
   };

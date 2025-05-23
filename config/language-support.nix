@@ -84,6 +84,8 @@
     "ftplugin/typst.lua" = {
       localOpts = {
         wrap = true;
+        comments = "://";
+        commentstring = "// %s";
       };
     };
     "ftplugin/markdown.lua" = {

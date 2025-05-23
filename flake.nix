@@ -46,10 +46,6 @@
       url = "github:ray-x/guihua.lua";
       flake = false;
     };
-    cmp-agda-symbols = {
-      url = "github:Arkissa/cmp-agda-symbols";
-      flake = false;
-    };
     luasnip-latex-snippets-nvim = {
       url = "github:evesdropper/luasnip-latex-snippets.nvim";
       flake = false;
@@ -72,6 +68,12 @@
     };
     agda-symbols = {
       url = "github:4e554c4c/agda-symbols";
+      flake = false;
+    };
+    blink-cmp-agda-symbols = {
+      type = "git";
+      url = "https://github.com/4e554c4c/blink-cmp-agda-symbols.git";
+      submodules = true;
       flake = false;
     };
   };

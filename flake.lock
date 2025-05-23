@@ -16,20 +16,22 @@
         "type": "github"
       }
     },
-    "cmp-agda-symbols": {
+    "blink-cmp-agda-symbols": {
       "flake": false,
       "locked": {
-        "lastModified": 1709208014,
-        "narHash": "sha256-O+peKs/NeZADkVFFKgY7g34lejOQp+tlXrXEm9ZatYw=",
-        "owner": "Arkissa",
-        "repo": "cmp-agda-symbols",
-        "rev": "4fe1a58d24a59146142af9181c211b26f0395a9e",
-        "type": "github"
+        "lastModified": 1744995959,
+        "narHash": "sha256-HhWJo1rU9ynudkCGrVZDsr432Lt92BcE6d49oS/laNM=",
+        "ref": "refs/heads/main",
+        "rev": "1b3a4290b67d3f1262094194bc0c68e72a5bf847",
+        "revCount": 18,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/4e554c4c/blink-cmp-agda-symbols.git"
       },
       "original": {
-        "owner": "Arkissa",
-        "repo": "cmp-agda-symbols",
-        "type": "github"
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/4e554c4c/blink-cmp-agda-symbols.git"
       }
     },
     "cmp-vimtex": {
@@ -352,7 +354,7 @@
     "root": {
       "inputs": {
         "agda-symbols": "agda-symbols",
-        "cmp-agda-symbols": "cmp-agda-symbols",
+        "blink-cmp-agda-symbols": "blink-cmp-agda-symbols",
         "cmp-vimtex": "cmp-vimtex",
         "flake-parts": "flake-parts",
         "floating-help-nvim": "floating-help-nvim",

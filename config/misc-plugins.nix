@@ -37,7 +37,7 @@
       '';
     };
     oil.enable = true;
-    which-key.enable = true;
+    # which-key.enable = true;
     floaterm.enable = true;
     web-devicons.enable = true;
     repeat.enable = true;
