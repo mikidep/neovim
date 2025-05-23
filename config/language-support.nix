@@ -104,12 +104,13 @@
     }
     {
       options.desc = "Format code";
-      key = "cf";
+      key = "<leader>cf";
       action.__raw = ''
         function()
           vim.lsp.buf.format { async = true }
         end
       '';
+      mode = "n";
     }
     {
       options.desc = "LSP hover";
