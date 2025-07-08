@@ -3,11 +3,14 @@
   inputs,
   ...
 }: {
-  files."ftplugin/latex.lua" = {
+  files."ftplugin/tex.lua" = {
     plugins.vimtex = {
       enable = true;
       texlivePackage = null;
       settings.view_method = "zathura";
+    };
+    opts = {
+      tw = 80;
     };
     globals.latex_view_general_viewer = "zathura";
     extraPlugins = [
@@ -25,21 +28,16 @@
   };
   plugins.treesitter.settings.highlight.disable = ["latex"];
 
-  autoCmd = [
-    {
-      command = "setl tw=80";
-      event = ["BufRead" "BufNewFile"];
-      pattern = [
-        "*.tex"
-      ];
-    }
-  ];
-
   plugins.lsp.servers.ltex = {
     enable = true;
     onAttach.function = ''
       require("ltex-utils").on_attach(bufnr)
     '';
+    settings.configurationTarget = {
+      dictionary = "user";
+      disabledRules = "user";
+      hiddenFalsePositives = "user";
+    };
   };
   plugins.nvim-autopairs = {
     luaConfig.post = ''

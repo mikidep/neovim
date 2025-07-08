@@ -18,7 +18,12 @@
         enabled = true;
         name = "agda-symbols";
         module = "blink-agda-symbols";
-        should_show_items.__raw = ''function(ctx) return ctx.trigger.initial_kind == "trigger_character" end'';
+        should_show_items.__raw = ''
+          function ()
+            local line = vim.api.nvim_get_current_line()
+            return nil ~= string.find(line, "\\")
+          end
+        '';
       };
     };
     keymap."<Space>" = [
@@ -154,6 +159,11 @@
           key = "gd";
           action = "<Cmd>CornelisGoToDefinition<CR>";
           options.remap = true;
+        }
+        {
+          key = "<F6>";
+          action = "<nop>";
+          mode = "i";
         }
       ]
       ++ (builtins.map (ka: let

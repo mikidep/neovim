@@ -13,11 +13,6 @@
       map (km: km // {key = "<leader>" + km.key;})
       [
         {
-          options.desc = "Open NeoTree";
-          key = "nt";
-          action = "<cmd>Neotree focus toggle=true<CR>";
-        }
-        {
           options.desc = "Close all";
           key = "qq";
           action = ''<cmd>qa<CR>'';
@@ -36,7 +31,7 @@
         {
           options.desc = "Open Yazi";
           key = "y";
-          action = ''<cmd>FloatermNew ${lib.getExe pkgs.yazi}<CR>'';
+          action = assert config.plugins.yazi.enable; ''<cmd>Yazi<CR>'';
         }
         {
           options.desc = "Paste GitHub URL as a flake URL";
@@ -113,13 +108,23 @@
         # kj escape
         key = "kj";
         action = "<esc>";
-        mode = ["i" "x"];
+        mode = "i";
       }
       {
         # u in visual mode undoes
         key = "u";
         action = "<Undo>";
         mode = ["x"];
+      }
+      {
+        key = "H";
+        action = "<cmd>bprev<cr>";
+        mode = "n";
+      }
+      {
+        key = "L";
+        action = "<cmd>bnext<cr>";
+        mode = "n";
       }
     ];
 }

@@ -20,22 +20,22 @@
       settings = {
         options.globalstatus = true;
         sections.lualine_x = ["encoding" "fileformat" "filetype" {__raw = "function () return tostring(vim.fn.wordcount().words)..' words' end";}];
+
+        tabline = {
+          lualine_c = [
+            {
+              __unkeyed-1 = "buffers";
+              max_length.__raw = ''vim.o.columns'';
+              section_separators.left = "";
+              component_separators.left = "";
+            }
+          ];
+        };
       };
     };
     fugitive.enable = true;
 
     trouble.enable = true;
-    neo-tree = {
-      enable = true;
-      openFilesInLastWindow = false;
-      window.width = 30;
-      eventHandlers.file_opened = ''
-        function(file_path)
-          --auto close
-          require("neo-tree").close_all()
-        end
-      '';
-    };
     oil.enable = true;
     # which-key.enable = true;
     floaterm.enable = true;
@@ -49,6 +49,9 @@
         highlight.on_yank = true;
         preserve_cursor_position.enabled = true;
       };
+    };
+    yazi = {
+      enable = true;
     };
   };
   extraPlugins = with pkgs;
