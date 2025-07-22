@@ -19,24 +19,33 @@
         src = inputs.luasnip-latex-snippets-nvim;
         doCheck = false;
       })
-      (pkgs.vimUtils.buildVimPlugin {
-        name = "ltex-utils.nvim";
-        src = inputs.ltex-utils-nvim;
-        doCheck = false;
-      })
+      # (pkgs.vimUtils.buildVimPlugin {
+      #   name = "ltex-utils.nvim";
+      #   src = inputs.ltex-utils-nvim;
+      #   doCheck = false;
+      # })
     ];
   };
   plugins.treesitter.settings.highlight.disable = ["latex"];
 
   plugins.lsp.servers.ltex = {
     enable = true;
-    onAttach.function = ''
-      require("ltex-utils").on_attach(bufnr)
-    '';
+    # onAttach.function = ''
+    #   require("ltex-utils").on_attach(bufnr)
+    # '';
     settings.configurationTarget = {
       dictionary = "user";
       disabledRules = "user";
       hiddenFalsePositives = "user";
+    };
+  };
+  plugins.lsp.servers.texlab = {
+    enable = true;
+    extraOptions.settings = {
+      texlab.build.onSave = true;
+      texlab.build.forwardSearchAfter = true;
+      texlab.forwardSearch.executable = "zathura";
+      texlab.forwardSearch.args = ["--synctex-forward" "%l:1:%f" "%p"];
     };
   };
   plugins.nvim-autopairs = {

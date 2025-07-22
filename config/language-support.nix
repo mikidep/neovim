@@ -10,9 +10,19 @@
   plugins.lsp = {
     enable = true;
     preConfig = ''
-      vim.lsp.set_log_level('debug')
+      vim.lsp.set_log_level('INFO')
       require('vim.lsp.log').set_format_func(vim.inspect)
     '';
+    keymaps = {
+      lspBuf = {
+        K = "hover";
+        gD = "references";
+        gd = "definition";
+        gi = "implementation";
+        gt = "type_definition";
+        gr = "rename";
+      };
+    };
     servers = {
       clangd.enable = true;
       jsonls.enable = true;
@@ -55,28 +65,28 @@
       };
     };
   };
-
+  plugins.openscad = {
+    enable = true;
+    package = with pkgs;
+      vimPlugins.openscad-nvim.overrideAttrs {
+        buildInputs = [
+          htop
+          fzf
+        ];
+        # dependencies = [
+        #   vimPlugins.fzf-vim
+        # ];
+        patches = [
+        ];
+      };
+  };
   files = {
     "ftplugin/openscad.lua" = {
       localOpts = {
         comments = "://";
         commentstring = "// %s";
       };
-      plugins.openscad = {
-        enable = true;
-        package = with pkgs;
-          vimPlugins.openscad-nvim.overrideAttrs {
-            buildInputs = [
-              htop
-              fzf
-            ];
-            # dependencies = [
-            #   vimPlugins.fzf-vim
-            # ];
-            patches = [
-            ];
-          };
-      };
+
       extraPackages = [
         pkgs.clang-tools
       ];
@@ -94,29 +104,4 @@
       };
     };
   };
-
-  keymaps = [
-    {
-      options.desc = "LSP code actions";
-      key = "<leader>ca";
-      action.__raw = ''vim.lsp.buf.code_action'';
-      mode = "n";
-    }
-    {
-      options.desc = "Format code";
-      key = "<leader>cf";
-      action.__raw = ''
-        function()
-          vim.lsp.buf.format { async = true }
-        end
-      '';
-      mode = "n";
-    }
-    {
-      options.desc = "LSP hover";
-      key = "<leader>ch";
-      action.__raw = ''vim.lsp.buf.hover'';
-      mode = "n";
-    }
-  ];
 }

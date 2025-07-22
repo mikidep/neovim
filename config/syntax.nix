@@ -91,7 +91,13 @@ in {
     )
   ];
   extraConfigLuaPost = ''
-    require "ns-textobject".setup {}
+    require "ns-textobject".setup {
+      disable_builtin_mapping = {
+        enabled = true,
+        -- list of char which shouldn't mapping by auto_mapping
+        chars = { "t", "T" },
+      },
+    }
   '';
   keymaps = [
     {

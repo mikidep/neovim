@@ -27,6 +27,9 @@
           list.selection.preselect = false;
           trigger.show_on_insert_on_trigger_character = false;
           trigger.show_on_blocked_trigger_characters = ["-" "_"];
+          documentation.auto_show = true;
+          documentation.auto_show_delay_ms = 0;
+          menu.draw.columns = [["kind_icon"] ["label" "label_description"] ["source_name"]];
         };
         fuzzy.implementation = "rust";
         fuzzy.prebuilt_binaries.download = false;
@@ -36,7 +39,6 @@
             "path"
             "snippets"
             "buffer"
-            "omni"
           ];
         };
         snippets.preset = "luasnip";

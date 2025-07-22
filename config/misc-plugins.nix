@@ -41,6 +41,7 @@
     floaterm.enable = true;
     web-devicons.enable = true;
     repeat.enable = true;
+    spectre.enable = true;
     yanky = {
       enable = true;
       enableTelescope = true;
