@@ -29,6 +29,7 @@
       nil_ls = {
         enable = true;
         settings.formatting.command = [(lib.getExe pkgs.alejandra)];
+        settings.nix.flake.autoArchive = false;
       };
       nixd = {
         enable = true;
