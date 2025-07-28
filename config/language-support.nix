@@ -6,6 +6,7 @@
   plugins.lsp-format = {
     enable = true;
     lspServersToEnable = "all";
+    settings.openscad.exclude = ["openscad_lsp"];
   };
   plugins.lsp = {
     enable = true;
@@ -40,12 +41,8 @@
         enable = true;
         settings = {
           stdio = true;
-          fmt_style = let
-            clang-format = (pkgs.formats.yaml {}).generate "clang-format.yaml" {
-              IndentWidth = 2;
-              ColumnLimit = 80;
-            };
-          in "file:${clang-format}";
+          indent = "  ";
+          ignore-default = true;
         };
       };
       pyright.enable = true;
