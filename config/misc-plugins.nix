@@ -80,7 +80,7 @@
       })
     ]
     ++ (with vimPlugins; [
-      vim-visual-multi
+      # vim-visual-multi
       nvim-luapad
       unicode-vim
       vim-easy-align
