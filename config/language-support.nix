@@ -1,12 +1,28 @@
 {
   pkgs,
   lib,
+  inputs',
   ...
 }: {
-  plugins.lsp-format = {
+  # plugins.lsp-format = {
+  #   enable = true;
+  #   lspServersToEnable = "all";
+  #   settings.openscad.exclude = ["openscad_lsp"];
+  # };
+  plugins.conform-nvim = {
     enable = true;
-    lspServersToEnable = "all";
-    settings.openscad.exclude = ["openscad_lsp"];
+    settings = {
+      format_on_save = {
+        timeout_ms = 500;
+        lsp_format = "fallback";
+      };
+      formatters = {
+        scadformat.command = lib.getExe inputs'.scadformat.packages.default;
+      };
+      formatters_by_ft = {
+        openscad = ["scadformat"];
+      };
+    };
   };
   plugins.lsp = {
     enable = true;
@@ -84,10 +100,6 @@
         comments = "://";
         commentstring = "// %s";
       };
-
-      extraPackages = [
-        pkgs.clang-tools
-      ];
     };
     "ftplugin/typst.lua" = {
       localOpts = {

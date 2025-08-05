@@ -2,7 +2,7 @@
   description = "A nixvim configuration";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs.url = "nixpkgs";
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -76,9 +76,14 @@
       submodules = true;
       flake = false;
     };
+    scadformat = {
+      url = "github:mikidep/scadformat";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
+    nixpkgs,
     nixvim,
     flake-parts,
     ...
