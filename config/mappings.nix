@@ -4,10 +4,6 @@
   config,
   ...
 }: {
-  # extraConfigLuaPre = ''
-  #   require("nvfs-keymaps")
-  #   vim.keymap.del("i", "jk")
-  # '';
   keymaps = let
     leaderkm =
       map (km: km // {key = "<leader>" + km.key;})

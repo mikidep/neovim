@@ -3,12 +3,7 @@
   lib,
   inputs',
   ...
-}: {
-  # plugins.lsp-format = {
-  #   enable = true;
-  #   lspServersToEnable = "all";
-  #   settings.openscad.exclude = ["openscad_lsp"];
-  # };
+}: rec {
   plugins.conform-nvim = {
     enable = true;
     settings = {
@@ -79,6 +74,10 @@
       };
     };
   };
+  plugins.actions-preview = {
+    enable = true;
+  };
+
   plugins.openscad = {
     enable = true;
     package = with pkgs;
@@ -114,4 +113,13 @@
       };
     };
   };
+  keymaps = [
+    (assert plugins.actions-preview.enable; {
+      key = "gf";
+      action.__raw = ''
+        require("actions-preview").code_actions
+      '';
+      mode = ["v" "n"];
+    })
+  ];
 }
