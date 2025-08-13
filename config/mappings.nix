@@ -13,16 +13,10 @@
           key = "qq";
           action = ''<cmd>qa<CR>'';
         }
-
         {
           options.desc = "Open LazyGit";
           key = "g";
           action = ''<cmd>FloatermNew ${lib.getExe pkgs.lazygit}<CR>'';
-        }
-        {
-          options.desc = "Open floating terminal";
-          key = "t";
-          action = ''<cmd>FloatermNew<CR>'';
         }
         {
           options.desc = "Open Yazi";
@@ -96,7 +90,7 @@
       }
       {
         # terminal mode escape
-        key = "<S-Esc>";
+        key = "<Esc><Esc>";
         action = "<c-\\><c-n>";
         mode = "t";
       }
@@ -104,7 +98,7 @@
         # kj escape
         key = "kj";
         action = "<esc>";
-        mode = "i";
+        mode = ["i" "t"];
       }
       {
         # u in visual mode undoes

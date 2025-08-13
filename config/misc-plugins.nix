@@ -2,7 +2,7 @@
   pkgs,
   inputs,
   ...
-}: {
+}: rec {
   plugins = {
     aerial.enable = true;
     auto-session.enable = true;
@@ -38,6 +38,8 @@
     trouble.enable = true;
     oil.enable = true;
     # which-key.enable = true;
+    toggleterm.enable = true;
+
     floaterm.enable = true;
     web-devicons.enable = true;
     repeat.enable = true;
@@ -110,6 +112,11 @@
     {
       key = "<leader>cs";
       action = "<cmd>AerialOpen<cr>";
+    }
+    {
+      key = "<leader>t";
+      action = assert plugins.toggleterm.enable; "<cmd>ToggleTerm<cr>";
+      mode = "n";
     }
   ];
 }
