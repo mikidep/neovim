@@ -95,10 +95,16 @@
         mode = "t";
       }
       {
+        # kj terminal mode escape
+        key = "kj";
+        action = "<c-\\><c-n>";
+        mode = "t";
+      }
+      {
         # kj escape
         key = "kj";
         action = "<esc>";
-        mode = ["i" "t"];
+        mode = "i";
       }
       {
         # u in visual mode undoes
