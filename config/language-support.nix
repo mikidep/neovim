@@ -12,7 +12,7 @@
         lsp_format = "fallback";
       };
       formatters = {
-        scadformat.command = lib.getExe inputs'.scadformat.packages.default;
+        # scadformat.command = lib.getExe inputs'.scadformat.packages.default;
       };
       formatters_by_ft = {
         openscad = ["scadformat"];
