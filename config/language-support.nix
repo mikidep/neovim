@@ -1,7 +1,7 @@
 {
   pkgs,
   lib,
-  inputs',
+  nur,
   ...
 }: rec {
   plugins.conform-nvim = {
@@ -12,7 +12,7 @@
         lsp_format = "fallback";
       };
       formatters = {
-        # scadformat.command = lib.getExe inputs'.scadformat.packages.default;
+        scadformat.command = lib.getExe nur.repos.mikidep.scadformat;
       };
       formatters_by_ft = {
         openscad = ["scadformat"];

@@ -7,6 +7,10 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
     };
@@ -76,14 +80,9 @@
       submodules = true;
       flake = false;
     };
-    scadformat = {
-      url = "github:mikidep/scadformat";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = {
-    nixpkgs,
     nixvim,
     flake-parts,
     ...
@@ -111,6 +110,7 @@
           extraSpecialArgs = {
             # inherit (inputs) foo;
             inherit inputs inputs';
+            nur = inputs'.nur.legacyPackages;
           };
         };
         nvim = nixvim'.makeNixvimWithModule nixvimModule;
