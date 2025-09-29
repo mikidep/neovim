@@ -95,12 +95,6 @@
         mode = "t";
       }
       {
-        # kj terminal mode escape
-        key = "kj";
-        action = "<c-\\><c-n>";
-        mode = "t";
-      }
-      {
         # kj escape
         key = "kj";
         action = "<esc>";
@@ -119,6 +113,16 @@
       }
       {
         key = "L";
+        action = "<cmd>bnext<cr>";
+        mode = "n";
+      }
+      {
+        key = "<S-Left>";
+        action = "<cmd>bprev<cr>";
+        mode = "n";
+      }
+      {
+        key = "<S-Right>";
         action = "<cmd>bnext<cr>";
         mode = "n";
       }
