@@ -79,6 +79,7 @@
         postInstall = ''
           cd $target/lua/fzy && make
         '';
+        doCheck = false;
       })
     ]
     ++ (with vimPlugins; [

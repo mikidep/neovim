@@ -53,15 +53,17 @@ in {
   };
   plugins.rainbow-delimiters = {
     enable = true;
-    query.agda = "rainbow-delimiters";
-    highlight = [
-      "RainbowDelimiterRed"
-      "RainbowDelimiterYellow"
-      "RainbowDelimiterBlue"
-      "RainbowDelimiterGreen"
-      "RainbowDelimiterViolet"
-      "RainbowDelimiterCyan"
-    ];
+    settings = {
+      query.agda = "rainbow-delimiters";
+      highlight = [
+        "RainbowDelimiterRed"
+        "RainbowDelimiterYellow"
+        "RainbowDelimiterBlue"
+        "RainbowDelimiterGreen"
+        "RainbowDelimiterViolet"
+        "RainbowDelimiterCyan"
+      ];
+    };
   };
 
   extraPackages = with pkgs; [
@@ -78,10 +80,6 @@ in {
         doCheck = false;
       }
     )
-    {
-      plugin = vimPlugins.syntax-tree-surfer;
-      config = ''lua require"syntax-tree-surfer".setup {}'';
-    }
     (
       vimUtils.buildVimPlugin {
         name = "nvim-treehopper";
@@ -151,7 +149,19 @@ in {
     {
       key = "m";
       mode = ["x" "o"];
-      action = '':<C-U>lua require("tsht").nodes()<CR>'';
+      action = '':<C-U>lua require("flash").treesitter()'';
+      options.silent = true;
+    }
+    {
+      key = "[m";
+      mode = ["n" "x" "o"];
+      action = '':<C-U>lua require("tsht").move({ side = "start" })<CR>'';
+      options.silent = true;
+    }
+    {
+      key = "]m";
+      mode = ["n" "x" "o"];
+      action = '':<C-U>lua require("tsht").move({ side = "end" })<CR>'';
       options.silent = true;
     }
   ];
