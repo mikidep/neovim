@@ -149,19 +149,7 @@ in {
     {
       key = "m";
       mode = ["x" "o"];
-      action = '':<C-U>lua require("flash").treesitter()'';
-      options.silent = true;
-    }
-    {
-      key = "[m";
-      mode = ["n" "x" "o"];
-      action = '':<C-U>lua require("tsht").move({ side = "start" })<CR>'';
-      options.silent = true;
-    }
-    {
-      key = "]m";
-      mode = ["n" "x" "o"];
-      action = '':<C-U>lua require("tsht").move({ side = "end" })<CR>'';
+      action.__raw = ''require("flash").treesitter'';
       options.silent = true;
     }
   ];
