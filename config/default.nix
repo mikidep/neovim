@@ -14,6 +14,7 @@
     ./hydra.nix
     ./flash.nix
     ./colors.nix
+    ./mini.nix
     ./lazy.nix
   ];
 }
