@@ -36,6 +36,15 @@ in {
 
   plugins.nvim-surround = {
     enable = true;
+    # package = pkgs.vimPlugins.nvim-surround.overrideAttrs rec {
+    #   version = "v3.1.6";
+    #   src = pkgs.fetchFromGitHub {
+    #     owner = "kylechui";
+    #     repo = "nvim-surround";
+    #     rev = version;
+    #     sha256 = "sha256-sbLPR1x3lP8Dg+neFeO0elnHFT55rCY3F1uGGtU1nAU=";
+    #   };
+    # };
     settings.surrounds = {
       "h" = {
         add = ["{! " " !}"];
@@ -80,20 +89,13 @@ in {
         doCheck = false;
       }
     )
-    (
-      vimUtils.buildVimPlugin {
-        name = "nvim-treehopper";
-        src = inputs.nvim-treehopper;
-        doCheck = false;
-      }
-    )
   ];
   extraConfigLuaPost = ''
     require "ns-textobject".setup {
       disable_builtin_mapping = {
         enabled = true,
         -- list of char which shouldn't mapping by auto_mapping
-        chars = { "t", "T" },
+        chars = { "b", "B", "t", "T", "`", "'", '"', "{", "}", "(", ")", "[", "]", "<", ">" },
       },
     }
   '';
@@ -116,40 +118,23 @@ in {
       action.__raw = ''require "nvim-treesitter.incremental_selection".node_decremental'';
       options.silent = true;
     }
-    {
-      mode = "x";
-      key = "L";
-      action = "<cmd>STSSelectNextSiblingNode<cr>";
-    }
-    {
-      mode = "x";
-      key = "H";
-      action = "<cmd>STSSelectPrevSiblingNode<cr>";
-    }
-    {
-      mode = "x";
-      key = "K";
-      action = "<cmd>STSSelectParentNode<cr>";
-    }
-    {
-      mode = "x";
-      key = "J";
-      action = "<cmd>STSSelectChildNode<cr>";
-    }
-    {
-      mode = "x";
-      key = "<A-h>";
-      action = "<cmd>STSSwapPrevVisual<cr>";
-    }
-    {
-      mode = "x";
-      key = "<A-l>";
-      action = "<cmd>STSSwapNextVisual<cr>";
-    }
+
     {
       key = "m";
       mode = ["x" "o"];
       action.__raw = ''require("flash").treesitter'';
+      options.silent = true;
+    }
+    {
+      key = "[m";
+      mode = ["n" "x" "o"];
+      action.__raw = ''function () require("flash").treesitter({ jump = { pos = "start" }, label = { before = true, after = false } }) end'';
+      options.silent = true;
+    }
+    {
+      key = "]m";
+      mode = ["n" "x" "o"];
+      action.__raw = ''function () require("flash").treesitter({ jump = { pos = "end" }, label = { before = false, after = true } }) end'';
       options.silent = true;
     }
   ];

@@ -18,10 +18,6 @@
       url = "github:dasupradyumna/midnight.nvim";
       flake = false;
     };
-    floating-help-nvim = {
-      url = "github:Tyler-Barham/floating-help.nvim";
-      flake = false;
-    };
     nvfs = {
       url = "github:LunarVim/Neovim-from-scratch";
       flake = false;
@@ -64,10 +60,6 @@
     };
     ns-textobject-nvim = {
       url = "github:XXiaoA/ns-textobject.nvim";
-      flake = false;
-    };
-    nvim-treehopper = {
-      url = "github:mfussenegger/nvim-treehopper";
       flake = false;
     };
     agda-symbols = {
