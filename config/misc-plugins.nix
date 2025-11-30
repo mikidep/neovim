@@ -15,22 +15,12 @@
         end
       '';
     };
+    mini-tabline.enable = true;
     lualine = {
       enable = true;
       settings = {
         options.globalstatus = true;
         sections.lualine_x = ["encoding" "fileformat" "filetype" {__raw = "function () return tostring(vim.fn.wordcount().words)..' words' end";}];
-
-        tabline = {
-          lualine_c = [
-            {
-              __unkeyed-1 = "buffers";
-              max_length.__raw = ''vim.o.columns'';
-              section_separators.left = "";
-              component_separators.left = "";
-            }
-          ];
-        };
       };
     };
     fugitive.enable = true;
