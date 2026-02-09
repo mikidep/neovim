@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  lib,
   ...
 }: rec {
   plugins = {
@@ -21,6 +22,13 @@
       settings = {
         options.globalstatus = true;
         sections.lualine_x = ["encoding" "fileformat" "filetype" {__raw = "function () return tostring(vim.fn.wordcount().words)..' words' end";}];
+        sections.lualine_c = [
+          (lib.nixvim.utils.listToUnkeyedAttrs ["filename"]
+            // {
+              file_status = false;
+              path = 1;
+            })
+        ];
       };
     };
     fugitive.enable = true;

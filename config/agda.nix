@@ -163,6 +163,12 @@
           action = "<nop>";
           mode = "i";
         }
+        {
+          key = "à";
+          action = "<F6>";
+          mode = ["n" "i"];
+          options.remap = true;
+        }
       ]
       ++ (builtins.map (ka: let
           key = builtins.elemAt ka 0;
