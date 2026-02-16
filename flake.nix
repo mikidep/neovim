@@ -72,6 +72,10 @@
       submodules = true;
       flake = false;
     };
+    cornelis = {
+      url = "github:agda/cornelis";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {

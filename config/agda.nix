@@ -3,11 +3,13 @@
   inputs,
   ...
 }: {
-  globals = {
-    cornelis_use_global_binary = true;
-    cornelis_max_size = 15;
-    cornelis_no_agda_input = 1;
-  };
+  # Cornelis version in Nixpkgs is two years old
+  # This fixes an error of the kind:
+  # Unexpected "cannot read: IOCTM [...]", expecting JSON value
+  nixpkgs.overlays = [
+    inputs.cornelis.overlays.cornelis
+  ];
+
   plugins.blink-cmp.settings = {
     sources = {
       default = ["agda-symbols"];
@@ -43,11 +45,18 @@
       "fallback"
     ];
   };
-  extraPackages = [pkgs.cornelis];
+
+  plugins.cornelis = {
+    enable = true;
+    settings = {
+      use_global_binary = 1;
+      max_size = 15;
+      no_agda_input = 1;
+    };
+  };
 
   files."ftplugin/agda.lua" = {
     extraPlugins = with pkgs; [
-      vimPlugins.cornelis
       (
         let
           name = "blink-cmp-agda-symbols";
