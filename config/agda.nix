@@ -50,7 +50,7 @@
     enable = true;
     settings = {
       use_global_binary = 1;
-      max_size = 15;
+      max_size = 10;
       no_agda_input = 1;
     };
   };
