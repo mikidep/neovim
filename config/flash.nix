@@ -8,7 +8,7 @@
         #   enabled = true;
         #   multiLine = true;
         # };
-        search.enabled = true;
+        # search.enabled = true;
       };
     };
   };

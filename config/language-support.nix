@@ -120,6 +120,7 @@
         require("actions-preview").code_actions
       '';
       mode = ["v" "n"];
+      options.desc = "LSP code actions";
     })
   ];
 }

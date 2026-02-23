@@ -11,6 +11,11 @@
   ];
 
   plugins.blink-cmp.settings = {
+    completion.menu.auto_show.__raw = ''
+      function (ctx)
+        return vim.bo.filetype ~= "agda"
+      end
+    '';
     sources = {
       default = ["agda-symbols"];
       min_keyword_length = 0;

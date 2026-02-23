@@ -12,13 +12,13 @@
           keymap = {
             preset = "cmdline";
             "<Tab>" = ["select_next" "fallback"];
-            "<CR>" = ["accept_and_enter" "fallback"];
+            "<CR>" = ["accept" "fallback"];
           };
           completion = {
-            menu.auto_show = false;
+            trigger.show_on_backspace = true;
+            menu.auto_show = true;
             list.selection = {
               preselect = false;
-              auto_insert = true;
             };
           };
         };
@@ -47,11 +47,11 @@
       };
     };
     blink-emoji.enable = true;
-    blink-compat = {
-      enable = true;
-      settings = {
-        impersonate_nvim_cmp = true;
-      };
-    };
+    # blink-compat = {
+    #   enable = true;
+    #   settings = {
+    #     impersonate_nvim_cmp = true;
+    #   };
+    # };
   };
 }

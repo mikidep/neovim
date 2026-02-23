@@ -13,6 +13,10 @@
         keys = "<C-w>";
         mode = "n";
       }
+      {
+        keys = "g";
+        mode = "n";
+      }
     ];
   };
   plugins.mini-diff.enable = true;
