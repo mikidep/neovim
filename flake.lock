@@ -19,11 +19,11 @@
     "blink-cmp-agda-symbols": {
       "flake": false,
       "locked": {
-        "lastModified": 1751466895,
-        "narHash": "sha256-PxDmeC0Ds3qIQVuFq6N09Dvll3nl3uxxEHZgvmW17XQ=",
+        "lastModified": 1761054707,
+        "narHash": "sha256-tgJuFKG0YZkJPyC57fBBWjrInuvtwPlAg9WUQ/ziemU=",
         "ref": "refs/heads/main",
-        "rev": "c40165c7c90236bb31efa25b86cab9128958c02f",
-        "revCount": 19,
+        "rev": "662353455f91c68f406bf7204754d035e3ef28ae",
+        "revCount": 20,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/4e554c4c/blink-cmp-agda-symbols.git"

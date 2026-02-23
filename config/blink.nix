@@ -15,7 +15,7 @@
             "<CR>" = ["accept_and_enter" "fallback"];
           };
           completion = {
-            menu.auto_show = true;
+            menu.auto_show = false;
             list.selection = {
               preselect = false;
               auto_insert = true;
@@ -25,8 +25,10 @@
         completion = {
           accept.create_undo_point = false;
           list.selection.preselect = false;
-          trigger.show_on_insert_on_trigger_character = false;
-          trigger.show_on_blocked_trigger_characters = ["-" "_"];
+          trigger = {
+            show_on_insert_on_trigger_character = false;
+            show_on_blocked_trigger_characters = [" "];
+          };
           documentation.auto_show = true;
           documentation.auto_show_delay_ms = 0;
           menu.draw.columns = [["kind_icon"] ["label" "label_description"] ["source_name"]];
