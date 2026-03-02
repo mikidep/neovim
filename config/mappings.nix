@@ -3,11 +3,11 @@
   lib,
   config,
   ...
-}: {
-  keymaps = let
-    leaderkm =
-      map (km: km // {key = "<leader>" + km.key;})
-      [
+}:
+{
+  keymaps =
+    let
+      leaderkm = map (km: km // { key = "<leader>" + km.key; }) [
         {
           options.desc = "Close all";
           key = "qq";
@@ -21,7 +21,9 @@
         {
           options.desc = "Open Yazi";
           key = "y";
-          action = assert config.plugins.yazi.enable; ''<cmd>Yazi<CR>'';
+          action =
+            assert config.plugins.yazi.enable;
+            ''<cmd>Yazi<CR>'';
         }
         {
           options.desc = "Paste GitHub URL as a flake URL";
@@ -29,7 +31,7 @@
           action = ''vt"pT"dtgf.cf/:<Esc>'';
         }
       ];
-  in
+    in
     leaderkm
     ++ [
       # c, d and v_p don't cut the removed text,
@@ -37,38 +39,55 @@
       {
         key = "c";
         action = ''"_c'';
-        mode = ["n" "x"];
+        mode = [
+          "n"
+          "x"
+        ];
       }
       {
         key = "C";
         action = ''c'';
-        mode = ["n" "x"];
+        mode = [
+          "n"
+          "x"
+        ];
       }
       {
         key = "d";
         action = ''"_d'';
-        mode = ["n" "x"];
+        mode = [
+          "n"
+          "x"
+        ];
       }
       {
         key = "D";
         action = ''d'';
-        mode = ["n" "x"];
+        mode = [
+          "n"
+          "x"
+        ];
       }
       {
         key = "p";
         action = ''P'';
-        mode = ["x"];
+        mode = [ "x" ];
       }
       {
         key = "P";
         action = ''p'';
-        mode = ["x"];
+        mode = [ "x" ];
       }
       {
         # move to the end of region after yanking
         key = "y";
-        action = assert config.plugins.yanky.enable; ''<Plug>(YankyYank)'';
-        mode = ["n" "x"];
+        action =
+          assert config.plugins.yanky.enable;
+          ''<Plug>(YankyYank)'';
+        mode = [
+          "n"
+          "x"
+        ];
       }
       {
         # v$ does not include eol
@@ -104,7 +123,7 @@
         # u in visual mode undoes
         key = "u";
         action = "<Undo>";
-        mode = ["x"];
+        mode = [ "x" ];
       }
       {
         key = "H";

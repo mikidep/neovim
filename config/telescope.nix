@@ -6,6 +6,12 @@
   plugins.telescope = {
     enable = true;
     enabledExtensions = ["git_file_history"];
+    extensions = {
+      fzf-native = {
+        enable = true;
+        # settings.case_mode = "respect_case";
+      };
+    };
     settings = {
       defaults = {
         mappings.n = {

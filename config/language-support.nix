@@ -114,13 +114,18 @@
     };
   };
   keymaps = [
-    (assert plugins.actions-preview.enable; {
-      key = "gf";
-      action.__raw = ''
-        require("actions-preview").code_actions
-      '';
-      mode = ["v" "n"];
-      options.desc = "LSP code actions";
-    })
+    (
+      assert plugins.actions-preview.enable; {
+        key = "gf";
+        action.__raw = ''
+          require("actions-preview").code_actions
+        '';
+        mode = [
+          "v"
+          "n"
+        ];
+        options.desc = "LSP code actions";
+      }
+    )
   ];
 }

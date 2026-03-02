@@ -3,7 +3,8 @@
   inputs,
   lib,
   ...
-}: rec {
+}:
+rec {
   plugins = {
     aerial.enable = true;
     auto-session.enable = true;
@@ -21,13 +22,20 @@
       enable = true;
       settings = {
         options.globalstatus = true;
-        sections.lualine_x = ["encoding" "fileformat" "filetype" {__raw = "function () return tostring(vim.fn.wordcount().words)..' words' end";}];
+        sections.lualine_x = [
+          "encoding"
+          "fileformat"
+          "filetype"
+          { __raw = "function () return tostring(vim.fn.wordcount().words)..' words' end"; }
+        ];
         sections.lualine_c = [
-          (lib.nixvim.utils.listToUnkeyedAttrs ["filename"]
+          (
+            lib.nixvim.utils.listToUnkeyedAttrs [ "filename" ]
             // {
               file_status = false;
               path = 1;
-            })
+            }
+          )
         ];
       };
     };
@@ -55,8 +63,9 @@
       enable = true;
     };
   };
-  extraPlugins = with pkgs;
-  with vimUtils;
+  extraPlugins =
+    with pkgs;
+    with vimUtils;
     [
       (buildVimPlugin {
         name = "midnight.nvim";
@@ -81,8 +90,7 @@
       })
     ]
     ++ (with vimPlugins; [
-      # vim-visual-multi
-      nvim-luapad
+      nvim-luadev
       unicode-vim
       vim-easy-align
       winshift-nvim
@@ -95,7 +103,12 @@
       theme = "light";
     };
   };
-  extraPackages = with pkgs; [fd delta sad fzf];
+  extraPackages = with pkgs; [
+    fd
+    delta
+    sad
+    fzf
+  ];
   extraConfigVim = ''
     function OpenMarkdownPreview (url)
       execute "silent ! firefox --new-window " . a:url
@@ -114,7 +127,9 @@
     }
     {
       key = "<leader>t";
-      action = assert plugins.toggleterm.enable; "<cmd>ToggleTerm<cr>";
+      action =
+        assert plugins.toggleterm.enable;
+        "<cmd>ToggleTerm<cr>";
       mode = "n";
     }
   ];

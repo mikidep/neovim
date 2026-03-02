@@ -1,4 +1,8 @@
 {lib, ...}: {
+  plugins.mini-pick = {
+    enable = true;
+
+  };
   plugins.mini-clue = {
     enable = true;
     settings.clues = [
