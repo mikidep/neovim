@@ -1,5 +1,17 @@
 local jsonPath = vim.api.nvim_get_runtime_file("data/agda-symbols.json", false)[1]
 local symtbl = vim.json.decode(vim.fn.join(vim.fn.readfile(jsonPath)))
+local frecdir = vim.fn.stdpath('state') .. '/agda-input'
+
+-- local frecpath = frecdir .. '/frecency.dat'
+--
+-- vim.fn.mkdir(frecdir, "p")
+-- local fuzzy_impl = require 'blink.cmp.fuzzy.rust'
+-- local fuzzydb = fuzzy_impl.init_db(frecpath, false)
+-- vim.api.nvim_create_autocmd('VimLeavePre', {
+--   callback = fuzzydb.implementation.destroy_db,
+-- })
+-- fuzzydb.has_init_db = true
+
 
 local MiniPick = require "mini.pick"
 local source = {

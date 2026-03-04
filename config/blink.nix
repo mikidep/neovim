@@ -15,7 +15,6 @@
             "<CR>" = ["accept" "fallback"];
           };
           completion = {
-            trigger.show_on_backspace = true;
             menu.auto_show = true;
             list.selection = {
               preselect = false;
