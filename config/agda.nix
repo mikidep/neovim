@@ -17,26 +17,21 @@
       no_agda_input = 1;
     };
   };
-  extraFiles."data/agda-symbols.json".source = with lib; let
-    origJson = importJSON "${inputs.agda-symbols}/symbols.json";
-    pairMap = k: v:
-      if typeOf v == "list"
-      then map (x: [x k]) v
-      else [[v k]];
-    ll = concatLists (mapAttrsToList pairMap origJson);
-  in
-    pkgs.writeText "agda.json" (strings.toJSON ll);
+  extraFiles."data/agda-symbols.json".source =
+    pkgs.runCommand "agda-symbols.json" {
+      buildInputs = [pkgs.jq];
+    } ''
+      jq -c '[
+        to_entries[]
+        | {value: if (.value | type) == "array"
+            then .value[]
+            else .value end,
+          key}
+        | [.value, .key]
+      ]' ${inputs.agda-symbols}/symbols.json > $out
+    '';
   files."ftplugin/agda.lua" = {
     extraConfigLuaPre = builtins.readFile ../lua/agda_input.lua;
-    extraPlugins = with pkgs; [
-      (let
-        name = "blink-cmp-agda-symbols";
-      in
-        vimUtils.buildVimPlugin {
-          inherit name;
-          src = inputs.${name};
-        })
-    ];
     keymaps =
       [
         {

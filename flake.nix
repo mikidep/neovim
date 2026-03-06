@@ -66,12 +66,6 @@
       url = "github:4e554c4c/agda-symbols";
       flake = false;
     };
-    blink-cmp-agda-symbols = {
-      type = "git";
-      url = "https://github.com/4e554c4c/blink-cmp-agda-symbols.git";
-      submodules = true;
-      flake = false;
-    };
     cornelis = {
       url = "github:agda/cornelis";
       inputs.nixpkgs.follows = "nixpkgs";

@@ -10,6 +10,7 @@
   };
   globals.mapleader = " ";
   opts = {
+    mouse = "";
     expandtab = true;
     shiftwidth = 2;
     tabstop = 2;
