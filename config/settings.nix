@@ -22,7 +22,6 @@
     linebreak = true;
     sessionoptions = [
       "blank"
-      "buffers"
       "curdir"
       "folds"
       "tabpages"

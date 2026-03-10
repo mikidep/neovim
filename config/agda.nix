@@ -42,7 +42,7 @@
         {
           options.desc = "Search local agda library";
           key = "<leader>z";
-          action = assert config.plugins.toggleterm.enable; ''<cmd>ToggleTerm dir=float cmd="agda-search"<cr>'';
+          action = assert config.plugins.toggleterm.enable; ''<cmd>FloatermNew agda-search<CR>'';
         }
       ]
       ++ (let

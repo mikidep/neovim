@@ -3,35 +3,31 @@
   lib,
   config,
   ...
-}:
-{
-  keymaps =
-    let
-      leaderkm = map (km: km // { key = "<leader>" + km.key; }) [
-        {
-          options.desc = "Close all";
-          key = "qq";
-          action = ''<cmd>qa<CR>'';
-        }
-        {
-          options.desc = "Open LazyGit";
-          key = "g";
-          action = ''<cmd>FloatermNew ${lib.getExe pkgs.lazygit}<CR>'';
-        }
-        {
-          options.desc = "Open Yazi";
-          key = "y";
-          action =
-            assert config.plugins.yazi.enable;
-            ''<cmd>Yazi<CR>'';
-        }
-        {
-          options.desc = "Paste GitHub URL as a flake URL";
-          key = "mg";
-          action = ''vt"pT"dtgf.cf/:<Esc>'';
-        }
-      ];
-    in
+}: {
+  keymaps = let
+    leaderkm = map (km: km // {key = "<leader>" + km.key;}) [
+      {
+        options.desc = "Close all";
+        key = "qq";
+        action = ''<cmd>qa<CR>'';
+      }
+      {
+        options.desc = "Open LazyGit";
+        key = "g";
+        action = ''<cmd>FloatermNew ${lib.getExe pkgs.lazygit}<CR>'';
+      }
+      {
+        options.desc = "Open Yazi";
+        key = "y";
+        action = assert config.plugins.yazi.enable; ''<cmd>Yazi<CR>'';
+      }
+      {
+        options.desc = "Paste GitHub URL as a flake URL";
+        key = "mg";
+        action = ''vt"pT"dtgf.cf/:<Esc>'';
+      }
+    ];
+  in
     leaderkm
     ++ [
       # c, d and v_p don't cut the removed text,
@@ -71,19 +67,17 @@
       {
         key = "p";
         action = ''P'';
-        mode = [ "x" ];
+        mode = ["x"];
       }
       {
         key = "P";
         action = ''p'';
-        mode = [ "x" ];
+        mode = ["x"];
       }
       {
         # move to the end of region after yanking
         key = "y";
-        action =
-          assert config.plugins.yanky.enable;
-          ''<Plug>(YankyYank)'';
+        action = assert config.plugins.yanky.enable; ''<Plug>(YankyYank)'';
         mode = [
           "n"
           "x"
@@ -123,7 +117,7 @@
         # u in visual mode undoes
         key = "u";
         action = "<Undo>";
-        mode = [ "x" ];
+        mode = ["x"];
       }
       {
         key = "H";
@@ -144,6 +138,16 @@
         key = "<S-Right>";
         action = "<cmd>bnext<cr>";
         mode = "n";
+      }
+      {
+        key = "<C-h>";
+        action = "zH";
+        mode = "x";
+      }
+      {
+        key = "<C-l>";
+        action = "zL";
+        mode = "x";
       }
     ];
 }
