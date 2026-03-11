@@ -19,32 +19,23 @@ in {
       ++ [
         treesitter-openscad-grammar
       ];
-    luaConfig.post = ''
-      do
-        local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-        parser_config.openscad = {
-          install_info = {
-            url = "${treesitter-openscad-grammar}",
-            files = {"src/parser.c"},
-            branch = "master",
-            requires_generate_from_grammar = false,
-          }
-        }
-      end
-    '';
+    # luaConfig.post = ''
+    #   do
+    #     local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+    #     parser_config.openscad = {
+    #       install_info = {
+    #         url = "${treesitter-openscad-grammar}",
+    #         files = {"src/parser.c"},
+    #         branch = "master",
+    #         requires_generate_from_grammar = false,
+    #       }
+    #     }
+    #   end
+    # '';
   };
 
   plugins.nvim-surround = {
     enable = true;
-    # package = pkgs.vimPlugins.nvim-surround.overrideAttrs rec {
-    #   version = "v3.1.6";
-    #   src = pkgs.fetchFromGitHub {
-    #     owner = "kylechui";
-    #     repo = "nvim-surround";
-    #     rev = version;
-    #     sha256 = "sha256-sbLPR1x3lP8Dg+neFeO0elnHFT55rCY3F1uGGtU1nAU=";
-    #   };
-    # };
     settings.surrounds = {
       "h" = {
         add = ["{! " " !}"];
@@ -53,7 +44,7 @@ in {
       };
       "m" = {
         add = ["\\(" "\\)"];
-        # the ones below do not wor
+        # the ones below do not work
         find = "%\\%(.-%\\%)";
         delete = "^(%\\%(%s*)().-(%s*%\\%()()$";
       };
@@ -100,24 +91,24 @@ in {
     }
   '';
   keymaps = [
-    {
-      key = "an";
-      mode = ["x" "o"];
-      action.__raw = ''require "nvim-treesitter.incremental_selection".node_incremental'';
-      options.silent = true;
-    }
-    {
-      key = "van";
-      mode = "n";
-      action.__raw = ''require "nvim-treesitter.incremental_selection".init_selection'';
-      options.silent = true;
-    }
-    {
-      key = "in";
-      mode = ["x"];
-      action.__raw = ''require "nvim-treesitter.incremental_selection".node_decremental'';
-      options.silent = true;
-    }
+    # {
+    #   key = "an";
+    #   mode = ["x" "o"];
+    #   action.__raw = ''require "nvim-treesitter.incremental_selection".node_incremental'';
+    #   options.silent = true;
+    # }
+    # {
+    #   key = "van";
+    #   mode = "n";
+    #   action.__raw = ''require "nvim-treesitter.incremental_selection".init_selection'';
+    #   options.silent = true;
+    # }
+    # {
+    #   key = "in";
+    #   mode = ["x"];
+    #   action.__raw = ''require "nvim-treesitter.incremental_selection".node_decremental'';
+    #   options.silent = true;
+    # }
 
     {
       key = "m";

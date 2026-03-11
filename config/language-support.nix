@@ -12,10 +12,10 @@
         lsp_format = "fallback";
       };
       formatters = {
-        scadformat.command = lib.getExe nur.repos.mikidep.scadformat;
+        # scadformat.command = lib.getExe nur.repos.mikidep.scadformat;
       };
       formatters_by_ft = {
-        openscad = ["scadformat"];
+        # openscad = ["scadformat"];
       };
     };
   };
