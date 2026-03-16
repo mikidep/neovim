@@ -26,7 +26,6 @@
       # })
     ];
   };
-  plugins.treesitter.settings.highlight.disable = ["latex"];
 
   plugins.lsp.servers.ltex = {
     enable = true;

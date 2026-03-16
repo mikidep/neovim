@@ -12,26 +12,27 @@
 in {
   plugins.treesitter = {
     enable = true;
-    settings.indent.enable = true;
-    settings.highlight.enable = true;
+    indent.enable = true;
     grammarPackages =
       pkgs.vimPlugins.nvim-treesitter.passthru.allGrammars
       ++ [
         treesitter-openscad-grammar
       ];
-    # luaConfig.post = ''
-    #   do
-    #     local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-    #     parser_config.openscad = {
-    #       install_info = {
-    #         url = "${treesitter-openscad-grammar}",
-    #         files = {"src/parser.c"},
-    #         branch = "master",
-    #         requires_generate_from_grammar = false,
-    #       }
-    #     }
-    #   end
-    # '';
+    # TODO: hacky
+    luaConfig.post = ''
+      vim.api.nvim_create_autocmd('FileType', {
+        group = augroup,
+        pattern = '*',
+        callback = function()
+          if vim.bo.filetype ~= "agda"
+            and vim.bo.filetype ~= "tex"
+          then
+            pcall(vim.treesitter.start)
+          end
+        end,
+      })
+
+    '';
   };
 
   plugins.nvim-surround = {

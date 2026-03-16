@@ -171,4 +171,5 @@
   };
   plugins.mini-pick = {enable = true;};
   plugins.nvim-autopairs.exclude_filetypes = {"'" = ["agda"];};
+  plugins.treesitter.highlight.enable = false;
 }
