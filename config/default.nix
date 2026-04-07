@@ -5,7 +5,7 @@
     ./misc-plugins.nix
     ./telescope.nix
     ./agda.nix
-    ./blink.nix
+    # ./blink.nix
     ./language-support.nix
     ./syntax.nix
     ./tex.nix

@@ -8,6 +8,7 @@
           "<S-Tab>" = ["select_prev" "fallback"];
           "<Tab>" = ["select_next" "fallback"];
         };
+        signature.enabled = true;
         cmdline = {
           keymap = {
             preset = "cmdline";

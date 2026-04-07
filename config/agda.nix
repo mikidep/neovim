@@ -124,7 +124,19 @@
       ++ [
         {
           key = "\\";
-          action.__raw = ''picksym'';
+          action.__raw = ''picksym_cb("")'';
+          mode = ["i"];
+          options.buffer = true;
+        }
+        {
+          key = "_";
+          action.__raw = ''picksym_cb("_")'';
+          mode = ["i"];
+          options.buffer = true;
+        }
+        {
+          key = "^";
+          action.__raw = ''picksym_cb("^")'';
           mode = ["i"];
           options.buffer = true;
         }
@@ -168,8 +180,19 @@
           ["||" "‖"]
         ]
       );
+    extraConfigLuaPost = ''
+      vim.bo.indentexpr = ""
+    '';
   };
   plugins.mini-pick = {enable = true;};
-  plugins.nvim-autopairs.exclude_filetypes = {"'" = ["agda"];};
+  plugins.nvim-autopairs = {
+    exclude_filetypes = {"'" = ["agda"];};
+    luaConfig.post = ''
+      local Rule = require('nvim-autopairs.rule')
+      local npairs = require('nvim-autopairs')
+
+      npairs.add_rule(Rule("⟨", "⟩", "agda"))
+    '';
+  };
   plugins.treesitter.highlight.enable = false;
 }

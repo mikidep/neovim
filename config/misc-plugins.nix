@@ -17,7 +17,6 @@ rec {
         end
       '';
     };
-    mini-tabline.enable = true;
     lualine = {
       enable = true;
       settings = {
