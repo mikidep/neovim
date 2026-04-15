@@ -12,7 +12,6 @@
 in {
   plugins.treesitter = {
     enable = true;
-    indent.enable = true;
     grammarPackages =
       pkgs.vimPlugins.nvim-treesitter.passthru.allGrammars
       ++ [
@@ -28,6 +27,7 @@ in {
             and vim.bo.filetype ~= "tex"
           then
             pcall(vim.treesitter.start)
+            vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
           end
         end,
       })

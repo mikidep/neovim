@@ -180,9 +180,6 @@
           ["||" "‖"]
         ]
       );
-    extraConfigLuaPost = ''
-      vim.bo.indentexpr = ""
-    '';
   };
   plugins.mini-pick = {enable = true;};
   plugins.nvim-autopairs = {
