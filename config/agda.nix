@@ -32,7 +32,28 @@
     '';
   files."ftplugin/agda.lua" = {
     extraConfigLuaPre = builtins.readFile ../lua/agda_input.lua;
-    keymaps =
+    keymaps = let
+      inputMaps = [
+        {
+          key = "\\";
+          action.__raw = ''picksym_cb("")'';
+          mode = ["i"];
+          options.buffer = true;
+        }
+        {
+          key = "_";
+          action.__raw = ''picksym_cb("_")'';
+          mode = ["i"];
+          options.buffer = true;
+        }
+        {
+          key = "^";
+          action.__raw = ''picksym_cb("^")'';
+          mode = ["i"];
+          options.buffer = true;
+        }
+      ];
+    in
       [
         {
           options.desc = "Define declaration";
@@ -123,24 +144,6 @@
         ])
       ++ [
         {
-          key = "\\";
-          action.__raw = ''picksym_cb("")'';
-          mode = ["i"];
-          options.buffer = true;
-        }
-        {
-          key = "_";
-          action.__raw = ''picksym_cb("_")'';
-          mode = ["i"];
-          options.buffer = true;
-        }
-        {
-          key = "^";
-          action.__raw = ''picksym_cb("^")'';
-          mode = ["i"];
-          options.buffer = true;
-        }
-        {
           key = "gd";
           action = "<Cmd>CornelisGoToDefinition<CR>";
           options.remap = true;
@@ -157,14 +160,14 @@
           options.remap = true;
         }
       ]
+      ++ inputMaps
       ++ (
-        builtins.map
-        (ka: let
+        map (ka: let
           key = builtins.elemAt ka 0;
           action = builtins.elemAt ka 1;
         in {
           inherit key action;
-          mode = ["i" "c"];
+          mode = ["i"];
           options.buffer = true;
         })
         [
@@ -172,8 +175,6 @@
           [";;" ";"]
           [";;h" ";ₕ"]
           [";;v" ";ᵥ"]
-          ["'" "′"]
-          ["''" "″"]
           ["[[" "⟦"]
           ["]]" "⟧"]
           ["~~" "≈"]
@@ -191,5 +192,4 @@
       npairs.add_rule(Rule("⟨", "⟩", "agda"))
     '';
   };
-  plugins.treesitter.highlight.enable = false;
 }

@@ -51,6 +51,7 @@ in {
       };
     };
     settings.move_cursor = "sticky";
+    settings.indent_lines = false;
   };
   plugins.rainbow-delimiters = {
     enable = true;
