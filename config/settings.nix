@@ -39,7 +39,4 @@
   extraFiles = {
     "lua/nvfs-keymaps.lua".source = "${inputs.nvfs}/lua/user/keymaps.lua";
   };
-  userCommands = {
-    Bdo.command = "sil 1,.-bd | sil .+,$bd";
-  };
 }

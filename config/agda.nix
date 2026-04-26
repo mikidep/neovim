@@ -182,6 +182,10 @@
         ]
       );
   };
+  extraFiles."after/ftplugin/agda.lua".text = ''
+    pcall(vim.treesitter.start)
+  '';
+
   plugins.mini-pick = {enable = true;};
   plugins.nvim-autopairs = {
     exclude_filetypes = {"'" = ["agda"];};
