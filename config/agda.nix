@@ -182,7 +182,10 @@
         ]
       );
   };
+  # This is so stupid
   extraFiles."after/ftplugin/agda.lua".text = ''
+    local cornsynt = vim.api.nvim_get_runtime_file("syntax/agda.vim", false)[1]
+    vim.cmd('source ' .. cornsynt)
     pcall(vim.treesitter.start)
   '';
 
