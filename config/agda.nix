@@ -63,7 +63,24 @@
         {
           options.desc = "Search local agda library";
           key = "<leader>z";
-          action = assert config.plugins.toggleterm.enable; ''<cmd>FloatermNew agda-search<CR>'';
+          action = assert config.plugins.toggleterm.enable; {
+            __raw = ''
+              function()
+                require('toggleterm.terminal').Terminal:new({
+                  cmd = "agda-search",
+                  direction = "float",
+                  on_open = function(term)
+                    vim.keymap.set("t", "\\", picksym_cb(""),
+                      { buffer = term.bufnr })
+                    vim.keymap.set("t", "_", picksym_cb("_"),
+                      { buffer = term.bufnr })
+                    vim.keymap.set("t", "^", picksym_cb("^"),
+                      { buffer = term.bufnr })
+                  end
+                }):toggle()
+              end
+            '';
+          };
         }
       ]
       ++ (let

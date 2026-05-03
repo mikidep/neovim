@@ -3,8 +3,7 @@
   inputs,
   lib,
   ...
-}:
-rec {
+}: rec {
   plugins = {
     aerial.enable = true;
     auto-session.enable = true;
@@ -25,11 +24,11 @@ rec {
           "encoding"
           "fileformat"
           "filetype"
-          { __raw = "function () return tostring(vim.fn.wordcount().words)..' words' end"; }
+          {__raw = "function () return tostring(vim.fn.wordcount().words)..' words' end";}
         ];
         sections.lualine_c = [
           (
-            lib.nixvim.utils.listToUnkeyedAttrs [ "filename" ]
+            lib.nixvim.utils.listToUnkeyedAttrs ["filename"]
             // {
               file_status = false;
               path = 1;
@@ -42,10 +41,7 @@ rec {
 
     trouble.enable = true;
     oil.enable = true;
-    # which-key.enable = true;
     toggleterm.enable = true;
-
-    floaterm.enable = true;
     web-devicons.enable = true;
     repeat.enable = true;
     spectre.enable = true;
@@ -62,9 +58,8 @@ rec {
       enable = true;
     };
   };
-  extraPlugins =
-    with pkgs;
-    with vimUtils;
+  extraPlugins = with pkgs;
+  with vimUtils;
     [
       (buildVimPlugin {
         name = "midnight.nvim";
@@ -113,23 +108,4 @@ rec {
       execute "silent ! firefox --new-window " . a:url
     endfunction
   '';
-
-  keymaps = [
-    {
-      key = "ga";
-      action = "<Plug>(EasyAlign)";
-      mode = "x";
-    }
-    {
-      key = "<leader>cs";
-      action = "<cmd>AerialOpen<cr>";
-    }
-    {
-      key = "<leader>t";
-      action =
-        assert plugins.toggleterm.enable;
-        "<cmd>ToggleTerm<cr>";
-      mode = "n";
-    }
-  ];
 }

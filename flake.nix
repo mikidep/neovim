@@ -58,10 +58,6 @@
       url = "github:jhofscheier/ltex-utils.nvim";
       flake = false;
     };
-    ns-textobject-nvim = {
-      url = "github:XXiaoA/ns-textobject.nvim";
-      flake = false;
-    };
     agda-symbols = {
       url = "github:4e554c4c/agda-symbols";
       flake = false;

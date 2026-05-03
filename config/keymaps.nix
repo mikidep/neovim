@@ -12,11 +12,6 @@
         action = ''<cmd>qa<CR>'';
       }
       {
-        options.desc = "Open LazyGit";
-        key = "g";
-        action = ''<cmd>FloatermNew ${lib.getExe pkgs.lazygit}<CR>'';
-      }
-      {
         options.desc = "Open Yazi";
         key = "y";
         action = assert config.plugins.yazi.enable; ''<cmd>Yazi<CR>'';
@@ -25,6 +20,36 @@
         options.desc = "Paste GitHub URL as a flake URL";
         key = "mg";
         action = ''vt"pT"dtgf.cf/:<Esc>'';
+      }
+      {
+        key = "cs";
+        action = "<cmd>AerialOpen<cr>";
+      }
+      {
+        key = "t";
+        action.__raw = ''
+          function()
+            require('toggleterm.terminal').Terminal:new({
+              on_open = function(term)
+                vim.keymap.set("t", "<Esc><Esc>", "<c-\\><c-n>",
+                  { buffer = term.bufnr })
+              end
+            }):toggle()
+          end
+        '';
+        mode = "n";
+      }
+      {
+        options.desc = "Open LazyGit";
+        key = "g";
+        action.__raw = ''
+          function()
+            require('toggleterm.terminal').Terminal:new({
+              cmd = "lazygit",
+              direction = "float",
+            }):toggle()
+          end
+        '';
       }
     ];
   in
@@ -102,12 +127,6 @@
         mode = "n";
       }
       {
-        # terminal mode escape
-        key = "<Esc><Esc>";
-        action = "<c-\\><c-n>";
-        mode = "t";
-      }
-      {
         # kj escape
         key = "kj";
         action = "<esc>";
@@ -147,6 +166,11 @@
       {
         key = "<C-l>";
         action = "zL";
+        mode = "x";
+      }
+      {
+        key = "ga";
+        action = "<Plug>(EasyAlign)";
         mode = "x";
       }
     ];
