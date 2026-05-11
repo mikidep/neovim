@@ -27,16 +27,7 @@
       }
       {
         key = "t";
-        action.__raw = ''
-          function()
-            require('toggleterm.terminal').Terminal:new({
-              on_open = function(term)
-                vim.keymap.set("t", "<Esc><Esc>", "<c-\\><c-n>",
-                  { buffer = term.bufnr })
-              end
-            }):toggle()
-          end
-        '';
+        action = "<cmd>ToggleTerm<cr>";
         mode = "n";
       }
       {
@@ -47,6 +38,7 @@
             require('toggleterm.terminal').Terminal:new({
               cmd = "lazygit",
               direction = "float",
+              on_open = function(term) end
             }):toggle()
           end
         '';

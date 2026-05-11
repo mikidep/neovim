@@ -36,6 +36,7 @@
   plugins.mini-ai = {
     enable = true;
     settings = {
+      search_method = "cover";
       mappings = {
         around_next = "";
         inside_next = "";
@@ -54,7 +55,7 @@
             }
           end
         '';
-        b = [["%b()" "%b[]" "%b{}" "%b⟨⟩" "%b⟦⟧"] "^.().*().$"];
+        b = [["%b()" "%b[]" "%b{}"] "^.().*().$"];
         h = ["{!().*()!}"];
       };
     };

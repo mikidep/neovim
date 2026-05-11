@@ -1,9 +1,4 @@
-{
-  pkgs,
-  lib,
-  inputs,
-  ...
-}: {
+{inputs, ...}: {
   clipboard = {
     providers.wl-copy.enable = true;
     register = "unnamedplus";
@@ -35,6 +30,9 @@
     ignorecase = true;
     splitbelow = true;
     splitright = true;
+  };
+  diagnostic.settings = {
+    virtual_text = true;
   };
   extraFiles = {
     "lua/nvfs-keymaps.lua".source = "${inputs.nvfs}/lua/user/keymaps.lua";

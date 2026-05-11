@@ -41,7 +41,17 @@
 
     trouble.enable = true;
     oil.enable = true;
-    toggleterm.enable = true;
+    toggleterm = {
+      enable = true;
+      settings = {
+        on_open.__raw = ''
+          function(term)
+            vim.keymap.set("t", "<Esc><Esc>", "<c-\\><c-n>",
+              { buffer = term.bufnr })
+          end
+        '';
+      };
+    };
     web-devicons.enable = true;
     repeat.enable = true;
     spectre.enable = true;

@@ -3,13 +3,7 @@
     enable = true;
     settings = {
       label.rainbow.enabled = true;
-      modes = {
-        # char = {
-        #   enabled = true;
-        #   multiLine = true;
-        # };
-        # search.enabled = true;
-      };
+      modes.char.enabled = false;
     };
   };
 
