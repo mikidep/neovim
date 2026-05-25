@@ -2,6 +2,10 @@
   plugins.mini-pick = {
     enable = true;
   };
+  plugins.mini-comment.enable = true;
+  plugins.mini-cmdline = {
+    enable = false;
+  };
   highlightOverride."MiniPickMatchCurrent".link = "PmenuSel";
   plugins.mini-clue = {
     enable = true;
@@ -46,12 +50,36 @@
       custom_textobjects = {
         n.__raw = ''
           function()
-            froml, fromc, tol, toc = vim.treesitter.get_node_range(
-              vim.treesitter.get_node()
-            )
+            local getRng = function(node)
+              local range = { node:range() }
+              -- Following adapted from:
+              -- github.com/folke/flash.nvim rev. fcea7f
+              -- lua/flash/plugins/treesitter.lua
+              -- line 60 onwards
+              -- Sometimes it breaks
+              local line_count = vim.fn.getpos("$")[2]
+              local frange = {
+                from = {
+                  line = range[1] + 1,
+                  col = range[2] + 1
+                },
+                to = {
+                  line = range[3] + 1,
+                  col = range[4]
+                },
+              }
+              if frange.to.line == line_count
+                or frange.to.col == 0 then
+                frange.to.line = line_count - 1
+                frange.to.col = vim.fn.strwidth(
+                  vim.fn.getline(frange.to.line)) + 1
+              end
+              return frange
+            end
+            local node = vim.treesitter.get_node()
             return {
-              from = { line = froml + 1, col = fromc + 1 },
-              to = { line = tol + 1, col = toc }
+              getRng(node),
+              getRng(node:parent())
             }
           end
         '';
@@ -61,5 +89,14 @@
     };
   };
   plugins.mini-diff.enable = true;
+  plugins.mini-diff.settings.mappings = {
+    apply = "";
+    goto_first = "";
+    goto_last = "";
+    goto_next = "";
+    goto_prev = "";
+    reset = "";
+    textobject = "";
+  };
   plugins.mini-tabline.enable = true;
 }

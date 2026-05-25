@@ -2,6 +2,22 @@ local jsonPath = vim.api.nvim_get_runtime_file("data/agda-symbols.json", false)[
 local symtbl = vim.json.decode(vim.fn.join(vim.fn.readfile(jsonPath)))
 local frecdir = vim.fn.stdpath('state') .. '/agda-input'
 
+function score(s, needle)
+  if needle == "" then
+    return string.len(s)
+  end
+  if s == "" then
+    return 1000
+  end
+  local c = string.sub(needle, 1, 1)
+  local i, _ = string.find(s, c, 1, true)
+  if i == nil then
+    return 1000
+  else
+    return i + 0.2 * score(string.sub(s, i + 1), string.sub(needle, 2))
+  end
+end
+
 local MiniPick = require "mini.pick"
 function source_with_prefix(prefix)
   local source = {
@@ -17,11 +33,18 @@ function source_with_prefix(prefix)
     ),
     match = function(_, inds, query)
       local needle = prefix .. table.concat(query)
-      local f = function(i)
-        local m = symtbl[i][2]:find(needle, 1, true)
-        return m == 1
+      local ff = function(i)
+        local si = symtbl[i][2]
+        return score(si, needle) < 1000
       end
-      return vim.tbl_filter(f, inds)
+      local sf = function(i, j)
+        local si = symtbl[i][2]
+        local sj = symtbl[j][2]
+        return score(si, needle) < score(sj, needle)
+      end
+      local filtd = vim.tbl_filter(ff, inds)
+      table.sort(filtd, sf)
+      return filtd
     end,
     choose = function(it)
       -- We want some way to input the prefix

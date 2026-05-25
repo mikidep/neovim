@@ -13,7 +13,8 @@
     number = true;
     relativenumber = true;
     wrap = false;
-    scrolloff = 10;
+    winborder = "rounded";
+    scrolloff = 5;
     linebreak = true;
     sessionoptions = [
       "blank"
@@ -31,9 +32,19 @@
     splitbelow = true;
     splitright = true;
   };
-  diagnostic.settings = {
-    virtual_text = true;
-  };
+  # diagnostic.settings = {
+  #   virtual_text = true;
+  # };
+  autoCmd = [
+    {
+      event = ["TextChanged"];
+      callback.__raw = ''
+        function(_)
+
+        end
+      '';
+    }
+  ];
   extraFiles = {
     "lua/nvfs-keymaps.lua".source = "${inputs.nvfs}/lua/user/keymaps.lua";
   };

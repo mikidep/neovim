@@ -33,6 +33,7 @@
         gi = "implementation";
         gt = "type_definition";
         gr = "rename";
+        gh = "hover";
       };
     };
     servers = {

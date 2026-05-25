@@ -3,7 +3,7 @@
   inputs,
   lib,
   ...
-}: rec {
+}: {
   plugins = {
     aerial.enable = true;
     auto-session.enable = true;
@@ -38,7 +38,9 @@
       };
     };
     fugitive.enable = true;
-
+    harpoon = {
+      enable = true;
+    };
     trouble.enable = true;
     oil.enable = true;
     toggleterm = {
@@ -55,6 +57,7 @@
     web-devicons.enable = true;
     repeat.enable = true;
     spectre.enable = true;
+    tiny-inline-diagnostic.enable = true;
     yanky = {
       enable = true;
       enableTelescope = true;
@@ -71,19 +74,7 @@
   extraPlugins = with pkgs;
   with vimUtils;
     [
-      (buildVimPlugin {
-        name = "midnight.nvim";
-        src = inputs.midnight-nvim;
-      })
-      {
-        plugin = buildVimPlugin {
-          name = "scrollEOF.nvim";
-          src = inputs.scrolleof-nvim;
-        };
-        config = ''
-          lua require 'scrollEOF'.setup({})
-        '';
-      }
+      vimPlugins.midnight-nvim
       (buildVimPlugin {
         name = "guihua.lua";
         src = inputs.guihua-lua;

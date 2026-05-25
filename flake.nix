@@ -14,24 +14,12 @@
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
     };
-    midnight-nvim = {
-      url = "github:dasupradyumna/midnight.nvim";
-      flake = false;
-    };
     nvfs = {
       url = "github:LunarVim/Neovim-from-scratch";
       flake = false;
     };
-    cmp-vimtex = {
-      url = "github:micangl/cmp-vimtex";
-      flake = false;
-    };
     marp-nvim = {
       url = "github:mpas/marp-nvim";
-      flake = false;
-    };
-    scrolleof-nvim = {
-      url = "github:Aasim-A/scrollEOF.nvim";
       flake = false;
     };
     telescope-luasnip-nvim = {

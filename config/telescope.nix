@@ -9,8 +9,8 @@
     extensions = {
       fzf-native = {
         enable = true;
-        # settings.case_mode = "respect_case";
       };
+      undo.enable = true;
     };
     settings = {
       defaults = {
@@ -31,7 +31,6 @@
 
   extraPackages = [pkgs.ripgrep];
   extraPlugins = [
-    pkgs.vimPlugins.telescope-undo-nvim
     (pkgs.vimUtils.buildVimPlugin {
       name = "telescope-git-file-history.nvim";
       src = inputs.telescope-git-file-history-nvim;
