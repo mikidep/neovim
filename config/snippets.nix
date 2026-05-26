@@ -35,14 +35,17 @@
       settings = {
         ignored_next_char = ''[[]]'';
         enable_afterquote = false;
+        enable_check_bracket_line = false;
       };
       luaConfig.post =
         ''
           local Rule = require('nvim-autopairs.rule')
           local npairs = require('nvim-autopairs')
           local cond = require('nvim-autopairs.conds')
+          local ts_conds = require('nvim-autopairs.ts-conds')
 
-          npairs.add_rule(Rule("=", ";", "nix"))
+          npairs.add_rule(Rule("=", ";", "nix")
+            :with_pair(ts_conds.is_ts_node({'string','comment'})))
           npairs.add_rule(Rule("${"''"}", "${"''"}","nix"))
           npairs.add_rule(Rule("$", "$", "typst"))
         ''
@@ -71,13 +74,6 @@
         '';
       }
       vimPlugins.vim-snippets
-    ];
-    keymaps = [
-      {
-        key = "<C-l>";
-        action = "<Plug>luasnip-jump-next<CR>";
-        mode = ["i"];
-      }
     ];
   };
 }

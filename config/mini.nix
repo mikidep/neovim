@@ -56,7 +56,6 @@
               -- github.com/folke/flash.nvim rev. fcea7f
               -- lua/flash/plugins/treesitter.lua
               -- line 60 onwards
-              -- Sometimes it breaks
               local line_count = vim.fn.getpos("$")[2]
               local frange = {
                 from = {
@@ -76,11 +75,17 @@
               end
               return frange
             end
+
             local node = vim.treesitter.get_node()
-            return {
-              getRng(node),
-              getRng(node:parent())
-            }
+
+            local res = {}
+
+            while node ~= nil do
+              table.insert(res, getRng(node))
+              node = node:parent()
+            end
+
+            return res
           end
         '';
         b = [["%b()" "%b[]" "%b{}"] "^.().*().$"];

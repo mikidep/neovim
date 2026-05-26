@@ -15,5 +15,6 @@
     ./mini.nix
     ./lazy.nix
     ./snacks.nix
+    ./dap.nix
   ];
 }

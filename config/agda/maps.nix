@@ -32,6 +32,11 @@
           action = ''yyvip<Esc>pf:c$= ?<Esc>'';
         }
         {
+          options.desc = "Reassoc substitutions";
+          key = "<leader>mr";
+          action = ''<cmd>'<,'>s/∙/◆/g <bar> '<,'>s/refl/refl′/g<cr>'';
+        }
+        {
           options.desc = "Search local agda library";
           key = "<leader>z";
           action = assert config.plugins.toggleterm.enable; {

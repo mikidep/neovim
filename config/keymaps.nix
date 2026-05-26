@@ -153,17 +153,28 @@
       {
         key = "<C-h>";
         action = "zH";
-        mode = "x";
+        mode = "n";
       }
       {
         key = "<C-l>";
         action = "zL";
-        mode = "x";
+        mode = "n";
       }
       {
         key = "ga";
         action = "<Plug>(EasyAlign)";
         mode = "x";
+      }
+      # moving in insert mode
+      {
+        key = "<C-h>";
+        action = "<Left>";
+        mode = "i";
+      }
+      {
+        key = "<C-l>";
+        action = "<Right>";
+        mode = "i";
       }
     ];
 }
