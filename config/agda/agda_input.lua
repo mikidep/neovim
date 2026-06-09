@@ -18,6 +18,19 @@ function score(s, needle)
   end
 end
 
+function scoreBoost(cs, needle)
+  local boost = 0
+  local boosted = {
+    'λ',
+    'β',
+    '⋆'
+  }
+  if vim.tbl_contains(boosted, cs[1]) then
+    boost = 0.5
+  end
+  return score(cs[2], needle) - boost
+end
+
 local MiniPick = require "mini.pick"
 function source_with_prefix(prefix)
   local source = {
@@ -38,9 +51,9 @@ function source_with_prefix(prefix)
         return score(si, needle) < 1000
       end
       local sf = function(i, j)
-        local si = symtbl[i][2]
-        local sj = symtbl[j][2]
-        return score(si, needle) < score(sj, needle)
+        local si = symtbl[i]
+        local sj = symtbl[j]
+        return scoreBoost(si, needle) < scoreBoost(sj, needle)
       end
       local filtd = vim.tbl_filter(ff, inds)
       table.sort(filtd, sf)

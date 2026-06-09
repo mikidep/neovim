@@ -70,76 +70,51 @@
             inherit key action;
             mode = "n";
             options.buffer = true;
+            options.silent = false;
           }
           {
             inherit key;
-            action = "<C-o>${action}";
+            action = "<C-o>${action}<Esc>";
             mode = "i";
             options.buffer = true;
+            options.silent = false;
           }
-        ]) [
-          {
-            key = "${agdaLeader}l";
-            action = "<Cmd>CornelisLoad<CR><Esc>";
-          }
-          {
-            key = "${agdaLeader}h";
-            action = "<Cmd>CornelisQuestionToMeta<CR>";
-          }
-          {
-            key = "${agdaLeader}r";
-            action = "<Cmd>CornelisRefine<CR>";
-          }
-          {
-            key = "${agdaLeader}m";
-            action = "<Cmd>CornelisElaborate<CR>";
-          }
-          {
-            key = "${agdaLeader}ym";
-            action = "<Cmd>CornelisElaborate Normalised<CR>";
-          }
-          {
-            key = "${agdaLeader}F";
-            action = "<Cmd>CornelisPrevGoal<CR>";
-          }
-          {
-            key = "${agdaLeader}f";
-            action = "<Cmd>CornelisNextGoal<CR>";
-          }
-          {
-            key = "${agdaLeader},";
-            action = "<Cmd>CornelisTypeContext Instantiated<CR>";
-          }
-          {
-            key = "${agdaLeader}c";
-            action = "<Cmd>CornelisMakeCase<CR>";
-          }
-          {
-            key = "${agdaLeader}.";
-            action = "<Cmd>CornelisTypeContextInfer Simplified<CR>";
-          }
-          {
-            key = "${agdaLeader}y.";
-            action = "<Cmd>CornelisTypeContextInfer Normalised<CR>";
-          }
-          {
-            key = "${agdaLeader}a";
-            action = "<Cmd>CornelisAuto<CR>";
-          }
-          {
-            key = "${agdaLeader}<space>";
-            action = "<Cmd>CornelisGive<CR>";
-          }
-          {
-            key = "<C-A>";
-            action = "<Cmd>CornelisInc<CR>";
-          }
-          {
-            key = "<C-X>";
-            action = "<Cmd>CornelisDec<CR>";
-          }
-        ])
+        ]) (builtins.concatMap (ka: let
+            key = builtins.elemAt ka 0;
+            action = builtins.elemAt ka 1;
+          in [
+            {
+              key = "${agdaLeader}${key}";
+              action = "<Cmd>${action}<CR>";
+            }
+            {
+              key = "${agdaLeader}y${key}";
+              action = "<Cmd>${action} Normalised<CR>";
+            }
+          ]) [
+            ["l" "CornelisLoad"]
+            ["h" "CornelisQuestionToMeta"]
+            ["r" "CornelisRefine"]
+            ["m" "CornelisElaborate"]
+            ["F" "CornelisPrevGoal"]
+            ["f" "CornelisNextGoal"]
+            ["," "CornelisTypeContext"]
+            ["c" "CornelisMakeCase"]
+            ["." "CornelisTypeContextInfer"]
+            ["a" "CornelisAuto"]
+            ["<space>" "CornelisGive"]
+          ]))
       ++ [
+        {
+          key = "<C-A>";
+          action = "<Cmd>CornelisInc<CR>";
+          options.buffer = true;
+        }
+        {
+          key = "<C-X>";
+          action = "<Cmd>CornelisDec<CR>";
+          options.buffer = true;
+        }
         {
           key = "gd";
           action = "<Cmd>CornelisGoToDefinition<CR>";
@@ -155,6 +130,7 @@
           action = "<F6>";
           mode = ["n" "i"];
           options.remap = true;
+          options.buffer = true;
         }
       ]
       ++ inputMaps
@@ -169,6 +145,7 @@
         })
         [
           ["==" "≡"]
+          ["::" "∷"]
           [";;" ";"]
           [";;h" ";ₕ"]
           [";;v" ";ᵥ"]

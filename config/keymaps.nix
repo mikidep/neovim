@@ -47,7 +47,7 @@
   in
     leaderkm
     ++ [
-      # c, d and v_p don't cut the removed text,
+      # c, d, x and v_p don't cut the removed text,
       # C, D and v_P do instead
       {
         key = "c";
@@ -71,6 +71,13 @@
         mode = [
           "n"
           "x"
+        ];
+      }
+      {
+        key = "x";
+        action = ''"_x'';
+        mode = [
+          "n"
         ];
       }
       {

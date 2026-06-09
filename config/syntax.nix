@@ -72,7 +72,7 @@ in {
     ast-grep
   ];
   extraPlugins = with pkgs; [
-    vimPlugins.telescope-sg
+    # vimPlugins.telescope-sg
     treesitter-openscad-grammar
     vimPlugins.vim-indent-object
   ];

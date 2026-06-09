@@ -49,14 +49,14 @@
       };
       lua_ls.enable = true;
       ruff.enable = true;
-      openscad_lsp = {
-        enable = true;
-        settings = {
-          stdio = true;
-          indent = "  ";
-          ignore-default = true;
-        };
-      };
+      # openscad_lsp = {
+      #   enable = true;
+      #   settings = {
+      #     stdio = true;
+      #     indent = "  ";
+      #     ignore-default = true;
+      #   };
+      # };
       pyright.enable = true;
       rust_analyzer = {
         enable = true;
@@ -82,21 +82,21 @@
     enable = true;
   };
 
-  plugins.openscad = {
-    enable = true;
-    package = with pkgs;
-      vimPlugins.openscad-nvim.overrideAttrs {
-        buildInputs = [
-          htop
-          fzf
-        ];
-        # dependencies = [
-        #   vimPlugins.fzf-vim
-        # ];
-        patches = [
-        ];
-      };
-  };
+  # plugins.openscad = {
+  #   enable = true;
+  #   package = with pkgs;
+  #     vimPlugins.openscad-nvim.overrideAttrs {
+  #       buildInputs = [
+  #         htop
+  #         fzf
+  #       ];
+  #       # dependencies = [
+  #       #   vimPlugins.fzf-vim
+  #       # ];
+  #       patches = [
+  #       ];
+  #     };
+  # };
   files = {
     "ftplugin/openscad.lua" = {
       localOpts = {
