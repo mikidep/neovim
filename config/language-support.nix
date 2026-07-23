@@ -22,7 +22,7 @@
   plugins.lsp = {
     enable = true;
     preConfig = ''
-      vim.lsp.set_log_level('INFO')
+      vim.lsp.log.set_level('INFO')
       require('vim.lsp.log').set_format_func(vim.inspect)
     '';
     keymaps = {

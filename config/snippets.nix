@@ -33,10 +33,12 @@
         "'" = ["scheme" "lisp" "nix" "typst"];
       };
       settings = {
+        check_ts = true;
         ignored_next_char = ''[[]]'';
         enable_afterquote = false;
         enable_check_bracket_line = false;
       };
+
       luaConfig.post =
         ''
           local Rule = require('nvim-autopairs.rule')
@@ -45,7 +47,7 @@
           local ts_conds = require('nvim-autopairs.ts-conds')
 
           npairs.add_rule(Rule("=", ";", "nix")
-            :with_pair(ts_conds.is_ts_node({'string','comment'})))
+            :with_pair(ts_conds.is_not_ts_node({'string','comment'})))
           npairs.add_rule(Rule("${"''"}", "${"''"}","nix"))
           npairs.add_rule(Rule("$", "$", "typst"))
         ''

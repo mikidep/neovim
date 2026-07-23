@@ -23,7 +23,9 @@ function scoreBoost(cs, needle)
   local boosted = {
     'λ',
     'β',
-    '⋆'
+    '⋆',
+    '↖',
+    '↗'
   }
   if vim.tbl_contains(boosted, cs[1]) then
     boost = 0.5
