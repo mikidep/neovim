@@ -32,7 +32,7 @@
       ]' ${inputs.agda-symbols}/symbols.json > $out
     '';
 
-  extraFiles."ftplugin/agda/comp.lua".source = ./agda/agda_comp.lua;
+  extraFiles."ftplugin/agda/comp.lua".source = ./agda/comp.lua;
   # This is so stupid
   extraFiles."after/ftplugin/agda.lua".text = ''
     local cornsynt = vim.api.nvim_get_runtime_file("syntax/agda.vim", false)[1]
@@ -49,6 +49,13 @@
       local npairs = require('nvim-autopairs')
 
       npairs.add_rule(Rule("⟨", "⟩", "agda"))
+    '';
+  };
+  extraFiles."lua/agda-utils/cmp.lua".source = ./agda/cmp.lua;
+  plugins.none-ls = {
+    luaConfig.post = ''
+      local agda_cmp_source = require "agda-utils.cmp".cmp_source;
+      require"null-ls".register { agda_cmp_source }
     '';
   };
 }

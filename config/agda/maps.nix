@@ -2,7 +2,7 @@
   files."ftplugin/agda/maps.lua" = {
     # make these into plugins
     extraConfigLuaPre =
-      builtins.readFile ./agda_input.lua;
+      builtins.readFile ./maps.lua;
     keymaps = let
       inputMaps = [
         {

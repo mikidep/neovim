@@ -5,6 +5,7 @@
   };
   globals.mapleader = " ";
   opts = {
+    completeopt = ["menuone" "noselect" "fuzzy"];
     mouse = "";
     expandtab = true;
     shiftwidth = 2;
@@ -27,6 +28,7 @@
     undofile = true;
     wildmode = "longest:full,full";
     wildignorecase = true;
+    wildoptions = ["pum" "tagfile" "fuzzy"];
     swapfile = false;
     ignorecase = true;
     splitbelow = true;

@@ -1,7 +1,6 @@
 {
   pkgs,
   lib,
-  nur,
   ...
 }: rec {
   plugins.conform-nvim = {
@@ -10,12 +9,6 @@
       format_on_save = {
         timeout_ms = 500;
         lsp_format = "fallback";
-      };
-      formatters = {
-        # scadformat.command = lib.getExe nur.repos.mikidep.scadformat;
-      };
-      formatters_by_ft = {
-        # openscad = ["scadformat"];
       };
     };
   };

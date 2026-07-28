@@ -1,4 +1,4 @@
-{...}: {
+{
   imports = [
     ./settings.nix
     ./keymaps.nix
@@ -16,5 +16,6 @@
     ./lazy.nix
     ./snacks.nix
     ./dap.nix
+    ./none-ls.nix
   ];
 }
