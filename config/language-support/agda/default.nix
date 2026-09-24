@@ -4,7 +4,7 @@
   ...
 }: {
   imports = [
-    ./agda/maps.nix
+    ./maps.nix
   ];
   # Cornelis version in Nixpkgs is two years old
   # This fixes an error of the kind:
@@ -15,6 +15,7 @@
     settings = {
       use_global_binary = 1;
       max_size = 10;
+      max_width = 50;
       no_agda_input = 1;
     };
   };
@@ -32,14 +33,23 @@
       ]' ${inputs.agda-symbols}/symbols.json > $out
     '';
 
-  extraFiles."ftplugin/agda/comp.lua".source = ./agda/comp.lua;
+  extraFiles."ftplugin/agda/comp.lua".source = ./lua/comp.lua;
   # This is so stupid
   extraFiles."after/ftplugin/agda.lua".text = ''
     local cornsynt = vim.api.nvim_get_runtime_file("syntax/agda.vim", false)[1]
     vim.cmd('source ' .. cornsynt)
     pcall(vim.treesitter.start)
   '';
-  extraFiles."queries/agda/agda-comp.scm".source = ../assets/queries/agda/agda-comp.scm;
+  extraFiles."queries/agda/agda-comp.scm".source = ./queries/agda-comp.scm;
+
+  extraConfigVim = ''
+    function SubReassoc()
+      s/refl/refl′/eg
+      s/∙/∙′/eg
+      s/◃/◃′/eg
+      s/▹/▹′/eg
+    endfunction
+  '';
 
   plugins.mini-pick = {enable = true;};
   plugins.nvim-autopairs = {
@@ -51,11 +61,11 @@
       npairs.add_rule(Rule("⟨", "⟩", "agda"))
     '';
   };
-  extraFiles."lua/agda-utils/cmp.lua".source = ./agda/cmp.lua;
+  extraFiles."lua/agda-utils/null-ls.lua".source = ./lua/null-ls.lua;
   plugins.none-ls = {
     luaConfig.post = ''
-      local agda_cmp_source = require "agda-utils.cmp".cmp_source;
-      require"null-ls".register { agda_cmp_source }
+      local cmp_source = require "agda-utils.null-ls".cmp_source;
+      require"null-ls".register { cmp_source }
     '';
   };
 }

@@ -14,6 +14,6 @@
   };
   userCommands = {
     Scratch.command.__raw = "function() Snacks.scratch() end";
-    Bdo.command.__raw = "function() Snacks.bufdelete.other() end";
+    Bd.command.__raw = "function() Snacks.bufdelete.other() end";
   };
 }

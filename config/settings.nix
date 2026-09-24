@@ -1,4 +1,4 @@
-{inputs, ...}: {
+{pkgs, ...}: {
   clipboard = {
     providers.wl-copy.enable = true;
     register = "unnamedplus";
@@ -38,16 +38,29 @@
   #   virtual_text = true;
   # };
   autoCmd = [
+    # Don't retain files that were not "touched"
     {
-      event = ["TextChanged"];
+      event = ["BufRead"];
       callback.__raw = ''
         function(_)
-
+          vim.bo.bh = 'delete'
+        end
+      '';
+    }
+    {
+      event = ["TextChanged" "ModeChanged" "TextYankPost"];
+      callback.__raw = ''
+        function(_)
+          vim.bo.bh = 'hide'
         end
       '';
     }
   ];
-  extraFiles = {
-    "lua/nvfs-keymaps.lua".source = "${inputs.nvfs}/lua/user/keymaps.lua";
+
+  extraFiles."plugin/kwbdi.vim".source = pkgs.fetchurl {
+    url = "https://www.vim.org/scripts/download_script.php?src_id=8068";
+    name = "kwbdi.vim";
+    hash = "sha256-uf5gB4b+D+xmV7VSGa6G77DMnLhudl90Gdk68c8giW0=";
   };
+
 }

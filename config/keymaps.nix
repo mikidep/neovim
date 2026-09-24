@@ -1,6 +1,5 @@
 {
-  pkgs,
-  lib,
+  inputs,
   config,
   ...
 }: {
@@ -184,4 +183,7 @@
         mode = "i";
       }
     ];
+  extraFiles = {
+    "lua/nvfs-keymaps.lua".source = "${inputs.nvfs}/lua/user/keymaps.lua";
+  };
 }

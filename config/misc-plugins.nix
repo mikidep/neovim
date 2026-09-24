@@ -42,7 +42,6 @@
       enable = true;
     };
     trouble.enable = true;
-    oil.enable = true;
     toggleterm = {
       enable = true;
       settings = {
@@ -83,21 +82,18 @@
         '';
         doCheck = false;
       })
+      (buildVimPlugin {
+        name = "vim-maximizer";
+        src = inputs.vim-maximizer;
+        # doCheck = false;
+      })
     ]
     ++ (with vimPlugins; [
-      nvim-luadev
       unicode-vim
       vim-easy-align
       winshift-nvim
     ]);
-  files."ftplugin/markdown.lua".plugins.markdown-preview = {
-    enable = true;
-    settings = {
-      browserfunc = "OpenMarkdownPreview";
-      page_title = "\${name}";
-      theme = "light";
-    };
-  };
+
   extraPackages = with pkgs; [
     fd
     delta

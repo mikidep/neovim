@@ -1,6 +1,5 @@
 local jsonPath = vim.api.nvim_get_runtime_file("data/agda-symbols.json", false)[1]
 local symtbl = vim.json.decode(vim.fn.join(vim.fn.readfile(jsonPath)))
-local frecdir = vim.fn.stdpath('state') .. '/agda-input'
 
 function score(s, needle)
   if needle == "" then
@@ -25,7 +24,8 @@ function scoreBoost(cs, needle)
     'β',
     '⋆',
     '↖',
-    '↗'
+    '↗',
+    'σ'
   }
   if vim.tbl_contains(boosted, cs[1]) then
     boost = 0.5

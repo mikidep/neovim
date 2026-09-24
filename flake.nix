@@ -7,6 +7,10 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
     };
@@ -46,9 +50,18 @@
       url = "github:4e554c4c/agda-symbols";
       flake = false;
     };
+    vim-maximizer = {
+      url = "github:szw/vim-maximizer";
+      flake = false;
+    };
     cornelis = {
-      url = "github:agda/cornelis";
+      # url = "github:agda/cornelis";
+      url = "github:mikidep/cornelis";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    fluidcad = {
+      url = "github:Fluid-CAD/FluidCAD";
+      flake = false;
     };
   };
 

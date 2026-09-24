@@ -3,6 +3,12 @@
   lib,
   ...
 }: rec {
+  imports = [
+    ./agda
+    ./tex.nix
+    ./marp.nix
+    ./fluidcad.nix
+  ];
   plugins.conform-nvim = {
     enable = true;
     settings = {
@@ -15,10 +21,11 @@
   plugins.lsp = {
     enable = true;
     preConfig = ''
-      vim.lsp.log.set_level('INFO')
+      vim.lsp.log.set_level('WARN')
       require('vim.lsp.log').set_format_func(vim.inspect)
     '';
     keymaps = {
+      # could be registered on client/registerCapability
       lspBuf = {
         K = "hover";
         gD = "references";
@@ -42,14 +49,6 @@
       };
       lua_ls.enable = true;
       ruff.enable = true;
-      # openscad_lsp = {
-      #   enable = true;
-      #   settings = {
-      #     stdio = true;
-      #     indent = "  ";
-      #     ignore-default = true;
-      #   };
-      # };
       pyright.enable = true;
       rust_analyzer = {
         enable = true;
@@ -75,21 +74,6 @@
     enable = true;
   };
 
-  # plugins.openscad = {
-  #   enable = true;
-  #   package = with pkgs;
-  #     vimPlugins.openscad-nvim.overrideAttrs {
-  #       buildInputs = [
-  #         htop
-  #         fzf
-  #       ];
-  #       # dependencies = [
-  #       #   vimPlugins.fzf-vim
-  #       # ];
-  #       patches = [
-  #       ];
-  #     };
-  # };
   files = {
     "ftplugin/openscad.lua" = {
       localOpts = {
@@ -108,8 +92,19 @@
       localOpts = {
         wrap = true;
       };
+      plugins.markdown-preview = {
+        enable = true;
+        settings = {
+          browserfunc = "OpenMarkdownPreview";
+          page_title = "\${name}";
+          theme = "light";
+        };
+      };
     };
   };
+  extraPlugins = with pkgs.vimPlugins; [
+    nvim-luadev
+  ];
   keymaps = [
     (
       assert plugins.actions-preview.enable; {

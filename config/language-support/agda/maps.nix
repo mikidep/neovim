@@ -1,8 +1,8 @@
 {config, ...}: {
-  files."ftplugin/agda/maps.lua" = {
+  files."after/ftplugin/agda/maps.lua" = {
     # make these into plugins
     extraConfigLuaPre =
-      builtins.readFile ./maps.lua;
+      builtins.readFile ./lua/maps.lua;
     keymaps = let
       inputMaps = [
         {
@@ -30,11 +30,6 @@
           options.desc = "Define declaration";
           key = "<leader>md";
           action = ''yyvip<Esc>pf:c$= ?<Esc>'';
-        }
-        {
-          options.desc = "Reassoc substitutions";
-          key = "<leader>mr";
-          action = ''<cmd>'<,'>s/∙/◆/g <bar> '<,'>s/refl/refl′/g<cr>'';
         }
         {
           options.desc = "Search local agda library";
@@ -119,6 +114,7 @@
           key = "gd";
           action = "<Cmd>CornelisGoToDefinition<CR>";
           options.remap = true;
+          options.buffer = true;
         }
         {
           key = "<F6>";

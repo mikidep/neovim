@@ -4,12 +4,9 @@
     ./keymaps.nix
     ./misc-plugins.nix
     ./telescope.nix
-    ./agda.nix
-    ./language-support.nix
+    ./language-support
     ./syntax.nix
-    ./tex.nix
     ./snippets.nix
-    ./marp.nix
     ./flash.nix
     ./colors.nix
     ./mini.nix

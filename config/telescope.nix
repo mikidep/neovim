@@ -15,7 +15,6 @@
     settings = {
       defaults = {
         mappings.n = {
-          "jk".__raw = "require('telescope.actions').close";
           "kj".__raw = "require('telescope.actions').close";
         };
         file_ignore_patterns = [

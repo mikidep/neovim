@@ -1,9 +1,9 @@
 local null_ls = require("null-ls")
 
-local function get_qids(prms)
+local function qid_cmp(params)
   local ts = vim.treesitter
   local query = ts.query.parse("agda", "(qid) @qid")
-  local buffer = prms.bufnr
+  local buffer = params.bufnr
   local buf_highlighter = require('vim.treesitter.highlighter')
       .active[buffer]
   local line_count = vim.api.nvim_buf_line_count(buffer)
@@ -27,10 +27,12 @@ local function get_qids(prms)
   local items = {}
 
   for qid, _ in pairs(qidst) do
-    table.insert(items, {
-      label = qid,
-      insertText = qid
-    })
+    if qid ~= params.word_to_complete then
+      table.insert(items, {
+        label = qid,
+        insertText = qid
+      })
+    end
   end
 
   return {
@@ -47,8 +49,9 @@ return {
     filetypes = { "agda" },
     method = { null_ls.methods.COMPLETION },
     generator = {
-      fn = get_qids,
+      fn = qid_cmp,
     },
     id = 1,
   }
+  -- Fix this taking over Cornelis' GD
 }

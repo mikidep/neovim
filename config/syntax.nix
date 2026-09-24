@@ -56,7 +56,6 @@ in {
   plugins.rainbow-delimiters = {
     enable = true;
     settings = {
-      query.agda = "rainbow-delimiters";
       highlight = [
         "RainbowDelimiterRed"
         "RainbowDelimiterYellow"
