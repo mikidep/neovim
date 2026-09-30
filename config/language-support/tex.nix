@@ -19,19 +19,24 @@
         src = inputs.luasnip-latex-snippets-nvim;
         doCheck = false;
       })
-      # (pkgs.vimUtils.buildVimPlugin {
-      #   name = "ltex-utils.nvim";
-      #   src = inputs.ltex-utils-nvim;
-      #   doCheck = false;
-      # })
+      {
+        plugin = pkgs.vimUtils.buildVimPlugin {
+          name = "ltex-utils.nvim";
+          src = inputs.ltex-utils-nvim;
+          doCheck = false;
+        };
+        config = ''
+          lua require("ltex-utils").setup { backend = "ltex" }
+        '';
+      }
     ];
   };
 
   plugins.lsp.servers.ltex = {
     enable = true;
-    # onAttach.function = ''
-    #   require("ltex-utils").on_attach(bufnr)
-    # '';
+    onAttach.function = ''
+      require("ltex-utils").on_attach(bufnr)
+    '';
     settings.configurationTarget = {
       dictionary = "user";
       disabledRules = "user";
