@@ -93,15 +93,24 @@
       };
     };
   };
-  plugins.mini-diff.enable = true;
-  plugins.mini-diff.settings.mappings = {
-    apply = "";
-    goto_first = "";
-    goto_last = "";
-    goto_next = "";
-    goto_prev = "";
-    reset = "";
-    textobject = "";
+  plugins.mini-diff = {
+    enable = true;
+    settings.mappings = {
+      apply = "";
+      goto_first = "";
+      goto_last = "";
+      goto_next = "";
+      goto_prev = "";
+      reset = "";
+      textobject = "";
+    };
   };
-  plugins.mini-tabline.enable = true;
+  plugins.mini-indentscope = {
+    enable = true;
+    settings = {
+      symbol = "│";
+      draw.delay = 50;
+      draw.animation.__raw = ''require('mini.indentscope').gen_animation.none()'';
+    };
+  };
 }

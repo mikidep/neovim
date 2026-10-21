@@ -23,13 +23,27 @@
     preConfig = ''
       vim.lsp.log.set_level('WARN')
       require('vim.lsp.log').set_format_func(vim.inspect)
+
+      -- TODO: Extend this
+      vim.lsp.handlers['client/registerCapability'] =
+        function (err, res, ctx)
+          local client = vim.lsp.get_client_by_id(ctx.client_id)
+          if not client then return end
+
+          for bufnr, _ in pairs(client.attached_buffers) do
+            if ctx.params.method == "textDocument/definition"
+            then
+              vim.keymap.set('n', 'gd',
+                vim.lsp.action.definition, { buf = bufnr })
+            end
+          end
+        end
     '';
     keymaps = {
-      # could be registered on client/registerCapability
       lspBuf = {
         K = "hover";
         gD = "references";
-        gd = "definition";
+        # gd = "definition";
         gi = "implementation";
         gt = "type_definition";
         gr = "rename";

@@ -137,26 +137,6 @@
         mode = ["x"];
       }
       {
-        key = "H";
-        action = "<cmd>bprev<cr>";
-        mode = "n";
-      }
-      {
-        key = "L";
-        action = "<cmd>bnext<cr>";
-        mode = "n";
-      }
-      {
-        key = "<S-Left>";
-        action = "<cmd>bprev<cr>";
-        mode = "n";
-      }
-      {
-        key = "<S-Right>";
-        action = "<cmd>bnext<cr>";
-        mode = "n";
-      }
-      {
         key = "<C-h>";
         action = "zH";
         mode = "n";

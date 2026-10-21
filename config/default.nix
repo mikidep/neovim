@@ -14,5 +14,6 @@
     ./snacks.nix
     ./dap.nix
     ./none-ls.nix
+    ./tabline.nix
   ];
 }

@@ -47,7 +47,13 @@ in {
         add = ["\\(" "\\)"];
         # the ones below do not work
         find = "%\\%(.-%\\%)";
-        delete = "^(%\\%(%s*)().-(%s*%\\%()()$";
+        delete = "^(%\\%(%s*)().-(%s*%\\%))()$";
+      };
+      "M" = {
+        add = ["\\[" "\\]"];
+        # the ones below do not work
+        find = "%\\%[.-%\\%]";
+        delete = "^(%\\%[%s*)().-(%s*%\\%])()$";
       };
     };
     settings.move_cursor = "sticky";

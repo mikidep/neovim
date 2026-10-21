@@ -34,33 +34,10 @@
     splitbelow = true;
     splitright = true;
   };
-  # diagnostic.settings = {
-  #   virtual_text = true;
+
+  # extraFiles."plugin/kwbdi.vim".source = pkgs.fetchurl {
+  #   url = "https://www.vim.org/scripts/download_script.php?src_id=8068";
+  #   name = "kwbdi.vim";
+  #   hash = "sha256-uf5gB4b+D+xmV7VSGa6G77DMnLhudl90Gdk68c8giW0=";
   # };
-  autoCmd = [
-    # Don't retain files that were not "touched"
-    {
-      event = ["BufRead"];
-      callback.__raw = ''
-        function(_)
-          vim.bo.bh = 'delete'
-        end
-      '';
-    }
-    {
-      event = ["TextChanged" "ModeChanged" "TextYankPost"];
-      callback.__raw = ''
-        function(_)
-          vim.bo.bh = 'hide'
-        end
-      '';
-    }
-  ];
-
-  extraFiles."plugin/kwbdi.vim".source = pkgs.fetchurl {
-    url = "https://www.vim.org/scripts/download_script.php?src_id=8068";
-    name = "kwbdi.vim";
-    hash = "sha256-uf5gB4b+D+xmV7VSGa6G77DMnLhudl90Gdk68c8giW0=";
-  };
-
 }

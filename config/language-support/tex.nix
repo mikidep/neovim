@@ -4,13 +4,21 @@
   ...
 }: {
   files."ftplugin/tex.lua" = {
-    plugins.vimtex = {
-      enable = true;
-      texlivePackage = null;
-      settings.view_method = "zathura";
-    };
+    # plugins.vimtex = {
+    #   enable = true;
+    #   texlivePackage = null;
+    #
+    #   settings.view_method = "zathura";
+    # };
+    keymaps = [
+      {
+        key = "à";
+        action = "<LocalLeader>l";
+        mode = ["n" "x"];
+      }
+    ];
     opts = {
-      tw = 80;
+      tw = 70;
     };
     globals.latex_view_general_viewer = "zathura";
     extraPlugins = [
